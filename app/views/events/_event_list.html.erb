@@ -69,11 +69,10 @@
                             </div>
                             <div class="link-button">
                               <div class="link-button">
-                                <%= render :partial => "events/link", locals: { event: event } %>
+                                <%= render :partial => "events/link", locals: { event: event, user: user } %>
                               <div>
                             </div>
                         </div>
                     </div>
                 </article>
 		<% end %>
-		<%= paginate @events, class: "pagenate" %>

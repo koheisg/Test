@@ -1,17 +1,18 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :edit, :destroy]
+  before_action :set_current_user, only: [:index, :show, :update, :edit, :destroy]
 
 	def new
-    # イベントを登録
-		@event = Event.new
+      # イベントを登録
+　　     @event = Event.new
 
-    # 出演者を登録
+      # 出演者を登録
         @event.event_performers.build
 
-    # リンクを登録
+      # リンクを登録
         @event.event_links.build
 
-    # カテゴリを登録
+      # カテゴリを登録
         @event.event_categories.build
 
 	end
@@ -29,7 +30,6 @@ class EventsController < ApplicationController
         # DB保存→詳細画面へリダイレクト
         if @event.save
             # イベントが登録されたら、変更履歴テーブルを更新
-            #@event_id = @event.id
             UpdateEventChangeHistoryService.new(@event.id,@remote_ip,@user_id).execute
 
             redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
@@ -41,7 +41,9 @@ class EventsController < ApplicationController
 
     def index
         @q = Event.ransack(params[:q])
-    	@events = Event.page(params[:page]).includes(:event_change_histories, :event_performers, :event_links).reverse_order
+    	@events = Event.page(params[:page]).includes(:event_performers, :event_links, :event_categories).reverse_order
+
+        #binding.pry
     end
 
     def search
@@ -142,7 +144,10 @@ class EventsController < ApplicationController
     end
 
     def set_event
-        @event = Event.find_by(id: params[:id])
+        @event = Event.find_by!(id: params[:id])
     end
 
+    def set_current_user
+        @user = current_user
+    end
 end
