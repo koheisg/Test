@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :update, :edit, :destroy]
 
 	def new
     # イベントを登録
@@ -65,18 +66,12 @@ class EventsController < ApplicationController
     end
 
     def show
-        binding.pry
-    	@event = Event.find_by(params.permit[:id])
     end
 
     def edit
-    	@event = Event.find_by(params[:id])
     end
 
     def update
-        # イベント情報を取得
-         @event = Event.find_by(params[:id])
-
         # ipアドレスを取得
          @remote_ip = request.remote_ip
 
@@ -97,7 +92,6 @@ class EventsController < ApplicationController
     end
 
     def destroy
-		@event = Event.find_by(params[:id])
         @event.destroy
         redirect_to events_path
     end
@@ -146,4 +140,9 @@ class EventsController < ApplicationController
         params.require(:date).permit(:datetime_eq)
         params.require(:date_and_keyword).permit
     end
+
+    def set_event
+        @event = Event.find_by(id: params[:id])
+    end
+
 end
