@@ -15,12 +15,40 @@ class ParticipatesController < ApplicationController
     end
 
     private
-
+    #ライブ情報
     def event_params
-        params.require(:event).permit(:id, :live_date, :live_start, :live_name, :live_remarks, :link_1, :live_email, :image, :uid, :ip)
+        params.require(:event)
+        .permit(
+            :id,
+            :datetime,
+            :title,
+            :description,
+            :tel,
+            :email,
+            :image,
+            event_links_attributes: [
+                :id,
+                :event_id,
+                :url],
+            event_change_histories_attributes: [
+                :id,
+                :event_id,
+                :user_id,
+                :user_ip],
+            event_performers_attributes: [
+                :id,
+                :event_id,
+                :performer],
+            event_categories_attributes: [
+                :id,
+                :event_id,
+                :category]
+        )
     end
 
+    #ユーザー情報
     def user_params
         params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
     end
+
 end

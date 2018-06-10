@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 	end
 	def show
 	    @user = current_user
-	    @events = Event.all
+	    @events = Event.all.includes(:event_performers, :event_links, :event_categories).reverse_order
 
 	    #　ログインユーザーが登録したライブ一覧だけ表示
    		#@events = @user.events.page(params[:page])
