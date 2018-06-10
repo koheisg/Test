@@ -25,7 +25,7 @@ li{
 }
 * , ::after, ::before {
     background-repeat: no-repeat;
-    box-sizing: inherit
+    box-sizing: inherit;
 }
 
 ::after, ::before {
@@ -74,12 +74,12 @@ h1 {
     margin: 0px auto;
     position: relative;
     border: none;
-    padding: 0 10px
+    padding: 0 10px;
     background-repeat: no-repeat;
     background-position: 10px 10px;
     display: block;
     margin: 40px auto;
-    position: relative
+    position: relative;
     color: white;
     background-color: #1B95E0;
     border: 1px solid #1B95E0
@@ -112,7 +112,7 @@ h1 {
 .twitter-button:hover {
     color: #1B95E0;
     background-color: white;
-    opacity: 1.0
+    opacity: 1.0;
 }
 .pulldown{
     float:right;
@@ -178,11 +178,11 @@ figure {
 hr {
     box-sizing: content-box;
     height: 0;
-    overflow: visible
+    overflow: visible;
 }
 
 nav ol, nav ul,nav li{
-    list-style: none
+    list-style: none;
     color:#FFFFFF;
 }
 
@@ -193,13 +193,13 @@ pre {
 
 a {
     background-color: transparent;
-    -webkit-text-decoration-skip: objects
+    -webkit-text-decoration-skip: objects;
 }
 
 abbr[title] {
     border-bottom: none;
     text-decoration: underline;
-    text-decoration: underline dotted
+    text-decoration: underline dotted;
 }
 
 b, strong {
@@ -212,7 +212,7 @@ b, strong {
 
 code, kbd, samp {
     font-family: monospace, monospace;
-    font-size: 1em
+    font-size: 1em;
 }
 
 dfn {
@@ -221,7 +221,7 @@ dfn {
 
 mark {
     background-color: #ff0;
-    color: #000
+    color: #000;
 }
 
 small {
@@ -232,7 +232,7 @@ sub, sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
-    vertical-align: baseline
+    vertical-align: baseline;
 }
 
 sub {
