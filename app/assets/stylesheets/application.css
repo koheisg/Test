@@ -82,7 +82,7 @@ h1 {
     position: relative;
     color: white;
     background-color: #1B95E0;
-    border: 1px solid #1B95E0
+    border: 1px solid #1B95E0;
     -webkit-border-radius: 10px;
 }
 .twitter-button-large{
@@ -105,7 +105,7 @@ h1 {
     position: relative
     color: white;
     background-color: #1B95E0;
-    border: 1px solid #1B95E0
+    border: 1px solid #1B95E0;
     -webkit-border-radius: 10px;
 }
 
