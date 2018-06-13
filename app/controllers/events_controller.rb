@@ -42,8 +42,6 @@ class EventsController < ApplicationController
     def index
         @q = Event.ransack(params[:q])
     	@events = Event.page(params[:page]).includes(:event_performers, :event_links, :event_categories).reverse_order
-
-        #binding.pry
     end
 
     def search
@@ -148,6 +146,8 @@ class EventsController < ApplicationController
     end
 
     def set_current_user
-        @user = current_user
+        if current_user.present?
+            @user = current_user
+        end
     end
 end
