@@ -48,6 +48,15 @@
 									 	  <% event.event_categories.each do |category| %>
 										    <%= category.category %>
 										  <% end %>
+	                            <% if event.pcode.present? %>
+		                            Pコード: <% "#{event.pcode}" %><br>
+		                        <% end %>
+		                        <% if event.pcode.present? %>
+		                            Lコード: <% "#{event.lcode}" %><br>
+		                        <% end %>
+		                        <% if event.pcode.present? %>
+		                            Yコード: <% "#{event.ycode}" %><br>
+		                        <% end %>
 	                            </div>
 	                            <%= attachment_image_tag event, :image, :fill, 100, 100, format: 'jpeg' %>
 	                      <div class="post-text typography">
@@ -70,7 +79,7 @@
 	                            </div>
 	                            <div class="link-button">
 	                              <div class="link-button">
-	                                <%= render :partial => "events/link", locals: { event: event, user: user } %>
+	                                <%= render :partial => "events/link", locals: { event: event, user: user, event_event_links: event_event_links_url } %>
 	                              <div>
 	                            </div>
 	                        </div>

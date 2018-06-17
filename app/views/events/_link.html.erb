@@ -21,4 +21,9 @@
 	<% elsif event.tel.present? %>
 		<i class="fas fa-phone"></i>
 		<%= link_to '予約する','tel:'+event.tel %>
+	<% elsif event_links.url.present? %>
+	 	  <% event.event_links.each do |link| %>
+	 	  	<i class="fas fa-ticket-alt"></i>
+		    <%= link_to '予約する', link.url %>
+		  <% end %>
 	<% end %>
