@@ -69,6 +69,8 @@ class EventsController < ApplicationController
     end
 
     def edit
+        @event = Event.find_by(params[:id])
+
       # 出演者を編集
         @event.event_performers.build
 
@@ -80,6 +82,8 @@ class EventsController < ApplicationController
     end
 
     def update
+        @event = Event.find_by(params[:id])
+
         # ipアドレスを取得
          @remote_ip = request.remote_ip
 
