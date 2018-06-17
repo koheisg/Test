@@ -48,15 +48,6 @@
 									 	  <% event.event_categories.each do |category| %>
 										    <%= category.category %>
 										  <% end %>
-	                            <% if event.pcode.present? %>
-		                            Pコード: <% "#{event.pcode}" %><br>
-		                        <% end %>
-		                        <% if event.pcode.present? %>
-		                            Lコード: <% "#{event.lcode}" %><br>
-		                        <% end %>
-		                        <% if event.pcode.present? %>
-		                            Yコード: <% "#{event.ycode}" %><br>
-		                        <% end %>
 	                            </div>
 	                            <%= attachment_image_tag event, :image, :fill, 100, 100, format: 'jpeg' %>
 	                      <div class="post-text typography">
