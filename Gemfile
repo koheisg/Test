@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record in development
@@ -76,6 +75,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'bootstrap-sass'
   # タイル状のレイアウト
   gem 'masonry-rails'
+  # CSSを簡潔にする
+  gem 'bourbon'
+  gem 'neat'
 
 # 検索用
   gem 'ransack'
@@ -96,6 +98,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'factory_bot'
   # エラーメッセージを見やすく
   gem 'better_errors'
+
+# 本番用
+  group :production do
+    gem 'rails_12factor'
+  end
 
 #時刻型のデータ用
 gem 'tod'
