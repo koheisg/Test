@@ -62,9 +62,15 @@
 	                                <%= render :partial => "pendings/pending", locals: { event: event } %>
 	                              </div>
 	                            </div>
+<<<<<<< HEAD
 	                            <div class="reserve-button">
 	                              <div class="reserve-button">
 	                                <%= render :partial => "events/reserve", locals: { event: event, user: user, event_event_links: event_event_links_url(event.id) } %>
+=======
+	                            <div class="link-button">
+	                              <div class="link-button">
+	                                <%= render :partial => "events/link", locals: { event: event, user: user } %>
+>>>>>>> master
 	                              <div>
 	                            </div>
 	                        </div>
