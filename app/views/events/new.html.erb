@@ -10,50 +10,7 @@
     <div class="post-wrapper">
         <h1 class="post-title">ライブ登録</h1>
         <div class="post-box">
-        <%= form_for(@event) do |f| %>
-
-            <input type="text" data-type="date" id="date-input" />
-            <div id="material-header-holder" style="display:none">
-              <div class="ui-datepicker-material-header">
-                <div class="ui-datepicker-material-day">
-                </div>
-                <div class="ui-datepicker-material-date">
-                  <div class="ui-datepicker-material-month">
-                  </div>
-                  <div class="ui-datepicker-material-day-num">
-                  </div>
-                  <div class="ui-datepicker-material-year">
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <h4>開催日時</h4>
-            <%= f.datetime_select :datetime %><br>
-
-            <%= f.text_field :title,:placeholder => "タイトル" %><br>
-            <%= f.text_area :description,:placeholder => "内容" %><br>
-            <%= f.text_field :email,:placeholder => "メールアドレス"  %><br>
-            <%= f.text_field :tel,:placeholder => "電話番号"  %><br>
-
-            <%= f.fields_for :event_links do |urls_form| %>
-                <%= urls_form.text_field :url,:placeholder => "予約URL"  %><br>
-            <% end %>
-
-            <%= f.fields_for :event_performers do |performers_form| %>
-                <%= performers_form.text_area :performer,:placeholder => "出演者"  %><br>
-            <% end %>
-
-            <%= f.fields_for :event_categories do |categories_form| %>
-                <%= categories_form.text_field :category,:placeholder => "カテゴリ"  %><br>
-            <% end %>
-
-            <h4>画像</h4>
-            <%= f.attachment_field :image %>
-
-            <%= f.submit 'ライブ登録' %>
-
-        <% end %>
+        <%= render :partial => "event_edit", locals: { event: @event } %>
         </div>
     </div>
 </article>
