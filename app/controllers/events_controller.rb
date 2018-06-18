@@ -42,6 +42,8 @@ class EventsController < ApplicationController
     def index
         @q = Event.ransack(params[:q])
     	@events = Event.page(params[:page]).includes(:event_performers, :event_links, :event_categories).reverse_order
+
+        #binding.pry
     end
 
     def search
@@ -69,21 +71,9 @@ class EventsController < ApplicationController
     end
 
     def edit
-        @event = Event.find_by(params[:id])
-
-      # 出演者を編集
-        @event.event_performers.build
-
-      # リンクを編集
-        @event.event_links.build
-
-      # カテゴリを編集
-        @event.event_categories.build
     end
 
     def update
-        @event = Event.find_by(params[:id])
-
         # ipアドレスを取得
          @remote_ip = request.remote_ip
 
@@ -158,8 +148,6 @@ class EventsController < ApplicationController
     end
 
     def set_current_user
-        if current_user.present?
-            @user = current_user
-        end
+        @user = current_user
     end
 end

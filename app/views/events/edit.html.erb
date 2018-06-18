@@ -5,22 +5,10 @@
     <h4>タイトル</h4>
     <%= f.text_field :title %>
     <h4>本文</h4>
-    <%= f.text_area :description %>
+    <%= f.text_area :descripition %>
 	<%= f.text_field :tel %>
 	<%= f.text_field :email %>
-    <%= f.fields_for :event_links do |urls_form| %>
-        <%= urls_form.text_field :url,:placeholder => "予約URL"  %><br>
-    <% end %>
-
-    <%= f.fields_for :event_performers do |performers_form| %>
-        <%= performers_form.text_area :performer,:placeholder => "出演者"  %><br>
-    <% end %>
-
-    <%= f.fields_for :event_categories do |categories_form| %>
-        <%= categories_form.text_field :category,:placeholder => "カテゴリ"  %><br>
-    <% end %>
-
     <h4>画像</h4>
-    <%= f.attachment_field :image %>
+	<%= f.attachment_field :image %>
     <%= f.submit '保存' %>
 <% end %>
