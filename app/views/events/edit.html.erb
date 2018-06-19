@@ -1,7 +1,5 @@
 <h1>編集画面</h1>
-<<<<<<< HEAD
 <%= render :partial => "event_edit", locals: { event: @event } %>
-=======
 <%= form_for(@event) do |f| %>
     <h4>開催日時</h4>
     <%= f.datetime_select :datetime %></span>
@@ -15,4 +13,3 @@
 	<%= f.attachment_field :image %>
     <%= f.submit '保存' %>
 <% end %>
->>>>>>> master

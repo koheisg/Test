@@ -1,6 +1,6 @@
 <section class="single-blog">
 	<h2 class="blog-headline">ライブ詳細</h2>
-  <%= render :partial => "events/event_list", locals: { event: @event, user: @user } %>
+  <%= render 'events/event_list', event: @event, user: @user %>
 
   <article>
     <div class="post-card-wrap">

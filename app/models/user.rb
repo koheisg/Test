@@ -29,7 +29,7 @@ class User < ApplicationRecord
       user = User.create(
        uid:      auth.uid,
        provider: auth.provider,
-       #nickname: auth[:info][:nickname],
+       nickname: auth[:info][:nickname],
        #name: auth[:info][:name],
        #image_url: auth[:info][:image],
        #description: auth[:info][:description]

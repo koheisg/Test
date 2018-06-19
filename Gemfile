@@ -96,6 +96,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'factory_bot'
   # エラーメッセージを見やすく
   gem 'better_errors'
+  # .env から環境変数を読み込み
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
 
 #時刻型のデータ用
 gem 'tod'
