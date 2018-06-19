@@ -1,31 +1,4 @@
 <section class="single-blog">
 	<h2 class="blog-headline">ライブ詳細</h2>
-  <%= render 'events/event_list', event: @event, user: @user %>
-
-  <article>
-    <div class="post-card-wrap">
-      <h3 class="post-card-title"><%= @event.title %></h3>
-      <div class="post-card-text"><p><%= @event.description %></p>
-        <%= @event.datetime.strftime('%Y年%m月%d日 %H:%M') %></span>
-        <span><%= @event.tel %></span>
-      <span><%= @event.email %></span>
-      <!-- 出演者を表示 -->
-        <% @event.event_performers.each do |performer| %>
-          <%= performer.performer %>
-        <% end %>
-      <!-- URLを表示 -->
-        <% @event.event_links.each do |link| %>
-          <%= link.url %>
-        <% end %>
-      <!-- カテゴリを表示 -->
-        <% @event.event_categories.each do |category| %>
-          <%= category.category %>
-        <% end %>
-      <%= attachment_image_tag @event, :image, :fill, 100, 100, format: 'jpeg' %>
-
-      <%= render :partial => "participates/participate", locals: { event: @event } %>
-      <%= render :partial => "pendings/pending", locals: { event: @event } %>
-      </a>
-    </li>
-		</div>
+  <%= render 'events/event_info', event: @event, user: @user %>
 </section>
