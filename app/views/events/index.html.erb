@@ -17,8 +17,8 @@
 			  </div>
       </div>
       <%= render :partial => "events/event_list", locals: { events: @events, user: @user } %>
-      <%= link_to Date.today.prev_day, search_path(date: 'prev_day') %>
-      <%= link_to Date.today.next_day, search_path(date: 'next_day') %>
+      <%= link_to Date.today.prev_day.strftime("%m月%d日"), search_path(date: @prev_day) %>
+      <%= link_to Date.today.next_day.strftime("%m月%d日"), search_path(date: @next_day) %>
 			<%= paginate @events, class: "pagenate" %>
       </div>
     </div>

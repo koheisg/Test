@@ -1,22 +1,17 @@
-  links = []
-  month = 1
+links = []
+month = 1
 
-  #1月〜12月分のURLを取得
-  while month <= 12 do
-    if month <= 9
-      links << ("http://www.yoshimoto.co.jp/lumine/schedule0"+ "#{month}"+".php")
-    else
-      links << ("http://www.yoshimoto.co.jp/lumine/schedule"+"#{month}"+".php")
-    end
-    month = month + 1
+#1月〜12月分のURLを取得
+while month <= 12 do
+  if month <= 9
+    links << ("http://www.yoshimoto.co.jp/lumine/schedule0"+ "#{month}"+".php")
+  else
+    links << ("http://www.yoshimoto.co.jp/lumine/schedule"+"#{month}"+".php")
   end
+  month = month + 1
+end
 
-  links.each do |lumine_url|
-      get_lumine(lumine_url)
-  end
-
-  #ルミネのページをスクレイピング
-  #　インスタンスを作成、HTML情報を取得
+links.each do |lumine_url|
   lumine = Mechanize.new
   page = lumine.get(lumine_url)
 
@@ -50,4 +45,5 @@
       performer = Performer.where(name: name).first_or_create
       event.performers << performer
     end
-  end
+　end
+end

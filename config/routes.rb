@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   #Twitterログイン認証
    get 'auth/:provider/callback', to: 'sessions#create'
   #Twitterからログアウト
-   get '/logout', to: 'sessions#destroy'
+   get '/sign_out', to: 'sessions#destroy'
 
   #ユーザー認証
     devise_for :users, :controllers => {
