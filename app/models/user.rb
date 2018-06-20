@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :omniauthable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, omniauth_providers: [:twitter]
 
   # 1Userにつき何個もライブ情報を登録できる
     has_many :events
@@ -16,11 +16,6 @@ class User < ApplicationRecord
   # プロフィール画像の利用
    attachment :profile_image
 
-  # Twitter認証の場合はemailを要求しない
-  # def email_required?
-  #  (authentications.empty? || !email.blank?) && super
-  # end
-
   # Twitterログイン認証
   def self.find_for_oauth(auth, signed_in_resource=nil)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -29,7 +24,7 @@ class User < ApplicationRecord
       user = User.create(
        uid:      auth.uid,
        provider: auth.provider,
-       nickname: auth[:info][:nickname],
+       #nickname: auth[:info][:nickname],
        #name: auth[:info][:name],
        #image_url: auth[:info][:image],
        #description: auth[:info][:description]
@@ -42,11 +37,6 @@ class User < ApplicationRecord
     user.save(validate: false)
     user
   end
-
-  # 通常サインアップ時のuid用、Twitter OAuth認証時のemail用にuuidな文字列を生成
-  # def self.create_unique_string
-  #   SecureRandom.uuid
-  # end
 
   # twitterではemailを取得できないので、適当に一意のemailを生成
   private

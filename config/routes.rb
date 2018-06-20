@@ -9,16 +9,16 @@ Rails.application.routes.draw do
   get '/setting', to: 'root#setting'
 
   #フォローしてる芸人のスケジュールを表示する
-  get '/schedule', to: 'root#schedule'
+  get '/following_schedule', to: 'root#following_schedule'
 
   #参加予定
-  get '/participate', to: 'root#participate'
+  get '/schedule', to: 'root#schedule'
 
   #ライブ情報検索
   get 'search', to: 'events#search'
 
   #Twitterログイン認証
-   get 'users/auth/:provider/callback', to: 'sessions#create'
+   get 'auth/:provider/callback', to: 'sessions#create'
   #Twitterからログアウト
    get '/logout', to: 'sessions#destroy'
 

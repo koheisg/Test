@@ -58,6 +58,8 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -85,6 +87,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    debug_inspector (0.0.3)
     devise (4.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -178,6 +181,7 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
+    open_uri_redirections (0.2.1)
     orm_adapter (0.5.0)
     pg (0.21.0)
     polyamorous (1.3.3)
@@ -307,6 +311,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+  binding_of_caller
   bootstrap-sass
   bullet
   byebug
@@ -325,6 +330,7 @@ DEPENDENCIES
   nokogiri
   omniauth
   omniauth-twitter
+  open_uri_redirections
   pg (< 1.0)
   pry
   puma (~> 3.7)

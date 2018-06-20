@@ -82,6 +82,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # WEBスクレイピング用
   gem 'mechanize'
   gem 'nokogiri'
+  gem 'open_uri_redirections'
 
 # 開発用ツール
   # テスト用
@@ -98,9 +99,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'better_errors'
   # .env から環境変数を読み込み
   gem 'dotenv-rails', require: 'dotenv/rails-now'
-
-#時刻型のデータ用
-gem 'tod'
-#jQueryとturbolinksの追加
-gem 'jquery-rails'
-gem 'jquery-turbolinks'
+  # enable the REPL and local/instance variable inspection
+  gem "binding_of_caller"
+  #時刻型のデータ用
+  gem 'tod'
+  #jQueryとturbolinksの追加
+  gem 'jquery-rails'
+  gem 'jquery-turbolinks'
