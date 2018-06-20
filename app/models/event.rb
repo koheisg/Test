@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+  require 'date'
+  require 'time'
+
 	attachment :image
 
 	#一人のユーザーが複数のライブに参加できる
@@ -29,9 +32,17 @@ class Event < ApplicationRecord
     has_many :event_categories, dependent: :destroy
     accepts_nested_attributes_for :event_categories, allow_destroy: true,reject_if: :all_blank
 
-    #存在チェック
+  #存在チェック
     validates :datetime, presence: true
     validates :title, presence: true
+
+  # 日付の昇順に並べ換える
+    default_scope -> { order(datetime: :asc) }
+  # 常に本日以降の日付を表示する
+    default_scope { where(arel_table[:datetime].lt Time.now) }
+    #scope :available, -> do
+    #  where(arel_table[:datetime].lt Datetime.now)
+    #end
 
     # マイクロポストをいいねする
     #def choose_participates(user)

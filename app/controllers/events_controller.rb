@@ -23,7 +23,7 @@ class EventsController < ApplicationController
          @event = Event.new(event_params)
 
         # Event_performersを1行ごとのレコードに分ける
-         EventPerformersSplitService.new(event_params).execute
+         #EventPerformersSplitService.new(event_params).execute
 
         # DB保存→詳細画面へリダイレクト
         if @event.save
@@ -43,16 +43,14 @@ class EventsController < ApplicationController
 
   def search
       @date = params[:date]
-      @q = params[:q]
-
-      #binding.pry
+      @keyword = params[:keyword]
 
       #ライブ情報を日付で検索
       return @events = SearchDatetimeService.new(@date).execute if @date.present?
 
       #日付もしくはキーワードで検索
-      return @events = SearchDatetimeKeywordService.new(params[:datetime],params[:q]).execute if params[:datetime].present? && params[:q].present?
-      return @events = SearchKeywordService.new(params[:q]).execute if params[:q].present?
+      #return @events = SearchDatetimeKeywordService.new(params[:datetime],params[:q]).execute if params[:datetime].present? && params[:q].present?
+      return @events = SearchKeywordService.new(params[:keyword]).execute if params[:keyword].present?
       return @events = SearchDatetimeService.new(params[:datetime]).execute if params[:datetime].present?
 
       respond_to do |format|
