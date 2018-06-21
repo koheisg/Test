@@ -33,7 +33,7 @@ class Event < ApplicationRecord
   # 日付の昇順に並べ換える
     default_scope -> { order(datetime: :asc) }
   # 常に本日以降の日付を表示する
-    default_scope { where(arel_table[:datetime].lt Time.now) }
+    default_scope { where(arel_table[:datetime].gt Time.now) }
 
     #scope :available, -> do
     #  where(arel_table[:datetime].lt Datetime.now)

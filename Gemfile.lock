@@ -105,6 +105,7 @@ GEM
     factory_bot (4.10.0)
       activesupport (>= 3.0.0)
     ffi (1.9.21)
+    flatpickr (3.0.7.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashie (3.5.7)
@@ -320,6 +321,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot
+  flatpickr
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks

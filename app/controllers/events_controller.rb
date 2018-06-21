@@ -23,7 +23,7 @@ class EventsController < ApplicationController
          @event = Event.new(event_params)
 
         # Event_performersを1行ごとのレコードに分ける
-         EventPerformersSplitService.new(event_params).execute
+         #EventPerformersSplitService.new(event_params).execute
 
         # DB保存→詳細画面へリダイレクト
         if @event.save
@@ -32,6 +32,11 @@ class EventsController < ApplicationController
 
             redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
         else
+            if @event[:title].blank?
+              flash.now[:error] = 'タイトルを入力してください'
+            elsif @event[:datetime].blank?
+              flash.now[:error] = '開催日時を入力してください'
+            end
             flash.now[:error] = 'ライブ登録に失敗しました...。お手数ですが最初からやり直してください。'
             render :new
         end
@@ -44,18 +49,15 @@ class EventsController < ApplicationController
   def search
       @date = params[:date]
       @keyword = params[:keyword]
+      @date_button = params[:date]
 
-      #ライブ情報を日付で検索
-      return @events = SearchDatetimeService.new(@date).execute if @date.present?
+      #ライブ情報を指定日付で検索
+      return @events = SearchDatetimeService.new(@date_button).execute if @date_button.present?
 
-      #日付もしくはキーワードで検索
-      #return @events = SearchDatetimeKeywordService.new(params[:datetime],params[:q]).execute if params[:datetime].present? && params[:q].present?
+      #入力された日付もしくはキーワードで検索
       return @events = SearchKeywordService.new(params[:keyword]).execute if params[:keyword].present?
       return @events = SearchDatetimeService.new(params[:datetime]).execute if params[:datetime].present?
 
-      respond_to do |format|
-        format.html # index.html.erb
-      end
   end
 
   def show

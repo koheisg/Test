@@ -76,6 +76,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'bootstrap-sass'
   # タイル状のレイアウト
   gem 'masonry-rails'
+  #
+  gem 'flatpickr'
 
 # 検索用
   gem 'ransack'
