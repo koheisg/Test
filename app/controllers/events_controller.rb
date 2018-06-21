@@ -23,7 +23,7 @@ class EventsController < ApplicationController
          @event = Event.new(event_params)
 
         # Event_performersを1行ごとのレコードに分ける
-         #EventPerformersSplitService.new(event_params).execute
+         EventPerformersSplitService.new(event_params).execute
 
         # DB保存→詳細画面へリダイレクト
         if @event.save

@@ -5,7 +5,7 @@
 
 // flatpickrを起動させるinputのID *classでも可
 // 当日以前の日付は表示させない
-flatpickr("#EventCalender", {
+flatpickr("#EventCalendar", {
   minDate: "today"
   onReady: function() {
     // カレンダーがロードされた時の処理
@@ -37,7 +37,7 @@ flatpickr("#EventCalender", {
 });
 
 //jQueryでflatpickrを使用
-$("#EventCalender").flatpickr(altInput: true,altFormat: "F j, Y",dateFormat: "Y-m-d",);
+$("#EventCalendar").flatpickr(altInput: true,altFormat: "F j, Y",dateFormat: "Y-m-d",);
 
  var toJPN = {
                weekdays : ['日', '月', '火', '水', '木', '金', '土'],

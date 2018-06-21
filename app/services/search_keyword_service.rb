@@ -5,10 +5,13 @@ class SearchKeywordService
     end
 
     def execute
-        @events = Event.where("(title = ?) OR (description = ?)", @keyword, @keyword)
-        binding.pry
-        #@events_2 = Event.eager_load(:event_performers).where(event_performers: { performer: @keyword })
-        #@events = @events.merge(@events_2)
+        @events = Event.includes(:event_performers, :event_categories, :event_links).where("(title LIKE(?)) OR (description LIKE (?)
+        )", "%#{@keyword}%" , "%#{@keyword}%")
+
+        if Event.includes(:event_performers, :event_categories, :event_links).where(event_performers: { performer: @keyword } ).present?
+		  #Event.includes(:event_performers, :event_categories, :event_links).where(event_performers.arel_table[:performer].matches("%#{@keyword}%"))
+		  @events = @events + Event.includes(:event_performers, :event_categories, :event_links).where(event_performers: { performer: @keyword } )
+		end
 
         @events
     end

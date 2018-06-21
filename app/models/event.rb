@@ -13,20 +13,14 @@ class Event < ApplicationRecord
   #複数のリンクを持てる
     has_many :event_links, dependent: :destroy
     accepts_nested_attributes_for :event_links, allow_destroy: true,reject_if: :all_blank
-  # 子モデルの要素にもアクセスできるようにする
-    #attr_accessible :event_links_attributes
 
   #複数の変更履歴を持てる
     has_many :event_change_histories, dependent: :destroy
     accepts_nested_attributes_for :event_change_histories, allow_destroy: true,reject_if: :all_blank
-  # 子モデルの要素にもアクセスできるようにする
-    #attr_accessible :event_change_histories_attributes
 
   #複数の出演者を持てる
     has_many :event_performers, dependent: :destroy
     accepts_nested_attributes_for :event_performers, allow_destroy: true,reject_if: :all_blank
-  # 子モデルの要素にもアクセスできるようにする
-    #attr_accessible :event_performers_attributes
 
   #複数のカテゴリを持てる
     has_many :event_categories, dependent: :destroy
@@ -40,6 +34,7 @@ class Event < ApplicationRecord
     default_scope -> { order(datetime: :asc) }
   # 常に本日以降の日付を表示する
     default_scope { where(arel_table[:datetime].lt Time.now) }
+
     #scope :available, -> do
     #  where(arel_table[:datetime].lt Datetime.now)
     #end
