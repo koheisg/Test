@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/setting', to: 'root#setting'
 
   #フォローしてる芸人のスケジュールを表示する
-  get '/following_schedule', to: 'root#following_schedule'
+  get '/following', to: 'root#following'
 
   #参加予定
   get '/schedule', to: 'root#schedule'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   #Twitterログイン認証
    get 'auth/:provider/callback', to: 'sessions#create'
   #Twitterからログアウト
-   get '/sign_out', to: 'sessions#destroy'
+   get '/logout', to: 'sessions#destroy'
 
   #ユーザー認証
     devise_for :users, :controllers => {
@@ -35,10 +35,6 @@ Rails.application.routes.draw do
 
   #ライブ投稿
   resources :events, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
-      #参加するボタン
-      resource :participates, only: [:create, :destroy]
-      #検討中ボタン
-      resource :pendings, only: [:create, :destroy]
       #出演者
       resource :event_performers, only: [:create, :update,:destroy]
       #リンク
@@ -47,6 +43,10 @@ Rails.application.routes.draw do
       resource :event_categories, only: [:create, :update,:destroy]
       #更新履歴
       resource :event_change_histories, only: [:create, :destroy]
+      #参加するボタン
+      resource :participates, only: [:create, :destroy]
+      #検討中ボタン
+      resource :pendings, only: [:create, :destroy]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

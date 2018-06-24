@@ -1,11 +1,2 @@
 <br><br><br><br>
-<% @events = @results[0] %>
-<% @datetime = @results[1] %>
-<%= render :partial => "events/event_list", locals: { events: @events } %>
-
-<% if @datetime.present? %>
-	<% if @datetime.future? %>
-		<%= link_to @datetime.prev_day.strftime("%m月%d日"), search_path(:date => 'prev_day', :datetime => @datetime) %>
-	<% end %>
-	<%= link_to @datetime.next_day.strftime("%m月%d日"), search_path(:date => 'next_day', :datetime => @datetime) %>
-<% end %>
+<%= render :partial => "events/search_results", locals: { results: @results } %>

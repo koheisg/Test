@@ -1,1 +1,1 @@
-$("#pending-buttons").html("<%= j(render partial: 'pendings/pending', locals: { event: event}) %>");
+$("#pending-button").html("<%= j(render partial: 'pendings/pending', locals: { event: @event, pending: @pending }) %>");

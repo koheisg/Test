@@ -6,9 +6,8 @@
   <span><%= link_to '次の日曜', search_path(:date => 'next_sun') %></span><br>
 </div>
 <div>
-日付を指定する
   <%= form_tag(search_path, method: "get") do %>
-	  <%= date_select(:event, :date) %>
+	  <%= text_field_tag ':date', '',:type=>"text", :placeholder =>"日付を指定する", :id=>"SearchCalendar", data: {min_date: 'today'},data:{ provide:'flatpickr' } %>
 	  <%= submit_tag("検索") %>
 	<% end %>
 </div>

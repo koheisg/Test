@@ -16,7 +16,8 @@
 			    </div>
 			  </div>
       </div>
-      <%= render :partial => "events/event_list", locals: { events: @events, user: @user, datetime:@datetime} %>
+      <%if @results.present? %>
+      <% end %>
       </div>
     </div>
   <div class="lp-panel">

@@ -3,13 +3,15 @@ class PendingsController < ApplicationController
         event = Event.find(params[:event_id])
         pending = current_user.pendings.new(event_id: event.id)
         pending.save
-        #redirect_to events_path
+        @event = Event.find(params[:event_id])
+        @pending = current_user.pendings.find_by(event_id: params[:event_id])
     end
 
     def destroy
         pending = current_user.pendings.find_by(event_id: params[:event_id])
         pending.destroy
-        #redirect_to events_path
+        @event = Event.find(params[:event_id])
+        @pending = current_user.pendings.find_by(event_id: params[:event_id])
     end
 
     private

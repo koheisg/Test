@@ -6,9 +6,6 @@
     <title>wArally! - お笑いライブ検索</title>
     <meta name="description" content="wArally!は国内No.1のお笑いライブ検索サイト。今日の東京のお笑いライブスケジュールを、日付や出演者別に検索できます。チケット予約も簡単！">
     <meta name="keywords" content="お笑い,お笑いライブ,東京,千葉,神奈川,埼玉,首都圏,渋谷,下北沢,新宿,中野,阿佐ヶ谷,高円寺,今日,明日,週末,スケジュール,予定,チケット,予約,取り置き,販売,購入,予約受付フォーム" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -32,20 +29,17 @@
     <meta name="csrf-token" content="" />
 
   　<!-- CSSファイルの読込 -->
+    <!--Google Font "Roboto"のインストール-->
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="alternate" hreflang="ja" href="http://warally.info">
     <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,600,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    <!--日付をカレンダ入力するための設定-->
-      <!--Material Datepicker用のCSS-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Google Font "Roboto"のインストール-->
-      <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+　  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
     <!-- Google Analytics
     <script>
@@ -113,7 +107,7 @@
                     <i class="fa fa-cog"></i> 設定</a>
                 </li>
                 <li>
-                  <%= link_to sign_out_path, :method => :delete do %>
+                  <%= link_to logout_path, :method => :delete do %>
                     <i class="fa fa-sign-out-alt"></i> ログアウト
                   <% end %>
                 </li>

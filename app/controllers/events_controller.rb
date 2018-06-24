@@ -51,8 +51,8 @@ class EventsController < ApplicationController
   def search
 
     #入力された日付もしくはキーワードで検索
-      return @results = SearchDatetimeService.new(params[:date],params[:datetime]).execute if params[:date].present?
-      return @results = SearchKeywordService.new(params[:keyword]).execute if params[:keyword].present?
+    return @results = SearchDatetimeService.new(params[:date],params[:datetime]).execute if params[:date].present?
+    return @results = SearchKeywordService.new(params[:keyword]).execute if params[:keyword].present?
 
   end
 
