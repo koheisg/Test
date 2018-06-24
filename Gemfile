@@ -85,6 +85,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'mechanize'
   gem 'nokogiri'
   gem 'open_uri_redirections'
+  gem 'structured-data'
 
 # 開発用ツール
   # テスト用

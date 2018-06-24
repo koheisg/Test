@@ -7,15 +7,16 @@ class EventPerformersSplitService
     end
 
     def execute
-    	@event_performer_list[] = @event_performer_list.split("\r\n")
+    	@event_performer_list = @event_performer_list.split("\\r\\n")
 
-    	@event_performer_list.each do |event_performer_list|
-		  event_performer_list.each_line do |performer|
+    	#@event_performer_list.each do |event_performer_list|
+		  @event_performer_list.each_line do |performer|
 		   EventPerformer.new
 		   event.event_performer.event_id = @event_param.event_id
-		   event.event_performer.performer = performer
+		   event.event_performer.performer = performer.chomp
+		   binding.pry
 		  end
-		end
+		#end
 
 		binding.pry
 

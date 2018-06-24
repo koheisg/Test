@@ -11,15 +11,12 @@
 			    <div class="inner">
 			      <div class="lp-intro-hero">
 			        <p class="lp-intro-hero-text">おもしろい！を見つけよう</p>
-              <%= render :partial => "events/search_form", locals: { q: @q } %>
+              <%= render :partial => "events/search_form" %>
 			      </div>
 			    </div>
 			  </div>
       </div>
-      <%= render :partial => "events/event_list", locals: { events: @events, user: @user } %>
-      <%= link_to Date.today.prev_day.strftime("%m月%d日"), search_path(date: @prev_day) %>
-      <%= link_to Date.today.next_day.strftime("%m月%d日"), search_path(date: @next_day) %>
-			<%= paginate @events, class: "pagenate" %>
+      <%= render :partial => "events/event_list", locals: { events: @events, user: @user, datetime:@datetime} %>
       </div>
     </div>
   <div class="lp-panel">

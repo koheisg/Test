@@ -5,16 +5,18 @@ class SearchKeywordService
     end
 
     def execute
-        @events = Event.includes(:event_performers, :event_categories, :event_links).where("(title LIKE(?)) OR (description LIKE (?)
-        )", "%#{@keyword}%" , "%#{@keyword}%")
+        event = Event.includes(:event_performers, :event_categories, :event_links)
+                .references(:event_performers, :event_categories, :event_links)
 
-        if Event.includes(:event_performers, :event_categories, :event_links).where(event_performers: { performer: @keyword } ).exists?
-		      #Event.includes(:event_performers, :event_categories, :event_links).where(event_performers.arel_table[:performer].matches("%#{@keyword}%"))
-		      @events = @events + Event.includes(:event_performers, :event_categories, :event_links).where(event_performers: { performer: @keyword } )
+        # タイトルもしくは説明にキーワードが含まれる
+        @events = event.where("(title LIKE(?)) OR (description LIKE (?)
+        )", "%#{Event.escape_like(@keyword)}%" , "%#{Event.escape_like(@keyword)}%")
+
+        # 出演者にキーワードが含まれる
+        if event.where('event_performers.performer like ?', "%#{Event.escape_like(@keyword)}%").exists?
+		      @events = @events + event.where('event_performers.performer like ?', "%#{Event.escape_like(@keyword)}%")
 		    end
 
-        binding.pry
-
-        @events
+        @results = @events, nil
     end
 end

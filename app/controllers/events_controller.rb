@@ -23,7 +23,7 @@ class EventsController < ApplicationController
          @event = Event.new(event_params)
 
         # Event_performersを1行ごとのレコードに分ける
-         #EventPerformersSplitService.new(event_params).execute
+         # => EventPerformersSplitService.new(event_params).execute
 
         # DB保存→詳細画面へリダイレクト
         if @event.save
@@ -43,20 +43,16 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.page(params[:page]).includes(:event_performers, :event_links, :event_categories).reverse_order
+
+    return @results = SearchDatetimeService.new('today',DateTime.now).execute
+
   end
 
   def search
-      @date = params[:date]
-      @keyword = params[:keyword]
-      @date_button = params[:date]
 
-      #ライブ情報を指定日付で検索
-      return @events = SearchDatetimeService.new(@date_button).execute if @date_button.present?
-
-      #入力された日付もしくはキーワードで検索
-      return @events = SearchKeywordService.new(params[:keyword]).execute if params[:keyword].present?
-      return @events = SearchDatetimeService.new(params[:datetime]).execute if params[:datetime].present?
+    #入力された日付もしくはキーワードで検索
+      return @results = SearchDatetimeService.new(params[:date],params[:datetime]).execute if params[:date].present?
+      return @results = SearchKeywordService.new(params[:keyword]).execute if params[:keyword].present?
 
   end
 
@@ -124,14 +120,6 @@ private
   #ユーザー情報
   def user_params
       params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
-  end
-
-  #検索クエリ
-  def search_params
-      params.require(:q).permit(:title_or_description_or_event_performers)
-      params.require(:keyword).permit(:title_or_description)
-      params.require(:date).permit(:datetime_eq)
-      params.require(:date_and_keyword).permit
   end
 
   def set_event

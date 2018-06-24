@@ -69,6 +69,10 @@ class Event < ApplicationRecord
          !current_user.nil?
     end
 
+    def escape_like(string)
+      string.gsub(/[\\%_]/){|m| "\\#{m}"}
+    end
+
     def self.lumine_urls
         links = []
         month = 1
@@ -86,11 +90,6 @@ class Event < ApplicationRecord
         links.each do |lumine_url|
             get_lumine(lumine_url)
         end
-    end
-
-    #日付検索
-    ransacker :datetime, type: :date do
-      Arel.sql('date(created_at)')
     end
 
     #ルミネのページをスクレイピング

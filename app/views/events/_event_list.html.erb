@@ -6,8 +6,6 @@
 	   <% @events.each do |event| %>
 	      <%= render 'events/event_info', event: event, user: @user %>
 	   <% end %>
-	   <%= link_to Date.today.prev_day.strftime("%m月%d日"), search_path(:date => 'prev_day') %>
-      <%= link_to Date.today.next_day.strftime("%m月%d日"), search_path(:date => 'next_day') %>
 	<% else %>
 		<p>イベントの登録はまだありません。</p>
 	<% end %>
