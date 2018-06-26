@@ -78,7 +78,6 @@ class SearchDatetimeService
       elsif @date == 'next_day'
         @events = event.where(datetime: (@next_day)..(@next_morning))
         @datetime = @next_day
-        binding.pry
       elsif @date == 'prev_day'
         @events = event.where(datetime: (@prev_day)..(@next_morning))
         @datetime = @prev_day

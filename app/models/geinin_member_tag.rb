@@ -1,0 +1,2 @@
+class GeininMemberTag < ApplicationRecord
+end

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  geinin_id: 
+  name: MyString
+  yomi: MyString
+  twitter_id: MyString
+  instagra_id: MyString
+  blog_url: MyString
+
+two:
+  geinin_id: 
+  name: MyString
+  yomi: MyString
+  twitter_id: MyString
+  instagra_id: MyString
+  blog_url: MyString

@@ -86,9 +86,7 @@ class EventsController < ApplicationController
   def schedule
     event = Event.includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
                 .references(:event_performers, :event_categories, :event_links, :participates, :pendings)
-
-    #@participates = Participate.select("event_id").where(user_id: current_user.id)
-    #@pendings = Pending.select("event_id").where(user_id: current_user.id)
+                
     @event_participates = event.where(participates: { user_id: current_user.id } )
     @event_pendings = event.where(pendings: { user_id: current_user.id } )
     @results = @event_participates, @event_pendings
