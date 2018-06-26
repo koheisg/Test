@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :edit, :destroy]
-  before_action :set_current_user, only: [:index, :show, :update, :edit, :destroy]
+  before_action :set_current_user, only: [:index, :show, :update, :edit, :destroy, :schedule]
   before_action :set_remote_ip, only: [:create, :update]
 
   def new
@@ -63,9 +63,6 @@ class EventsController < ApplicationController
 
   end
 
-  def beachv
-  end
-
   def update
       # エラーチェック＆DB保存→詳細画面へリダイレクト
       if @event.update(event_params)
@@ -83,6 +80,18 @@ class EventsController < ApplicationController
   def destroy
       @event.destroy
       redirect_to events_path
+  end
+
+  # スケジュールの表示
+  def schedule
+    event = Event.includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
+                .references(:event_performers, :event_categories, :event_links, :participates, :pendings)
+
+    #@participates = Participate.select("event_id").where(user_id: current_user.id)
+    #@pendings = Pending.select("event_id").where(user_id: current_user.id)
+    @event_participates = event.where(participates: { user_id: current_user.id } )
+    @event_pendings = event.where(pendings: { user_id: current_user.id } )
+    @results = @event_participates, @event_pendings
   end
 
 private
@@ -123,7 +132,7 @@ private
   end
 
   def set_event
-      @event = Event.find_by!(id: params[:id])
+      @event = Event.find(id: params[:id])
   end
 
   def set_current_user

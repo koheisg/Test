@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/following', to: 'root#following'
 
   #参加予定
-  get '/schedule', to: 'root#schedule'
+  get 'schedule', to: 'events#schedule'
 
   #ライブ情報検索
   get 'search', to: 'events#search'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   #Twitterログイン認証
    get 'auth/:provider/callback', to: 'sessions#create'
   #Twitterからログアウト
-   get '/logout', to: 'sessions#destroy'
+   delete '/logout', to: 'sessions#destroy'
 
   #ユーザー認証
     devise_for :users, :controllers => {

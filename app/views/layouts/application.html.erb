@@ -71,10 +71,10 @@
                 </li>
               <% if user_signed_in? %>
                 <li class="user-menu-button">
-                  <a href="/schedule">
+                  <%= link_to schedule_path do %>
                     <i class="fas fa-heart"></i>
                     <span>参加予定</span>
-                  </a>
+                  <% end %>
                 </li>
                 <!--<li class="">
                   <a href="/schedule">

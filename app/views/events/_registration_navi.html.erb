@@ -1,6 +1,14 @@
-この機能はユーザー登録をすると使えます。<br>
-・スケジュール管理<br>
-・好きな芸人をフォロー<br>
+<div class="modal-main" id="registration_navi">
+	<p>この機能はユーザー登録をすると使えます。<br>
+	ユーザー登録するとできること<br>
+	<li>「参加する」で行く予定のライブを管理</li>
+	<li>「検討中」で気になるライブをブックマーク</li>
+	<li>好きな芸人さんをフォローして最新のライブ情報を受け取る</li>
+	さぁ、あなたもwArally!を使ってみませんか？
+	<%= link_to user_twitter_omniauth_authorize_path,class: "twitter-button" do %>
+		<i class="fa fa-twitter"></i> Twitterでログイン
+	<% end %>
+	※サービス登録により、<% link_to '利用規約',terms_path %>および<% link_to 'プライバシーポリシー',privacy_path %>に同意したこととみなされます。</p>
+	<p><a id="modal-close" class="button-link">閉じる</a></p>
+</div>
 
-ユーザー登録する
-Twitterでログイン

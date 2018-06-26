@@ -24,27 +24,6 @@ class ApplicationController < ActionController::Base
   render '/setting'
   end
 
-  # スケジュールの表示
-  def participate
-  #@user = current_user
-  @participates = Participate.where(user_id: current_user.id)
-  @pendings = Pending.where(user_id: current_user.id)
-  @events = Event.all
-  #@events = Event.where(id: @participates.event_id)
-  #@events = Event.participate.reverse_order
-  render '/participate'
-  end
-
-  # スケジュールの表示
-  def schedule
-  #@user = current_user
-  @participates = Participate.where(user_id: current_user.id)
-  @events = Event.all
-  #@events = Event.where(id: @participates.event_id)
-  #@events = Event.participate.reverse_order
-  render '/schedule'
-  end
-
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
