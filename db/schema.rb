@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180626065757) do
+ActiveRecord::Schema.define(version: 20180626072745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 20180626065757) do
     t.string "email"
     t.datetime "datetime"
     t.string "place"
+  end
+
+  create_table "geinin_followings", force: :cascade do |t|
+    t.bigint "user_id_id"
+    t.bigint "geinin_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["geinin_id_id"], name: "index_geinin_followings_on_geinin_id_id"
+    t.index ["user_id_id"], name: "index_geinin_followings_on_user_id_id"
   end
 
   create_table "geinin_member_tags", force: :cascade do |t|

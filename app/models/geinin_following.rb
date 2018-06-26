@@ -1,4 +1,4 @@
 class GeininFollowing < ApplicationRecord
-  belongs_to :user_id
-  belongs_to :geinin_if
+  belongs_to :user
+  belongs_to :geinin
 end
