@@ -24,6 +24,11 @@ class ApplicationController < ActionController::Base
   render '/setting'
   end
 
+  # aboutページの表示
+  def survey
+  render '/survey'
+  end
+
   def set_current_user
     return unless session[:user_id]
     @current_user = User.find_by(id: session[:user_id])
@@ -47,7 +52,7 @@ class ApplicationController < ActionController::Base
      # ipアドレスを取得
        @remote_ip = request.remote_ip
   end
-  
+
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])

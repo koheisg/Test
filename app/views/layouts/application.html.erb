@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-　  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+　  <%= javascript_include_tag 'application',"data-turbolinks-track" => 'reload' %>
 
     <!-- Google Analytics
     <script>
@@ -78,7 +78,7 @@
                 </li>
               <% end %>
               <li class="user-menu-button">
-                  <%= link_to geinin_path do %>
+                  <%= link_to geinins_path do %>
                     <i class="fas fa-address-book"></i>
                     <span>芸人Wiki</span>
                   <% end %>
@@ -87,7 +87,6 @@
                   <a href="/survey">
                     <i class="fas fa-book-open"></i>
                     <span>アンケート結果</span>
-                  <% end %>
                 </li>
             </ul>
         </div>

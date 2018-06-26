@@ -110,7 +110,7 @@ private
           geinin_members_attributes: [
               :id,
               :geinin_id,
-              :url
+              :url,
 	          geinin_members_tags_attributes: [
 	              :id,
 	              :geinin_id,

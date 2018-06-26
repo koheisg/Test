@@ -22,13 +22,18 @@ class EventsController < ApplicationController
         # イベント情報を取得
          @event = Event.new(event_params)
 
-        # Event_performersを1行ごとのレコードに分ける
-         # => EventPerformersSplitService.new(event_params).execute
+         @event_performers = event_params[:event_performers_attributes]
+
+         # Performerは別途作成するので空欄にする
+         @event.event_performers.clear
 
         # DB保存→詳細画面へリダイレクト
         if @event.save
             # イベントが登録されたら、変更履歴テーブルを更新
             UpdateEventChangeHistoryService.new(@event.id,@remote_ip,@user_id).execute
+
+            # Event_performersを1行ごとのレコードに分ける
+             EventPerformersSplitService.new(@event_performers,@event.id).execute
 
             redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
         else
@@ -86,7 +91,7 @@ class EventsController < ApplicationController
   def schedule
     event = Event.includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
                 .references(:event_performers, :event_categories, :event_links, :participates, :pendings)
-                
+
     @event_participates = event.where(participates: { user_id: current_user.id } )
     @event_pendings = event.where(pendings: { user_id: current_user.id } )
     @results = @event_participates, @event_pendings
@@ -130,7 +135,7 @@ private
   end
 
   def set_event
-      @event = Event.find(id: params[:id])
+      @event = Event.find_by(id: params[:id])
   end
 
   def set_current_user

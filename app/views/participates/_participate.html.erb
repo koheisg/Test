@@ -3,14 +3,14 @@
 	  <li>
 	    <%= link_to event_participates_path(event), method: :delete, class: "participate-button",id: "participate-button-#{event.id}", remote: true, :protocol => 'https' do %>
 	      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-	      <%= event.participates.select("id").count %> 参加する
+	      <%= event.participates.where(event_id: event.id).count %> 参加する
 	    <% end %>
 	  </li>
 	<% else %>
 	  <li>
 	    <%= link_to event_participates_path(event), method: :post, class: "participate-button", id: "participate-button-#{event.id}", remote: true, :protocol => 'https' do %>
 	      <i class="fa fa-heart-o" aria-hidden="true"></i>
-	      <%= event.participates.select("id").count %> 参加する
+	      <%= event.participates.where(event_id: event.id).count %> 参加する
 	    <% end %>
 	  </li>
 	<% end %>

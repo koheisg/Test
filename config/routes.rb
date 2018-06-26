@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/terms', to: 'root#terms'
   get '/privacy', to: 'root#privacy'
   get '/setting', to: 'root#setting'
+  get '/survey', to: 'root#survey'
 
   # ユーザー管理
     resources :users, only: [:show, :edit, :update, :create, :destroy]
@@ -47,7 +48,7 @@ Rails.application.routes.draw do
     get 'search', to: 'events#search'
 
   # 芸人管理
-    resources :geinins, only: [:show, :edit, :update, :create, :destroy]
+    resources :geinins, only: [:show, :edit, :update, :create, :destroy, :index]
 
     #フォローしてる芸人のスケジュールを表示する
     get 'schedule', to: 'geinin#schedule'

@@ -1,46 +1,44 @@
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//=require_tree .
+//= require turbolinks
 //= require flatpickr
+//
+// Locales can be included like so:
+//= require flatpickr/l10n/ja
+
+// const config = {
+//   enableTime: true,
+//   altFormat: "F j, Y",
+//   dateFormat: "Y-m-d",
+// }
+
 
 //flatpickrの初期化
-flatpickr('#EventCalendar');
+//flatpickr('#EventCalendar');
+$('#EventCalendar').flatpickr();
 
-//flatpickr.setDefaults({
-//    enableTime: true,
-//    dateFormat: "Y-m-d H:i",
-//    "locale": 'ja',
-//});
+// //flatpickrの初期化
+// flatpickr('#EventCalendar',config
 
-// '曜日'を日本語化
-//flatpickr.init.prototype.l10n.weekdays.shorthand = toJPN.weekdays;
-
-// '月'を日本語化
-//flatpickr.init.prototype.l10n.months.longhand = toJPN.months;
-
-
-
-$(function(){
-  // $(".participate-button").each(function(i, participate) {
-  //   console.log(participate);
-  //   // participate.bind("click", function(){
-  //   //   alert( $(this) );
-  //   // });
-
-  //   participate.click(function() {
-  //       console.log('クリックされました！');
-  //   });
-  // });
-
-  // $(".participate-button").click(function() {
-  //       console.log('クリックされました！');
-  //   });
-
-  $(".participate-button").each(function(i) {
-   $(this).click(function() {
-      console.log('クリックされました！');
-    });
-});
-
-});
-
+// $(function() {
+//   var elems = getDOMElements();
+//   var today = new Date();
+//   var calendar = null;
+  
+//   Flatpickr.l10ns.default.weekdays.shorthand = [
+//     "日", "月", "火", "水", "木", "金", "土"
+//   ];
+  
+//   calendar = new Flatpickr(elems.flatpickr, {
+//     "enableTime": true,
+//     "defaultDate": today
+//   });
+  
+//   function getDOMElements() {
+//     return {
+//       "flatpickr": document.getElementById("flatpickr")
+//     };
+//   }
+// })
+// ();

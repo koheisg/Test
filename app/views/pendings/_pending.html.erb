@@ -3,14 +3,14 @@
 	  <li>
 	    <%= link_to event_pendings_path(event), method: :delete, id: "pending-button-#{event.id}", remote: true, :protocol => 'https' do %>
 	      <i class="fas fa-question-circle" aria-hidden="true" style="color: red;"></i>
-	      <%= event.pendings.select("id").count %> 検討中
+	      <%= event.pendings.where(event_id: event.id).count %> 検討中
 	    <% end %>
 	  </li>
 	<% else %>
 	  <li>
 	    <%= link_to event_pendings_path(event), method: :post, id: "pending-button-#{event.id}", remote: true, :protocol => 'https' do %>
 	      <i class="far fa-question-circle" aria-hidden="true"></i>
-	      <%= event.pendings.select("id").count %> 検討中
+	      <%= event.pendings.where(event_id: event.id).count %> 検討中
 	    <% end %>
 	  </li>
 	<% end %>
