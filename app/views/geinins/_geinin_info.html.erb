@@ -3,10 +3,6 @@
       <div class="post-icon">
           <span class="icon-permalink"></span>
       </div>
-      <span class="date-format date-format-1">
-      <font size="3">
-      <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
-      <span><%= event.datetime.strftime('%Y年%m月%d日 %H:%M ') %></span>
       <div class="post-counts">
         <span class="share-button"></span>
         <% link_to 'Twitterにシェア', "https://twitter.com" %>
@@ -24,43 +20,41 @@
 	<div class="post-wrapper">
 	  <div class="post-box">
 	    <h3 class="post-title">
-	      <%= link_to event.title, event_path(event.id) %>
+	      <%= link_to geinin.name, event_path(geinin.id) %>
 	    </h3>
 	  </div>
 		<div class="post-text typography">
-		   <p><%= event.description %></p>
-				 	<!-- 出演者を表示 -->
-				 	  <% event.event_performers.each do |performer| %>
-					    <% link_to performer.performer, search_path(performer: performer.performer) %>
+          <div><p>結成年：<%= geinin.start_year %></p></div>
+	      <div><p>事務所：<%= geinin.agency %></p></div>
+          <div><p>Twitter：<%= link_to '@' + geinin.twitter_id, "https://twitter.com/#{geinin.twitter_id}" %></p></div>
+          <div class="Instagram-button"><p>Instagram：<%= link_to '@' + geinin.instagram_id, "https://instagram.com/#{geinin.twitter_id}" %></p></div>
+          <div class="youtube-button"><p>Youtube：<%= link_to geinin_youtube_url, geinin_youtube_url %></p></div>
+          <div class="facebook-button"><p>Facebook：<%= link_to geinin.facebook_url, geinin.facebook_url %></p></div>
+          <div class="blog-button"><p>ブログ：<%= link_to geinin.blog_url, geinin.blog_url %></p></div>
+          <div class="blog-button"><p>公式プロフィール：<%= link_to official_profile_url, official_profile_url %></p></div>
+          <div class="blog-button"><p>解散日：<%= geinin.end_date %></p></div>
+
+					<!-- メンバーを表示 -->
+				 	  <% geinin.geinin_member.each do |member| %>
+                        個人名：<%= link_to member.name, member.name %></p></div>
+                        ふりがな：<%= link_to member.yomi, member.yomi %></p></div>
+                        Twitter：<%= link_to member.twitter_id, member.twitter_id %></p></div>
+                        Instagram：<%= link_to member.instagram_id, member.instagram_id %></p></div>
+                        Blog：<%= link_to member.blog_url, member.blog_url %></p></div>
 					  <% end %>
-					<!-- カテゴリを表示 -->
-				 	  <% event.event_categories.each do |category| %>
-					    <%= link_to category.category, search_path(category: category.category) %>
+				 	<!-- タグを表示 -->
+				 	  <% geinin.geinin_tags.each do |tag| %>
+					    <% link_to tag.tag, search_path(geinin_tag: tag.tag) %>
 					  <% end %>
 	  </div>
-	    <%= attachment_image_tag event, :image, :fill, 100, 100, format: 'jpeg' %>
 	  <div class="post-text typography">
 	    <div class="post-options">
 	      <div class="edit-box">
 	        <div class="edit-button">
 	          <i class="fas fa-edit" style="font-size:15px; color:#FFFFFF;text-align:right;"　aria-hidden="true"></i>
-	          <%= link_to "編集", edit_event_path(event.id) %>
+	          <%= link_to "編集", edit_geinin_path(geinin.id) %>
 	        </div>
 	      </div>
-        <div class="like-button">
-            <div id="participate-bottun">
-            <%= render :partial => "participates/participate", locals: { event: event } %>
-            </div>
-        </div>
-        <div class="pending-button">
-          <div class ="pending-button">
-            <%= render :partial => "pendings/pending", locals: { event: event } %>
-          </div>
-        </div>
-        <div class="reserve-button">
-          <div class="reserve-button">
-            <%= render :partial => "events/reserve", locals: { event: event, user: user, event_event_links: event_event_links_url(event.id) } %>
-        </div>
 	    </div>
 	</div>
 </article>

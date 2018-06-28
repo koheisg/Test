@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: 'ログインしてください'
   end
 
-  def escape_like(string)
+  def escape_like(keyword)
     string.gsub(/[\\%_]/){|m| "\\#{m}"}
   end
 

@@ -3,11 +3,10 @@ Rails.application.routes.draw do
   # Rootはライブ一覧ページ
 
   # 基礎情報ページの表示
-  get '/about', to: 'root#about'
-  get '/terms', to: 'root#terms'
-  get '/privacy', to: 'root#privacy'
-  get '/setting', to: 'root#setting'
-  get '/survey', to: 'root#survey'
+  get '/about', to: 'root#about'　#当サイトについて
+  get '/terms', to: 'root#terms' #利用規約
+  get '/privacy', to: 'root#privacy' #プライバシーポリシー
+  get '/survey', to: 'root#survey' #アンケート結果
 
   # ユーザー管理
     resources :users, only: [:show, :edit, :update, :create, :destroy]
@@ -16,6 +15,9 @@ Rails.application.routes.draw do
      get 'auth/:provider/callback', to: 'sessions#create'
     #Twitterからログアウト
      delete '/logout', to: 'sessions#destroy'
+    
+    # ユーザー設定
+    get '/setting', to: 'users#setting'　#
 
     # メール認証
     devise_for :users, :controllers => {
@@ -41,14 +43,17 @@ Rails.application.routes.draw do
         resource :pendings, only: [:create, :destroy]
     end
 
-    #参加予定
+    # 参加予定
     get 'schedule', to: 'events#schedule'
 
-    #ライブ情報検索
+    # ライブ情報検索
     get 'search', to: 'events#search'
 
+    # フォローしてる芸人のライブ一覧を表示する
+    get 'following', to: 'events#following'
+
   # 芸人管理
-    resources :geinins, only: [:show, :edit, :update, :create, :destroy, :index]
+    resources :geinins, only: [:new, :create, :edit, :update, :index, :show, :destroy]
 
     #フォローしてる芸人のスケジュールを表示する
     get 'schedule', to: 'geinin#schedule'

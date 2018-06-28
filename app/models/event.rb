@@ -1,7 +1,4 @@
 class Event < ApplicationRecord
-  require 'date'
-  require 'time'
-
 	attachment :image
 
 	#一人のユーザーが複数のライブに参加できる
@@ -31,10 +28,14 @@ class Event < ApplicationRecord
     validates :title, presence: true
 
   # 日付の昇順に並べ換える
-    default_scope -> { order(datetime: :asc) }
+    scope{ order(datetime: :asc) }
   # 常に本日以降の日付を表示する
-    default_scope { where(arel_table[:datetime].gt Time.now) }
+    scope { where(arel_table[:datetime].gt Time.now) }
 
+  # 子テーブルを常にInclude
+    scope :including_event_info, -> { .includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
+                               .references(:event_performers, :event_categories, :event_links, :participates, :pendings) }
+                  
     #scope :available, -> do
     #  where(arel_table[:datetime].lt Datetime.now)
     #end

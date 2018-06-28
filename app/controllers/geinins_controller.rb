@@ -75,9 +75,8 @@ class GeininsController < ApplicationController
     @geinins = Geinin.select("name").where(id: @followings.geinin_id)
 
     # ユーザーがフォローしている芸人の名前でライブ情報を検索
-    @events = event.where(event_performers: { performer: @geinins.name } )
+    @events_followings = event.where(event_performers: { performer: @geinins.name } )
 
-    @results = @events
   end
 
 

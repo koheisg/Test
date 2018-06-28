@@ -7,43 +7,11 @@ class EventPerformersSplitService
     end
 
     def execute
+        # 改行コードで分割して、改行分レコードを作成する
     	@event_performer_list = @event_performer.split("\r\n")
 
-		  @event_performer_list.each do |performer|
-		   EventPerformer.create(event_id: @event_id,performer: performer)
-		   binding.pry
-		  end
+        @event_performer_list.each do |performer|
+        EventPerformer.create(event_id: @event_id,performer: performer)
+        end
     end
 end
-
-private
-  #ライブ情報
-  def event_params
-      params.require(:event)
-      .permit(
-          :id,
-          :datetime,
-          :title,
-          :description,
-          :tel,
-          :email,
-          :image,
-          event_links_attributes: [
-              :id,
-              :event_id,
-              :url],
-          event_change_histories_attributes: [
-              :id,
-              :event_id,
-              :user_id,
-              :user_ip],
-          event_performers_attributes: [
-              :id,
-              :event_id,
-              :performer],
-          event_categories_attributes: [
-              :id,
-              :event_id,
-              :category]
-      )
-  end

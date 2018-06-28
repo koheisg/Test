@@ -1,0 +1,21 @@
+<section class="sct-color-1 slice">
+  <div class="container-fluid masonry-container">
+    <div class="row">
+      <div class="col-md-8 col-sm-offset-2">
+        <div class="masonry-wrapper-cols">
+         <h2>フォロー中の芸人さんが出演するライブ一覧</h2>
+            <% if @events_following.present? %>
+                <%= render :partial => "events/event_list", locals: { events: @events_followings } %>
+            <% else %>
+                フォロー中の芸人さんが出演するライブの登録はありません。
+
+                情報がありませんか？
+                登録してみましょう！
+
+
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
