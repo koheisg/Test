@@ -22,9 +22,10 @@ class EventsController < ApplicationController
         # イベント情報を取得
          @event = Event.new(event_params)
 
+        # Performerを改行コードで分けるために変数に入れる
          @event_performers = event_params[:event_performers_attributes]
 
-         # Performerは別途作成するので空欄にする
+        # Performerは別途作成するので空欄にする
          @event.event_performers.clear
 
         # DB保存→詳細画面へリダイレクト
@@ -73,10 +74,9 @@ class EventsController < ApplicationController
 
   def update
     @event_performers = event_params[:event_performers_attributes]
-
-    # Performerは別途作成するので空欄にする
-    @event.event_performers.clear
     
+    binding.pry
+
     # エラーチェック＆DB保存→詳細画面へリダイレクト
     if @event.update(event_params)
         # イベントが編集されたら、変更履歴テーブルを更新
@@ -160,5 +160,10 @@ private
   def set_remote_ip
      # ipアドレスを取得
        @remote_ip = request.remote_ip
+  end
+
+  # 日付で検索
+  def datetime_search(from,to)
+      Event.display_after_today.ordered_by_datetime.including_event_info.where(datetime: from..to)
   end
 end

@@ -28,27 +28,12 @@ class Event < ApplicationRecord
     validates :title, presence: true
 
   # 日付の昇順に並べ換える
-    scope{ order(datetime: :asc) }
+    scope :ordered_by_datetime, -> { order(datetime: :asc) }
   # 常に本日以降の日付を表示する
-    scope { where(arel_table[:datetime].gt Time.now) }
-
+    scope :display_after_today, -> { where(arel_table[:datetime].gt Time.now) }
   # 子テーブルを常にInclude
-    scope :including_event_info, -> { .includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
-                               .references(:event_performers, :event_categories, :event_links, :participates, :pendings) }
-                  
-    #scope :available, -> do
-    #  where(arel_table[:datetime].lt Datetime.now)
-    #end
-
-    # マイクロポストをいいねする
-    #def choose_participates(user)
-    #  participates.create(user_id: user.id)
-    #end
-
-    # マイクロポストのいいねを解除する（ネーミングセンスに対するクレームは受け付けません）
-    #def cancel_participates(user)
-    #  participates.find_by(user_id: user.id).destroy
-    #end
+    scope :including_event_info, -> { includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
+                               .references(:event_performers, :event_categories, :event_links, :participates, :pendings) } 
 
     #　参加するになってるかチェック
     def participated_by?(user)

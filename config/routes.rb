@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   # Rootはライブ一覧ページ
 
   # 基礎情報ページの表示
-  get '/about', to: 'root#about'　#当サイトについて
-  get '/terms', to: 'root#terms' #利用規約
-  get '/privacy', to: 'root#privacy' #プライバシーポリシー
-  get '/survey', to: 'root#survey' #アンケート結果
+  get '/about', to: 'root#about'
+  get '/terms', to: 'root#terms'
+  get '/privacy', to: 'root#privacy'
+  get '/survey', to: 'root#survey'
 
   # ユーザー管理
     resources :users, only: [:show, :edit, :update, :create, :destroy]
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
      delete '/logout', to: 'sessions#destroy'
     
     # ユーザー設定
-    get '/setting', to: 'users#setting'　#
+    get '/setting', to: 'users#setting'
 
     # メール認証
     devise_for :users, :controllers => {
