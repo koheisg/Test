@@ -84,6 +84,9 @@
    database: test_production
    username: cathy
    password: password
+   adapter: postgresql
+   encoding: unicode
+   pool: 5
 
 cucumber:
   <<: *TEST

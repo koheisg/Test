@@ -36,7 +36,7 @@ class EventsController < ApplicationController
             # Event_performersを1行ごとのレコードに分ける
              EventPerformersSplitService.new(@event_performers,@event.id).execute
 
-            redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
+            redirect_to event_path(@event.id,@event_performers), notice: 'ありがとうございます！ライブ登録が完了しました！'
         else
             flash.now[:error] = 'ライブ登録に失敗しました...。お手数ですが最初からやり直してください。'
             render :new
