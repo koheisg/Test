@@ -79,7 +79,7 @@ class SearchDatetimeService
     end
 
     @to = @next_morning
-    Event.datetime_search(@from,@to)
+    @events = Event.datetime_search(@from,@to)
 
     return @results = @events, @datetime
 

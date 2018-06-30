@@ -61,7 +61,7 @@ class EventsController < ApplicationController
     return @results = SearchEventPerformerService.new(params[:performer]).execute if params[:performer].present?
     
     # カテゴリ検索
-    return @results = SearchEventPerformerService.new(params[:performer]).execute if params[:performer].present?
+    return @results = SearchEventCategoryService.new(params[:category]).execute if params[:category].present?
 
   end
 
@@ -160,10 +160,5 @@ private
   def set_remote_ip
      # ipアドレスを取得
        @remote_ip = request.remote_ip
-  end
-
-  # 日付で検索
-  def datetime_search(from,to)
-      Event.display_after_today.ordered_by_datetime.including_event_info.where(datetime: from..to)
   end
 end

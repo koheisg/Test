@@ -5,11 +5,8 @@ class SearchEventCategoryService
     end
 
     def execute
-        event = Event.includes(:event_performers, :event_categories, :event_links)
-                .references(:event_performers, :event_categories, :event_links)
-
         # カテゴリが一致する
-        @events = event.where(event_categories: { category: "#{Event.escape_like(@category) }" )
+        @events = Event.display_after_today.ordered_by_datetime.including_event_info.where(event_categories: { category: "#{Event.escape_like(@category) }" )
         @results = @events, nil
     end
 end

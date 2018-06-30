@@ -59,6 +59,11 @@ class Event < ApplicationRecord
       string.gsub(/[\\%_]/){|m| "\\#{m}"}
     end
 
+    # 日付で検索
+    def self.datetime_search(from,to)
+        Event.display_after_today.ordered_by_datetime.including_event_info.where(datetime: from..to)
+    end
+
     def self.lumine_urls
         links = []
         month = 1
