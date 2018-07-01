@@ -36,7 +36,7 @@ class EventsController < ApplicationController
             # Event_performersを1行ごとのレコードに分ける
              EventPerformersSplitService.new(@event_performers,@event.id).execute
 
-            redirect_to event_path(@event.id,@event_performers), notice: 'ありがとうございます！ライブ登録が完了しました！'
+            redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
         else
             flash.now[:error] = 'ライブ登録に失敗しました...。お手数ですが最初からやり直してください。'
             render :new
@@ -66,6 +66,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    binding.pry
   end
 
   def edit
@@ -86,7 +87,7 @@ class EventsController < ApplicationController
         # Event_performersを1行ごとのレコードに分ける
         EventPerformersSplitService.new(@event_performers,@event.id).execute
         
-        redirect_to event_path(params[:id]) , notice: 'ありがとうございます！ライブ登録が完了しました！'
+        redirect_to event_path(id: @event.id, performer: @event_performers) , notice: 'ありがとうございます！ライブ登録が完了しました！'
     else
         flash.now[:error] = 'ライブ編集に失敗しました...。お手数ですが最初からやり直してください。'
         render :edit
@@ -100,11 +101,8 @@ class EventsController < ApplicationController
 
   # スケジュールの表示
   def schedule
-    event = Event.includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
-                .references(:event_performers, :event_categories, :event_links, :participates, :pendings)
-
-    @event_participates = event.where(participates: { user_id: current_user.id } )
-    @event_pendings = event.where(pendings: { user_id: current_user.id } )
+    @event_participates = Event.default.where(participates: { user_id: current_user.id } )
+    @event_pendings = Event.default.where(pendings: { user_id: current_user.id } )
     @results = @event_participates, @event_pendings
   end
 
@@ -146,7 +144,7 @@ private
   end
 
   def set_event
-      @event = Event.find_by(id: params[:id])
+      @event = Event.find_by!(id: params[:id])
   end
 
   def set_current_user

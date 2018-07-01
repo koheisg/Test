@@ -6,7 +6,7 @@ class SearchEventPerformerService
 
     def execute
         # 出演者とキーワードが一致する
-        @events = Event.display_after_today.ordered_by_datetime.including_event_info.where(event_performers: { performer: "#{Event.escape_like(@performer) }" )
+        @events = Event.default.where(event_performers: { performer: "#{Event.escape_like(@performer) }" )
         @results = @events, nil
     end
 end

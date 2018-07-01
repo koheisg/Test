@@ -27,14 +27,17 @@ class Event < ApplicationRecord
     validates :datetime, presence: true
     validates :title, presence: true
 
-  # 日付の昇順に並べ換える
-    scope :ordered_by_datetime, -> { order(datetime: :asc) }
-  # 常に本日以降の日付を表示する
-    scope :display_after_today, -> { where(arel_table[:datetime].gt Time.now) }
-  # 子テーブルを常にInclude
-    scope :including_event_info, -> { includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
-                               .references(:event_performers, :event_categories, :event_links, :participates, :pendings) } 
-
+  # デフォルトの検索順序
+    # 日付の昇順に並べ換える
+      scope :order_by_datetime, -> { order(datetime: :asc) }
+    # 常に本日以降の日付を表示する
+      scope :display_after_today, -> { where(arel_table[:datetime].gt Time.now) }
+    # 子テーブルを常にInclude
+      scope :including_event_info, -> { includes(:event_performers, :event_categories, :event_links, :participates, :pendings)
+                                .references(:event_performers, :event_categories, :event_links, :participates, :pendings) } 
+    # 上記3つをまとめる
+      scope :default, ->{ order_by_datetime.display_after_today.including_event_info }
+    
     #　参加するになってるかチェック
     def participated_by?(user)
       participates.where(user_id: user.id).exists?
@@ -61,7 +64,7 @@ class Event < ApplicationRecord
 
     # 日付で検索
     def self.datetime_search(from,to)
-        Event.display_after_today.ordered_by_datetime.including_event_info.where(datetime: from..to)
+        Event.default.where(datetime: from..to)
     end
 
     def self.lumine_urls

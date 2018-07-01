@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180626072745) do
+ActiveRecord::Schema.define(version: 20180701160719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,26 +62,25 @@ ActiveRecord::Schema.define(version: 20180626072745) do
   end
 
   create_table "geinin_followings", force: :cascade do |t|
-    t.bigint "user_id_id"
-    t.bigint "geinin_id_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["geinin_id_id"], name: "index_geinin_followings_on_geinin_id_id"
-    t.index ["user_id_id"], name: "index_geinin_followings_on_user_id_id"
+    t.bigint "geinin_id"
+    t.bigint "user_id"
+    t.index ["geinin_id"], name: "index_geinin_followings_on_geinin_id"
+    t.index ["user_id"], name: "index_geinin_followings_on_user_id"
   end
 
   create_table "geinin_member_tags", force: :cascade do |t|
-    t.bigint "geinin_id_id"
     t.bigint "geinin_member_id_id"
     t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["geinin_id_id"], name: "index_geinin_member_tags_on_geinin_id_id"
+    t.bigint "geinin_id"
+    t.index ["geinin_id"], name: "index_geinin_member_tags_on_geinin_id"
     t.index ["geinin_member_id_id"], name: "index_geinin_member_tags_on_geinin_member_id_id"
   end
 
   create_table "geinin_members", force: :cascade do |t|
-    t.bigint "geinin_id_id"
     t.string "name"
     t.string "yomi"
     t.string "twitter_id"
@@ -89,21 +88,22 @@ ActiveRecord::Schema.define(version: 20180626072745) do
     t.string "blog_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["geinin_id_id"], name: "index_geinin_members_on_geinin_id_id"
+    t.bigint "geinin_id"
+    t.index ["geinin_id"], name: "index_geinin_members_on_geinin_id"
   end
 
   create_table "geinin_tags", force: :cascade do |t|
-    t.bigint "geinin_id_id"
     t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["geinin_id_id"], name: "index_geinin_tags_on_geinin_id_id"
+    t.bigint "geinin_id"
+    t.index ["geinin_id"], name: "index_geinin_tags_on_geinin_id"
   end
 
   create_table "geinins", force: :cascade do |t|
     t.string "name"
     t.string "yomi"
-    t.string "production"
+    t.string "agency"
     t.integer "start_year"
     t.string "twitter_id"
     t.string "instagram_id"
@@ -162,4 +162,9 @@ ActiveRecord::Schema.define(version: 20180626072745) do
   end
 
   add_foreign_key "event_categories", "events"
+  add_foreign_key "geinin_followings", "geinins"
+  add_foreign_key "geinin_followings", "users"
+  add_foreign_key "geinin_member_tags", "geinins"
+  add_foreign_key "geinin_members", "geinins"
+  add_foreign_key "geinin_tags", "geinins"
 end

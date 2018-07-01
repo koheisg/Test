@@ -8,11 +8,9 @@
                 <%= render :partial => "events/event_list", locals: { events: @events_followings } %>
             <% else %>
                 フォロー中の芸人さんが出演するライブの登録はありません。
-
-                情報がありませんか？
-                登録してみましょう！
-
-
+                <p>情報が登録されていませんか？<br>
+                wArally!のライブ情報は誰でも登録することができます！</p>
+                <% link_to '今すぐ芸人を登録する', new_geinin_path %>
             <% end %>
         </div>
       </div>

@@ -8,13 +8,13 @@ class GeininsController < ApplicationController
         @geinin = Geinin.new
 
       # メンバー情報を登録
-        @Geinin.geinin_members.build
+        @geinin.geinin_members.build
 
       # タグを登録
         @geinin.geinin_tags.build
 
       # メンバータグを登録
-        @geinin.geinin_members.geinin_member_tags.build
+        #@geinin.geinin_members.geinin_member_tags.build
 
   end
 
@@ -63,19 +63,14 @@ class GeininsController < ApplicationController
 
   # 芸人スケジュールの表示
   def schedule
-    geinin = geinin.includes(:geinin_members, :geinin_member_tags, :geinin_tags, :followings)
-                .references(:geinin_members, :geinin_member_tags, :geinin_tags, :followings)
-    event = Event.includes(:event_performers, :event_categories, :event_links)
-    			      .references(:event_performers, :event_categories, :event_links)
-
     #　ユーザーがフォローしている芸人一覧を取得
     @followings = Followings.select("geinin_id").where(user_id: current_user.id)
 
     # ユーザーがフォローしている芸人の名前を取得
-    @geinins = Geinin.select("name").where(id: @followings.geinin_id)
+    @geinins = Geinin.default.select("name").where(id: @followings.geinin_id)
 
     # ユーザーがフォローしている芸人の名前でライブ情報を検索
-    @events_followings = event.where(event_performers: { performer: @geinins.name } )
+    @events_followings = Event.default.where(event_performers: { performer: @geinins.name } )
 
   end
 

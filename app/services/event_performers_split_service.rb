@@ -6,10 +6,7 @@ class EventPerformersSplitService
         @event_performer = @event_performer_param.to_h['0']["performer"]
     end
 
-    def execute
-        
-        binding.pry
-        
+    def execute        
         # 改行コードで分割して、改行分レコードを作成する
     	@event_performer_list = @event_performer.split("\r\n")
 

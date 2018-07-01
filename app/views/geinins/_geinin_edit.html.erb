@@ -12,33 +12,31 @@
 
     <h4>個人</h4>
     <%= f.fields_for :geinin_member do |member_form| %>
-        <%= performers_form.text_field :name,:placeholder => "名前"  %><br>
-        <%= performers_form.text_field :yomi,:placeholder => "ふりがな"  %><br>
-        <%= performers_form.text_field :twitter_id,:placeholder => "Twitter ID"  %><br>
-        <%= performers_form.text_field :instagram_id,:placeholder => "Insgram ID"  %><br>
-        <%= performers_form.text_field :blog_url,:placeholder => "ブログ URL"  %><br>
+        <%= member_form.text_field :name,:placeholder => "名前"  %><br>
+        <%= member_form.text_field :yomi,:placeholder => "ふりがな"  %><br>
+        <%= member_form.text_field :twitter_id,:placeholder => "Twitter ID"  %><br>
+        <%= member_form.text_field :instagram_id,:placeholder => "Insgram ID"  %><br>
+        <%= member_form.text_field :blog_url,:placeholder => "ブログ URL"  %><br>
     <% end %>
     <%= f.fields_for :geinin_member do |member_form| %>
-        <%= performers_form.text_field :name,:placeholder => "メンバー 2"  %><br>
-        <%= performers_form.text_field :name,:placeholder => "名前"  %><br>
-        <%= performers_form.text_field :yomi,:placeholder => "ふりがな"  %><br>
-        <%= performers_form.text_field :twitter_id,:placeholder => "Twitter ID"  %><br>
-        <%= performers_form.text_field :instagram_id,:placeholder => "Insgram ID"  %><br>
-        <%= performers_form.text_field :blog_url,:placeholder => "ブログ URL"  %><br>
+        <%= member_form.text_field :name,:placeholder => "メンバー 2"  %><br>
+        <%= member_form.text_field :name,:placeholder => "名前"  %><br>
+        <%= member_form.text_field :yomi,:placeholder => "ふりがな"  %><br>
+        <%= member_form.text_field :twitter_id,:placeholder => "Twitter ID"  %><br>
+        <%= member_form.text_field :instagram_id,:placeholder => "Insgram ID"  %><br>
+        <%= member_form.text_field :blog_url,:placeholder => "ブログ URL"  %><br>
     <% end %>
     <%= f.fields_for :geinin_member do |member_form| %>
-        <%= performers_form.text_field :name,:placeholder => "名前"  %><br>
-        <%= performers_form.text_field :yomi,:placeholder => "ふりがな"  %><br>
-        <%= performers_form.text_field :twitter_id,:placeholder => "Twitter ID"  %><br>
-        <%= performers_form.text_field :instagram_id,:placeholder => "Insgram ID"  %><br>
-        <%= performers_form.text_field :blog_url,:placeholder => "ブログ URL"  %><br>
+        <%= member_form.text_field :name,:placeholder => "名前"  %><br>
+        <%= member_form.text_field :yomi,:placeholder => "ふりがな"  %><br>
+        <%= member_form.text_field :twitter_id,:placeholder => "Twitter ID"  %><br>
+        <%= member_form.text_field :instagram_id,:placeholder => "Insgram ID"  %><br>
+        <%= member_form.text_field :blog_url,:placeholder => "ブログ URL"  %><br>
     <% end %>   
     <h4>カテゴリ</h4>
     <%= f.fields_for :geinin_tags do |tags_form| %>
-        <%= categories_form.text_field :tag,:placeholder => "タグ"  %><br>
+        <%= tags_form.text_field :tag,:placeholder => "タグ"  %><br>
     <% end %>/
 
-    <h4>画像</h4>
-    <%= f.attachment_field :image %>
     <%= f.submit '保存' %>
 <% end %>

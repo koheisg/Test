@@ -7,5 +7,10 @@ class Geinin < ApplicationRecord
     validates :yomi, presence: true
 
   # あいうえお順の昇順に並べ換える
-    default_scope -> { order(yomi: :asc) }
+    scope :including_geinin_info, -> { includes(:geinin_members, :geinin_member_tags, :geinin_tags, :followings)
+                .references(:geinin_members, :geinin_member_tags, :geinin_tags, :followings) }
+  # あいうえお順の昇順に並べ換える
+    scope :order_by_yomi, -> { order(yomi: :asc) }
+
+    scope :default, -> { order_by_yomi.including_geinin_info}
 end

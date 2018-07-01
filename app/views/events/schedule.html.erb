@@ -6,6 +6,7 @@
         <!--「参加中」を押したライブだけ表示-->
         <% @event_participates = @results[0] %>
         <% @event_pengings = @results[1] %>
+        <% @geinin_followings = @results[2] %>
         <% if @event_participates.present? && @event_pendings.present? %>
           <h2>参加する＋検討中のライブ一覧</h2>
           <% @events = @event_participates + @event_pengings %>
