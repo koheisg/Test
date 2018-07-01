@@ -5,9 +5,8 @@ class SearchKeywordService
     end
 
     def execute
-        event = Event.includes(:event_performers, :event_categories, :event_links)
-                .references(:event_performers, :event_categories, :event_links)
-
+        event = Event.display_after_today.ordered_by_datetime.including_event_info
+        
         # タイトルもしくは説明にキーワードが含まれる
         @events = event.where("(title LIKE(?)) OR (description LIKE (?)
         )", "%#{Event.escape_like(@keyword)}%" , "%#{Event.escape_like(@keyword)}%")
