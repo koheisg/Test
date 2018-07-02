@@ -55,87 +55,87 @@
   <body>
   <header class="header">
     <div class="inner">
-        <div class="header-menubar hide-on-screen-small">
-            <ul class="nav navbar-nav" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
-            <li class="user-menu-button">
-              <a href="/search">
-                <i class="fa fa-search"></i>
-                <span>探す</span>
-              </a>
-            </li>
-                <li class="user-menu-button">
-                  <a href="/events/new">
-                    <i class="fa fa-plus-circle"></i>
-                    <span>ライブ登録</span>
-                  </a>
-                </li>
-              <% if user_signed_in? %>
-                <li class="user-menu-button">
-                  <%= link_to schedule_path do %>
-                    <i class="fas fa-heart"></i>
-                    <span>参加予定</span>
-                  <% end %>
-                </li>
+      <div class="header-menubar header-navs-left hide-on-screen-small">
+        <ul class="nav navbar-nav" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+          <li class="user-menu-button">
+            <%= link_to new_event_path do %>
+              <i class="fa fa-plus-circle"></i>
+              <span>ライブ登録</span>
               <% end %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="user-menu-button">
+              <%= link_to schedule_path do %>
+                <i class="fas fa-heart"></i>
+                <span>参加予定</span>
+                <% end %>
+            </li>
+            <% end %>
               <li class="user-menu-button">
-                  <%= link_to geinins_path do %>
-                    <i class="fas fa-address-book"></i>
-                    <span>芸人Wiki</span>
+                <%= link_to geinins_path do %>
+                  <i class="fas fa-address-book"></i>
+                  <span>芸人Wiki</span>
                   <% end %>
-                </li>
-                <li class="user-menu-button">
-                  <a href="/survey">
-                    <i class="fas fa-book-open"></i>
-                    <span>アンケート結果</span>
-                </li>
-            </ul>
-        </div>
+              </li>
+              <li class="user-menu-button">
+                <a href="/survey">
+                  <i class="fas fa-book-open"></i>
+                  <span>アンケート結果</span>
+              </li>
+        </ul>
+      </div>
 
       <h1 class="logo">
-        <img src="/assets/logo_icon.png" style="height:60px"><a href="/">wArally!<span style="font-size:12px">- お笑いライブ検索</span></a>
+        <img src="/assets/logo_icon.png" style="height:60px">
+        <a href="/">wArally!
+          <span class="logo-title" style="font-size:12px">- お笑いライブ検索</span>
+        </a>
       </h1>
 
       <% if user_signed_in? %>
-        <div class="header-nav">
+        <div class="header-navs-right">
           <div class="pulldown">
-            <div class="user-icon"><span style="background-image:url(https://pbs.twimg.com/profile_images/958803950391541760/ABdXMZLE.jpg)"></span></div>
+            <div class="user-icon">
+              <span style="background-image:url(https://pbs.twimg.com/profile_images/958803950391541760/ABdXMZLE.jpg)"></span>
+            </div>
             <div class="pulldown-content">
               <p>ユーザー名</p>
               <ul>
                 <li>
                   <%= link_to user_path(current_user) do %>
                     <i class="fa fa-user-o"></i> プロフィール
-                  <% end %>
+                    <% end %>
                 </li>
                 <li>
-                  <a href="">
+                  <%= link_to setting_path(current_user) do %>
                     <i class="fa fa-cog"></i> 設定</a>
+                    <% end %>
                 </li>
                 <li>
                   <%= link_to logout_path, :method => :delete do %>
                     <i class="fa fa-sign-out-alt"></i> ログアウト
-                  <% end %>
+                    <% end %>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-      <% end %>
+        <% end %>
 
-      <div class="header-nav">
-          <% if user_signed_in? %>
-          <% else %>
-          <ul>
-            <li>
-            <%= link_to user_twitter_omniauth_authorize_path,class: "twitter-button" do %>
-              <i class="fa fa-twitter"></i> Twitterでログイン
+          <div class="header-nav-left">
+            <% if user_signed_in? %>
+              <% else %>
+                <ul>
+                  <li>
+                    <%= link_to user_twitter_omniauth_authorize_path,class: "twitter-button" do %>
+                      <i class="fa fa-twitter"></i> Twitterでログイン
+                      <% end %>
+                  </li>
+                </ul>
             <% end %>
-            </li>
-          <ul>
-          <% end %>
-       </div>
+          </div>
     </div>
-　</header>
+  </header>
     <%= yield %>
     <footer>
         <div class="copyright">

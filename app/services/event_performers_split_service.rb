@@ -11,7 +11,7 @@ class EventPerformersSplitService
     	@event_performer_list = @event_performer.split("\r\n")
 
         @event_performer_list.each do |performer|
-        EventPerformer.create(event_id: @event_id,performer: performer)
+          EventPerformer.build(event_id: @event_id,performer: performer)
         end
         
     end

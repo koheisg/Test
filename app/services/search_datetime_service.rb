@@ -80,9 +80,7 @@ class SearchDatetimeService
 
     @to = @next_morning
     @events = Event.datetime_search(@from,@to)
-
-    binding.pry
-
+    
     return @results = @events, @datetime
 
   end
