@@ -16,10 +16,108 @@
 /* makepost参考 */
 /*! sanitize.css v5.0.0 | CC0 License | github.com/jonathantneal/sanitize.css */
 
+@media (min-width: 648px)
+.search-form-area, .event {
+    width: 350px;
+    margin: 12px;
+    box-sizing: border-box;
+    position: absolute!important;
+}
+@media (min-width: 640px)
+.ft-section {
+    width: 290px;
+    margin: 5px 15px 12px;
+}
+
+/* 検索フォーム　*/
+.search-form-container{
+    margin-top: 12px;
+    background-color: #272727;
+    color: #f7f7f7;
+    width:350px;
+    z-index: 2;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,.05);
+    display: block;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+.search-form-inner{
+    padding: 10px;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+.search-categories{
+    padding:2px 2px 0px 2px;
+}
+.search-label{
+    font-family: 'Gibson', sans-serif;
+    width:330px;
+    border-bottom:solid #ffffff 2px;
+    border-color: #676767;
+    font-size: 16px;
+    border-bottom: 1px solid #CCC;
+    padding-left: 8px;
+}
+.label-border{
+    border-bottom: 1px solid #CCC;
+    padding:0;
+}
+.search-form{
+    border:0;
+    height:32px;
+    width:320px;
+    display:inline-flex;
+    border-style: none;
+    background-color: #f2f2f2;
+    vertical-align:middle;
+    border:solid 1px #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);width: 260px;">
+    padding-top:5px;
+    padding-left:10px;
+}
+.search-label-name{
+    display:inline-block;
+    padding:0;
+}
+.search-button{
+    position:left;
+    padding-left:10px;
+    margin-bottom:10px;
+}
+.search-form-area{
+    height:30px;
+    position:left;
+    float:left;
+    padding-left:20px;
+    display:block;
+}
+
+/* カテゴリーのボタン */
+.category-tag{
+    text-decoration:none;
+    color:white;
+    font-size: 14px;
+}
+.category-button{ 
+    background-color:#f22e58;
+    height:40px;
+    vertical-align:middle;
+    margin-bottom:10px;
+    position:left;
+}
 .category-button ul {
   margin: 0;
   padding: 0;
   list-style: none;
+  position:left;
+  float:left;
 }
 .category-button ul li {
   display: inline-block;
@@ -33,19 +131,19 @@
   height: 28px;
   line-height: 28px;
   padding: 0 2.5em 0 1em;
-  background-color: #f22e58;
+  /* background-color: #f22e58;*/
   border: 1px solid #aaa;
   border-radius: 3px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  color: #333;
-  font-size: 13px;
+  color:white;
+  font-size: 12px;
   text-decoration: none;
   -webkit-transition: .2s;
   transition: .2s;
 }
-.category-button li span {
+.category-tag li span {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -53,17 +151,17 @@
   width: 22px;
   height: 22px;
   line-height: 22px;
-  background-color: #f22e58;
+  background-color: #ffffff;
   border-radius: 100%;
-  color: #fff;
+  color: #272727;
   font-size: 12px;
   text-align: center;
   -webkit-transition: .2s;
   transition: .2s;
 }
 .category-button ul li a:hover {
-  background-color: #f22e58;
-  border: 1px solid #f22e58;
+  background-color: #272727;
+  border: 1px solid #272727;
   color: #fff;
 }
 .cateogory-button ul li a:hover span {
@@ -72,7 +170,14 @@
 }
 
 .search-label{
-    border-bottom: solid 400px white;
+    width:320px;
+    text-align: left;
+    font-size: 12px;
+    padding-left:10px;
+    border-bottom:#f2f2f2;
+}
+.search-label p{
+    padding:0;
 }
 .btn{
   padding:8px 12px 8px 12px;
@@ -86,6 +191,9 @@
     height:40px;
     vertical-align: center;
     background-color:#f22e58;
+}
+.category-button{
+
 }
 /* イベント登録フォームのCSS　*/
 .event-submit{
@@ -234,11 +342,6 @@ h1 {
 .post-title{
     text-align:center;
     font-size:15pt;
-}
-.ft-label {
-    font-family: 'Gibson', sans-serif;
-    width:260px;
-
 }
 
 .post-title,
@@ -578,7 +681,7 @@ body {
     padding-right: 10px;
     max-width: 800px;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
 }
 
 @media (min-width: 769px) {
@@ -3021,3 +3124,7 @@ body {
     background-color:rgba(0,0,0,0.75);
 }
 
+.fa .fas{
+  margin-right:5px;
+  padding-right:5px;
+}

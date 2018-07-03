@@ -12,7 +12,10 @@
         <%= performers_form.text_area :performer,:placeholder => "出演者",:class => "event-edit-form"  %><br>
     <% end %>
     <%= f.fields_for :event_categories do |categories_form| %>
-        <%= categories_form.text_field :category,:placeholder => "カテゴリ",:class => "event-edit-form"  %><br>
+　    <%= categories_form.text_field :category,:placeholder => "単独ライブ",:class => "category-button",:id => "category-button-solo", :readonly => true %>
+      <%= categories_form.text_field :category,:placeholder => "無料",:class => "category-button",:id => "category-button-free", :readonly => true %>
+      <%= categories_form.text_field :category,:placeholder => "エントリー制",:class => "category-button",:id => "category-button-entry", :readonly => true %>
+　    <%= categories_form.text_field :category,:placeholder => "出演者募集中",:class => "category-button",:id => "category-button-open", :readonly => true %>  
     <% end %>
     <p>予約の仕方</p>
     <%= f.text_field :email,:placeholder => "メールアドレス",:class => "event-edit-form"  %><br>
