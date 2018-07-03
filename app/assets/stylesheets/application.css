@@ -16,6 +16,39 @@
 /* makepost参考 */
 /*! sanitize.css v5.0.0 | CC0 License | github.com/jonathantneal/sanitize.css */
 
+.edit-form-container{
+    display:block;
+    margin:0 auto;
+    width:800px;
+    margin-top: 12px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.event-box{
+
+}
+.event-box-title{
+    font-family: 'Arquitecta', sans-serif;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    display:block;
+}
+.event-edit-form{
+  border-color:  #F2F2F2;
+  width:400px;
+  padding:0px;
+}
+
+.event-edit-form textarea{
+    overflow: hidden; 
+    word-wrap: break-word; 
+    resize: horizontal; 
+    height: 100px;
+}
+
 @media (min-width: 648px)
 .search-form-area, .event {
     width: 350px;
@@ -199,12 +232,12 @@
 .event-submit{
   background-color:#dee7ec;
   color:#889eab;
+  width:400px;
+  display:block;
+  margin-top:10px;
 }
 
-.event-edit-form{
-  border-color:  #F2F2F2;
-  width:400px;
-}
+
 
 .header-nav{
     margin-right: auto;
@@ -235,9 +268,14 @@ article, aside, footer, header, nav, section {
 }
 
 body {
-    font-family: 'Avalon', sans-serif;
     background-color: #FAFAFA;
     margin: 0;
+    position: relative;
+    font-weight: 500;
+    background: #F2F2F2;
+    padding-bottom: 70px;
+    border-top: 50px solid #FFF;
+    font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
 h1 {
