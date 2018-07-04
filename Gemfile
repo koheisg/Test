@@ -67,12 +67,15 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # Twitter連携
   gem 'omniauth'
   gem 'omniauth-twitter'
+  gem 'twitter'
 
 #デザイン関連
   # ページング
   gem 'kaminari'
   # bootstrap
   gem 'bootstrap-sass'
+  gem 'bootstrap-social-rails'
+  gem 'font-awesome-rails'
   # タイル状のレイアウト
   gem 'masonry-rails'
   # datepicker

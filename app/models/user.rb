@@ -25,13 +25,28 @@ class User < ApplicationRecord
        uid:      auth.uid,
        provider: auth.provider,
        nickname: auth[:info][:nickname],
-       #name: auth[:info][:name],
+       name: auth[:info][:name],
        image_url: auth[:info][:image],
-       #description: auth[:info][:description]
+       description: auth[:info][:description],
+       url: auth[:info][:urls][:Website],
        email:    User.dummy_email(auth),
        password: Devise.friendly_token[0, 20]
       )
     end
+
+    # unless user
+    #   user = User.create(
+    #     uid:      auth.uid,
+    #     provider: auth.provider,
+    #     email:    User.dummy_email(auth),
+    #     password: Devise.friendly_token[0, 20],
+    #     image_url: auth.info.image,
+    #     name: auth.info.name,
+    #     nickname: auth.info.nickname,
+    #     description: auth.info.description
+    #   )
+    #   end
+
     user.skip_confirmation!
     # email仮をデータベースに保存するため、validationを一時的に無効化。
     user.save(validate: false)

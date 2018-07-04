@@ -1,0 +1,11 @@
+<main class="content">
+    <div class="snackbar"><span><h2</h2></span></div>
+  <div class="lp-timeline">
+    <div class="lp-timeline-wrap">
+    <% if events.present? %>
+	   <% geinins.each do |geinin| %>
+	      <%= render 'events/event_info', event: event, user: @user %>
+	   <% end %>
+	<% else %>
+		<p>イベントの登録はまだありません。</p>
+	<% end %>
