@@ -20,7 +20,6 @@ class Users::SessionsController < Devise::SessionsController
 
   def new
     @user = User.new
-    puts Rails.logger
   end
 
   def create

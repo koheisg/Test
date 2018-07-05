@@ -1,5 +1,7 @@
 <div class="profile-container"><br><Br><br>
-    <h3 class="profile-name"><%= @user.name %></h3>
+    <h3 class="profile-name">
+    <p><%= @user.nickname %></p>
+    <%= @user.name %></h3> 
     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "https://pbs.twimg.com/profile_images/958803950391541760/ABdXMZLE.jpg" %>
 	<% if @user.id == current_user.id %>
         <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
