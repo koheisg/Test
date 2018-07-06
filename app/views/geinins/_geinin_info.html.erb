@@ -28,14 +28,14 @@
 	      <div><p>事務所：<%= geinin.agency %></p></div>
           <div><p>Twitter：<%= link_to '@' + geinin.twitter_id, "https://twitter.com/#{geinin.twitter_id}" %></p></div>
           <div class="Instagram-button"><p>Instagram：<%= link_to '@' + geinin.instagram_id, "https://instagram.com/#{geinin.twitter_id}" %></p></div>
-          <div class="youtube-button"><p>Youtube：<%= link_to geinin_youtube_url, geinin_youtube_url %></p></div>
+          <div class="youtube-button"><p>Youtube：<%= link_to geinin.youtube_url, geinin.youtube_url %></p></div>
           <div class="facebook-button"><p>Facebook：<%= link_to geinin.facebook_url, geinin.facebook_url %></p></div>
           <div class="blog-button"><p>ブログ：<%= link_to geinin.blog_url, geinin.blog_url %></p></div>
-          <div class="blog-button"><p>公式プロフィール：<%= link_to official_profile_url, official_profile_url %></p></div>
+          <div class="blog-button"><p>公式プロフィール：<%= link_to geinin.official_profile_url, geinin.official_profile_url %></p></div>
           <div class="blog-button"><p>解散日：<%= geinin.end_date %></p></div>
 
 					<!-- メンバーを表示 -->
-				 	  <% geinin.geinin_member.each do |member| %>
+				 	  <% geinin.geinin_members.each do |member| %>
                         個人名：<%= link_to member.name, member.name %></p></div>
                         ふりがな：<%= link_to member.yomi, member.yomi %></p></div>
                         Twitter：<%= link_to member.twitter_id, member.twitter_id %></p></div>

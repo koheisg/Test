@@ -31,11 +31,11 @@
 		   <p><%= event.description %></p>
 				 	<!-- 出演者を表示 -->
 				 	  <% event.event_performers.each do |performer| %>
-					    <% link_to performer.performer, search_path(performer: performer.performer) %>
+					    <% link_to performer.performer, events_search_path(performer: performer.performer) %>
 					  <% end %>
 					<!-- カテゴリを表示 -->
 				 	  <% event.event_categories.each do |category| %>
-					    <%= link_to '#'+category.category, search_path(category: category.category) %>
+					    <%= link_to '#'+category.category, events_search_path(category: category.category) %>
 					  <% end %>
 	  </div>
 	    <%= attachment_image_tag event, :image, :fill, 100, 100, format: 'jpeg' %>

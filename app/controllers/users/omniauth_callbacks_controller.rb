@@ -42,19 +42,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #end
 
   def twitter
-    # You need to implement the method below in your model
     @user = User.find_for_oauth(request.env["omniauth.auth"], current_user)
 
-    #if @user.sign_in_count == 0
-      # 初回ログイン時のみ行いたい処理
-      @geinins = GetTwitterFollowingList.new(@user.nickname,@user.id).execute
-    #else 
-      #redirect_to root_path, notice: 'ログインしました'
-    #end
-
     if @user.persisted?
+      #if @user.sign_in_count == 0
+        # 初回ログイン時のみ行いたい処理
+        @geinins = GetTwitterFollowingList.new(@user.nickname,@user.id).execute
+        redirect_to '/geinins/following'
+      #end
       set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
-      sign_in_and_redirect geinins_following_path
       #sign_in_and_redirect @user, :event => :authentication
     else
       session["devise.twitter_data"] = request.env["omniauth.auth"].except("extra")
@@ -73,7 +69,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
 
         # request.env['omniauth.auth']に、OmniAuthによってHashのようにユーザーのデータが格納されている。
-          session[:uid] = user.uid
+        session[:uid] = user.uid
         sign_in_and_redirect @user, event: :authentication
       else
         session["devise.#{provider}_data"] = request.env['omniauth.auth']

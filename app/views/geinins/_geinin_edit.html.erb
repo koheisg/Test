@@ -2,7 +2,8 @@
 
 <%= form_for(@geinin) do |f| %>
    <h4>芸人名 *必須</h4>
-    <%= f.text_field :name,:placeholder => "タイトル" %><br>
+    <%= f.text_field :name,:placeholder => "名前" %><br>
+    <%= f.text_field :yomi,:placeholder => "ふりがな" %><br>
     <h4>本文</h4>
     <%= f.text_area :agency,:placeholder => "事務所" %><br>
     @<%= f.text_field :twitter_id,:placeholder => "Twitter ID"  %><br>
