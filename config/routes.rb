@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     get 'geinins/schedule', to: 'geinins#schedule'
 
     #フォローしてる芸人の一覧を表示する
-    get 'geinins/following', to: 'geinins#following'
+    get 'geinins_following', to: 'geinins#following'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

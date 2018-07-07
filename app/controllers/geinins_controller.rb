@@ -35,7 +35,7 @@ class GeininsController < ApplicationController
 
   def index
 
-    @results = Geinin.all
+    @geinins = Geinin.default.all
 
   end
 
@@ -79,14 +79,8 @@ class GeininsController < ApplicationController
 
   # フォロー一覧の表示
   def following
-
     #　ユーザーがフォローしている芸人一覧を取得
-    @followings = GeininFollowings.select("geinin_id").where(user_id: current_user.id)
-
-    # ユーザーがフォローしている芸人の名前を取得
-    @geinins = Geinin.default.where(id: @followings.geinin_id)
-
-    @results = @geinins
+    @geinins = Geinin.default.where(geinin_followings: { user_id: @user_id } )
   end
 
 private
@@ -124,6 +118,14 @@ private
   #ユーザー情報
   def user_params
       params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
+  end
+
+  def set_current_user
+      if current_user.present?
+          @user = current_user
+          # ログインユーザーを取得
+          @user_id = current_user.id
+      end
   end
 
   def set_geinin

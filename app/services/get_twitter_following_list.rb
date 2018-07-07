@@ -38,7 +38,7 @@ class GetTwitterFollowingList
       # 取得したIDと合致した芸人をフォローする
       if @geinins.exists?
         @geinins.each do |geinin|
-          GeininFollowings.create(geinin_id: geinin.geinin_id, user_id: @user_id)
+          GeininFollowing.create(geinin_id: geinin["id"], user_id: @user_id)
         end
       end
 
