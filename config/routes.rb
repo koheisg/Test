@@ -53,13 +53,19 @@ Rails.application.routes.draw do
     get 'events/following', to: 'events#following'
 
   # 芸人管理
-    resources :geinins, only: [:new, :create, :edit, :update, :index, :show, :destroy]
+    resources :geinins, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
+        #メンバー
+        resource :geinin_members, only: [:create, :update,:destroy]
+        #タグ
+        resource :geinin_tags, only: [:create, :update,:destroy]
+        #フォロー
+        resource :followings, only: [:create,:destroy,:index]
+    end
 
     #フォローしてる芸人のスケジュールを表示する
     get 'geinins/schedule', to: 'geinins#schedule'
 
-    #フォローしてる芸人の一覧を表示する
-    get 'geinins_following', to: 'geinins#following'
-
+    #フォローしてる芸人のスケジュールを表示する
+    get 'following', to: 'followings#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

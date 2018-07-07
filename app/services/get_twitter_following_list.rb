@@ -34,11 +34,12 @@ class GetTwitterFollowingList
 
       # 取得したIDで芸人テーブルを検索
       @geinins = Geinin.default.where(twitter_id: @followings_list )
-      
+      binding.pry
+
       # 取得したIDと合致した芸人をフォローする
       if @geinins.exists?
         @geinins.each do |geinin|
-          GeininFollowing.create(geinin_id: geinin["id"], user_id: @user_id)
+          Followings.create(geinin_id: geinin["id"], user_id: @user_id)
         end
       end
 
