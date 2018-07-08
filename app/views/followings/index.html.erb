@@ -8,7 +8,8 @@
     <div class="lp-timeline-wrap">
       <% if @geinins.present? %>
         <% @geinins.each do |geinin| %>
-          <%= geinin.name %>
+          <%= link_to geinin.name, "geinins/#{geinin.id}" %>
+          <%= render :partial => "followings/following", locals: { geinin: geinin } %>
         <% end %>
       <% else %>
         <p>まだ誰もフォローしていません。</p>

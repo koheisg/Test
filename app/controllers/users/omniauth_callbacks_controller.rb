@@ -50,7 +50,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @geinins = GetTwitterFollowingList.new(@user.nickname,@user.id).execute
         sign_in @user
         redirect_to following_url
-        binding.pry
       else
         set_flash_message(:notice, :success, :kind => "Twitter") if is_navigational_format?
         sign_in_and_redirect @user, :event => :authentication
@@ -75,7 +74,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # request.env['omniauth.auth']に、OmniAuthによってHashのようにユーザーのデータが格納されている。
         session[:uid] = user.uid
         
-        if @user.sign_in_count == 0
+        if @user.sign_in_count == 1
           sign_in @user
           redirect_to following_url
         else

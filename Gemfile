@@ -73,6 +73,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # ページング
   gem 'kaminari'
   # bootstrap
+  gem 'bootstrap', '~> 4.1.1'
   gem 'bootstrap-sass'
   gem 'bootstrap-social-rails'
   gem 'font-awesome-rails'

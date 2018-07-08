@@ -81,7 +81,7 @@ class SearchDatetimeService
     @to = @next_morning
     @events = Event.datetime_search(@from,@to)
     
-    return @results = @events, @datetime
+    return @results = @events, @datetime,nil
 
   end
 end
