@@ -1,66 +1,67 @@
-
-<article class="post element hard-shadows link" style="position: absolute; left: 324px; top: 0px;">
-  <div class="post-header post-header-s1 post-date-1">
-      <div class="post-icon">
-          <span class="icon-permalink"></span>
-      </div>
-      <span class="date-format date-format-1">
+<article class="post hard-shadows">
+    <div class="post-header">
       <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
-      <span><%= event.datetime.strftime('%Y年%m月%d日 %H:%M ') %></span>
-      <div class="post-counts">
-        <span class="share-button"></span>
-        <% link_to 'Twitterにシェア', "https://twitter.com" %>
-        <div class="share-option hidden" onClick="window.open('http://twitter.com/share?text=#{event.title}%21&url=https://tmblr.co/ZB3_lc2Tyk2Mu', 'twitter_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
-            Twitterにシェアする
-        </div>
-        <div class="share-option hidden" onClick="window.open('https://plus.google.com/share?url=https://tmblr.co/ZB3_lc2Tyk2Mu', 'google_plus_share', 'height=320, width=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
-            Google+にシェア
-        </div>
-        <div class="share-option hidden" onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=https://tmblr.co/ZB3_lc2Tyk2Mu&t=wArally%21', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
-            Facebookにシェア
-        </div>
+      <span><%= event.datetime.strftime("%Y年%m月%d日"+" 開演 %H:%M ") %></span>
+      <div class="share-box">
+        <%= link_to '/' do %>
+         <i class="fas fa-share-alt"></i>
+        <% end %>
       </div>
-
-	<div class="post-wrapper">
-	  <div class="post-box">
-	    <h3 class="post-title">
-	      <%= link_to event.title, event_path(event.id) %>
-	    </h3>
-	  </div>
-		<div class="post-text typography">
-		   <p><%= event.description %></p>
-				 	<!-- 出演者を表示 -->
-				 	  <% event.event_performers.each do |performer| %>
-					    <% link_to performer.performer, events_search_path(performer: performer.performer) %>
+        <div class="delete-box">
+          <%= link_to event_path(event.id), method: :delete,
+          data: { confirm: "本当に「#{event.title}」を削除してよろしいですか？",
+                                                       "commit" => "削除する",
+                                                       "cancel" => "やっぱりやめる",
+                                                       }, title: "削除の確認" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+    </div>
+    <div class="post-wrapper">
+      <div class="post-title">
+        <h3 class="post-title">
+          <%= link_to event.title, event_path(event.id) %>
+        </h3>
+      </div>
+      <div class="post-content">
+        <%= simple_format(event.description) %>
+      </div>
+      <div class="post-performer">
+        <ul>
+            <% event.event_performers.each do |performer| %>
+					    <li><%= link_to performer.performer, search_path(performer: performer.performer),:class =>"post-performer" %></li>
 					  <% end %>
-					<!-- カテゴリを表示 -->
-				 	  <% event.event_categories.each do |category| %>
-					    <%= link_to '#'+category.category, events_search_path(category: category.category) %>
-					  <% end %>
-	  </div>
-	    <%= attachment_image_tag event, :image, :fill, 100, 100, format: 'jpeg' %>
-	  <div class="post-text typography">
-	    <div class="post-options">
-	      <div class="edit-box">
-	        <div class="edit-button">
-	          <i class="fas fa-edit" style="font-size:15px; color:#FFFFFF;text-align:right;"　aria-hidden="true"></i>
-	          <%= link_to "編集", edit_event_path(event.id) %>
-	        </div>
-	      </div>
-        <div class="like-button">
-            <div id="participate-bottun">
-            <%= render :partial => "participates/participate", locals: { event: event } %>
-            </div>
-        </div>
-        <div class="pending-button">
-          <div class ="pending-button">
-            <%= render :partial => "pendings/pending", locals: { event: event } %>
-          </div>
-        </div>
-        <div class="reserve-button">
-          <div class="reserve-button">
-            <%= render :partial => "events/reserve", locals: { event: event, user: user, event_event_links: event_event_links_url(event.id) } %>
-        </div>
-	    </div>
-	</div>
+        </ul>
+      </div>
+      <div class="post-tag">
+        <% event.event_categories.each do |category| %>
+          <%= link_to search_path(category: category.category) do %>
+            <i class="fas fa-tag"></i>
+            <span><%= category.category %></span>
+          <% end %>
+        <% end %>
+        </a>
+      </div>
+      <div class="post-image">
+        <%= attachment_image_tag event, :image, :fill, 280,280, format: 'jpeg' %>
+      </div>
+    </div>
+    <div class="post-options">
+      <div class="post-option">
+        <%= link_to edit_event_path(event.id) do %>
+          <i class="fas fa-edit"></i>
+          <span class="post-option-text">編集する</span>
+        <% end %>
+      </div>
+      
+      <%= render :partial => "participates/participate", locals: { event: event } %>
+      
+      <div class="post-option">
+        <%= render :partial => "pendings/pending", locals: { event: event } %>
+      </div>
+      <div class="post-option">
+        <%= render :partial => "events/reserve", locals: { event: event, user: user, event_event_links: event_event_links_url(event.id) } %>
+      </div>
+    </div>
+  </div>
 </article>

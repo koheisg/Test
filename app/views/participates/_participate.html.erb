@@ -1,22 +1,32 @@
 <% if user_signed_in? %>
 	<% if event.participated_by?(current_user) %>
-	  <li>
-	    <%= link_to event_participates_path(event), method: :delete, class: "participate-button",id: "participate-button-#{event.id}", remote: true, :protocol => 'https' do %>
-	      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-	      <%= event.participates.where(event_id: event.id).count %> 参加する
-	    <% end %>
-	  </li>
+	<div class="post-option">
+		<%= link_to event_participates_path(event), method: :delete, id: "participate-button-#{event.id}", remote: true, :protocol => 'https' do %>
+			<span>
+				<i class="fa fa-heart" aria-hidden="true"></i>
+				<%= event.participates.where(event_id: event.id).count %>
+			</span>
+			<span class="post-option-text">参加する</span>
+		<% end %>
+	</div>
 	<% else %>
-	  <li>
-	    <%= link_to event_participates_path(event), method: :post, class: "participate-button", id: "participate-button-#{event.id}", remote: true, :protocol => 'https' do %>
-	      <i class="fa fa-heart-o" aria-hidden="true"></i>
-	      <%= event.participates.where(event_id: event.id).count %> 参加する
-	    <% end %>
-	  </li>
+	<div class="post-option">
+		<%= link_to event_participates_path(event), method: :post, id: "participate-button-#{event.id}", remote: true, :protocol => 'https' do %>
+			<span>
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+				<%= event.participates.where(event_id: event.id).count %>
+			</span>
+			<span class="post-option-text">参加する</span>
+		<% end %>
+	</div>
 	<% end %>
 <% else %>
-	<!--ログインしていない場合、「ログインするといいね機能が使えます」のメッセージを出す-->
-	<a id="modal-open" class="button-link">
-		<i class="fa fa-heart-o" aria-hidden="true"></i> 参加する
-	</a>
+	<div class="post-option">
+		<!--ログインしていない場合、「ログインするといいね機能が使えます」のメッセージを出す-->
+		<a id="modal-open" class="button-link">
+			<i class="fa fa-heart-o" aria-hidden="true"></i>
+			<%= event.participates.where(event_id: event.id).count %>
+			<span class="post-option-text">参加する</span>
+		</a>
+	</div>
 <% end %>

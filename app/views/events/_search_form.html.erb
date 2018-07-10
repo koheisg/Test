@@ -1,59 +1,60 @@
 <div class="search-form-container">
-	<div class="search-form-inner">
-		<div class="search-categories">
-			<div class="search-label">
-				<span><h2>日付で探す</h2></span>
-				<p class="label-border"></p>
-			</div>
-			<div class="search-button">
-				<span><%= link_to '今日', search_path(:date => 'today'), :class => "btn date-button" %></li>
-				<span><%= link_to '明日', search_path(:date => 'tomorrow'), :class => "btn date-button"  %></span>
-				<span><%= link_to '次の土曜', search_path(:date => 'next_sat'), :class => "btn date-button"  %></span>
-				<span><%= link_to '次の日曜', search_path(:date => 'next_sun'), :class => "btn date-button"  %></span><br>
-			</div>
-		</div>
-		<div class="search-categories">
-			<div class="search-form-area">
-			<%= form_tag(search_path, method: "get") do %>
-				<%= text_field_tag ':date', '',:type=>"text", :placeholder =>"日付を指定する", :id=>"SearchCalendar", data: {min_date: 'today'},data:{ provide:'flatpickr' }, class:"search-form" %>
-			<% end %>
-			</div>
-		</div>
-		<div class="search-categories">
-			<div class="search-label">
-				<h2 class="search-label-name">キーワードで探す</h2>
-				<p class="label-border"></p>
-			</div>
-			<div class="search-form-area">
-				<%= form_tag(search_path, method: "get") do %>
-					<%= text_field_tag :keyword,"",class: "search-form" %>
-				<% end %>
-			</div>
-			<div class="search-categories">
-				<div class="search-label">
-					<h2 class="search-label-name">カテゴリで探す</h2>
-					<p class="label-border"></p>
-				</div>
-			</div>
-			<div class="search-button">
-				<ul>
-					<li class="btn category-button">
-						<%= link_to '#単独ライブ', search_path(:category => '単独ライブ'), :class => "category-button" %>
-						<span><%= Event.default.where(event_categories: { category: '単独ライブ'} ).count %></span>
-					</li>
-					<li class="btn category-button">
-						<%= link_to '#無料', search_path(:category => '無料'), :class => "category-button"  %>
-						<span><%= Event.default.where(event_categories: { category: '無料'} ).count %></span>
-					</li>
-					<li class="btn category-button">
-						<%= link_to '#エントリー制', search_path(:category => 'エントリー制'), :class => "category-button"  %>
-						<span><%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %></span>
-					</li>
-					<li class="btn category-button">
-						<%= link_to '#出演者募集中', search_path(:category => '出演者募集中'), :class => "category-button"  %>
-						<span><%= Event.default.where(event_categories: { category: '出演者募集中'} ).count %></span>
-					</li>
-				</ul>
-			</div>
-	</div>
+  <div class="search-form-inner">
+    <div class="search-categories">
+      <div class="search-label">
+        <span><h2>日付で探す</h2></span>
+        <p class="label-border"></p>
+      </div>
+      <div class="search-button-box">
+        <span><%= link_to '今日', search_path(:date => 'today'), :class => "btn categories" %></li>
+        <span><%= link_to '明日', search_path(:date => 'tomorrow'), :class => "btn categories"  %></span>
+        <span><%= link_to '次の土曜', search_path(:date => 'next_sat'), :class => "btn categories"  %></span>
+        <span><%= link_to '次の日曜', search_path(:date => 'next_sun'), :class => "btn categories"  %></span><br>
+      </div>
+    </div>
+    <div class="search-categories">
+      <div class="search-form-area">
+      <%= form_tag(search_path, method: "get") do %>
+        <%= text_field_tag ':date', '',:type=>"text", :placeholder =>"日付を指定する", :id=>"SearchCalendar", data: {min_date: 'today'},data:{ provide:'flatpickr' }, class:"search-form" %>
+      <% end %>
+      </div>
+    </div>
+    <div class="search-categories">
+      <div class="search-label">
+        <h2 class="search-label-name">キーワードで探す</h2>
+        <p class="label-border"></p>
+      </div>
+      <div class="search-form-area">
+        <%= form_tag(search_path, method: "get") do %>
+          <%= text_field_tag :keyword,"",class: "search-form" %>
+        <% end %>
+        <p><i class="fas fa-chart-line">人気検索ワード</i></p>
+      </div>
+      <div class="search-categories">
+        <div class="search-label">
+          <h2 class="search-label-name">カテゴリで探す</h2>
+          <p class="label-border"></p>
+        </div>
+      </div>
+      <div class="search-button">
+        <ul>
+          <li class="btn categories">
+            <%= link_to '#単独ライブ', search_path(:category => '単独ライブ'), :class => "btn categories" %>
+            <%= Event.default.where(event_categories: { category: '単独ライブ'} ).count %>
+          </li>
+          <li class="btn categories">
+            <%= link_to '#無料', search_path(:category => '無料'), :class => "btn categories"  %>
+            <span><%= Event.default.where(event_categories: { category: '無料'} ).count %></span>
+          </li>
+          <li class="btn categories">
+            <%= link_to '#エントリー制', search_path(:category => 'エントリー制'), :class => "btn categories"  %>
+            <span><%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %></span>
+          </li>
+          <li class="btn categories">
+            <%= link_to '#出演者募集中', search_path(:category => '出演者募集中'), :class => "btn categories"  %>
+            <span><%= Event.default.where(event_categories: { category: '出演者募集中'} ).count %></span>
+          </li>
+        </ul>
+      </div>
+  </div>
 </div>

@@ -3,7 +3,7 @@
 <input id="EventCalendar" type="text" placeholder="日付を指定する" data-mindate=today>
 </input>
 
-<%= form_for(@event,method: :post, :class => "event-edit-form") do |f| %>
+<%= form_for(@event, method: :post, :class => "event-edit-form") do |f| %>
     <%= f.datetime_select :datetime, :type=>"text", :placeholder =>"日付を指定する", :class=>"SearchCalendar", data: {min_date: 'today'} %><br>
     <%= f.text_field :title,:placeholder => "ライブ名 *必須",:class => "event-edit-form" %><br>
     <%= f.fields_for :event_performers do |performers_form| %>

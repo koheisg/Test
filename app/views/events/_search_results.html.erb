@@ -2,21 +2,23 @@
 <% @datetime = results[1] %>
 <% @keyword = results[2] %>
 
-<main class="content">
-	<div class="element page-info">
+<section class="main">
+	<div class="page-info">
 		<% if @datetime.present? %>
-			<div class="hard-shadows"><span class="accent"><%= @datetime.strftime("%Y年%m月%d日(%a)") %></span>のお笑いライブ一覧</div>
+			<div class="hard-shadows page-info-wrap"><span class="accent"><%= @datetime.strftime("%Y年%m月%d日(%a)") %></span>のお笑いライブ一覧</div>
 		<% else %>
-			<div class="hard-shadows"><span class="accent"><%= @keyword %></span>の検索結果</div>
+			<div class="hard-shadow page-info-wrap"><span class="accent"><%= @keyword %></span>の検索結果</div>
 		<% end %>
 	</div>
-  <%= render :partial => "events/event_list", locals: { events: @events } %>
-
+  
+    <%= render :partial => "events/event_list", locals: { events: @events, user: @user  } %>
+ 
   <% if @datetime.present? %>
     <div class="navigation-block">
       <% if @datetime.future? %>
-        <%= link_to "<<"+@datetime.prev_day.strftime("%m月%d日"), search_path(:date => 'prev_day', :datetime => @datetime),:class => "btn navigation-link"  %>
+        <%= link_to "« "+@datetime.prev_day.strftime("%m月%d日"), search_path(:date => 'prev_day', :datetime => @datetime),:class => "btn navigation-link"  %>
       <% end %>
-        <%= link_to @datetime.next_day.strftime("%m月%d日")+">>", search_path(:date => 'next_day', :datetime => @datetime),:class => "btn navigation-link" %>
+        <%= link_to @datetime.next_day.strftime("%m月%d日")+" »", search_path(:date => 'next_day', :datetime => @datetime),:class => "btn navigation-link" %>
     </dkv>
   <% end %>
+</section>

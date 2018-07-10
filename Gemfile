@@ -112,3 +112,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # Use jquery-UI as the JavaScript library
   gem 'jquery-ui-rails'
   gem 'jquery-turbolinks'
+  # modal windowをいい感じにする
+  gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'

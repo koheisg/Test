@@ -71,7 +71,7 @@ class SearchDatetimeService
       @from = @next_day
       @datetime = @next_day
     when 'prev_day' then
-      @from = @prev_Day
+      @from = @prev_day
       @datetime = @prev_day
     else
       @from = @date

@@ -56,174 +56,120 @@
   <body>
     <header class="header">
      <div class="inner">
-        <div class="site-title">
-          <img class="site-logo" src="/assets/logo_icon.png">
-          <a href="/" class="site-title">wArally!<span class="site-sub-title">- お笑いライブ検索</span></a>
-        </div>
+      <div class="site-title">
+        <img class="site-logo" src="/assets/logo_icon.png">
+        <a href="/" class="site-title">wArally!<span class="site-sub-title">- お笑いライブ検索</span></a>
+      </div>
         <nav class="user-menu">
           <ul class="user-menu-button">
-         <li>
-            <%= link_to new_event_path do %>
-              <i class="fa fa-plus-circle"></i>
-              <span>ライブ登録</span>
-              <% end %>
-          </li>
-          <% if user_signed_in? %>
             <li>
-              <%= link_to events_schedule_path do %>
-                <i class="fas fa-heart"></i>
-                <span class="user-menu-button-text">参加予定</span>
-                <% end %>
+              <%= link_to new_event_path do %>
+                <i class="fa fa-plus-circle"></i>
+                <span>ライブ登録</span>
+              <% end %>
             </li>
-            <% end %>
+            <% if user_signed_in? %>
               <li>
-                <%= link_to geinins_path do %>
-                  <i class="fas fa-address-book"></i>
-                  <span class="user-menu-button-text">芸人Wiki</span>
+                <%= link_to my_schedule_path do %>
+                  <i class="fas fa-heart"></i>
+                  <span class="user-menu-button-text">参加予定</span>
                   <% end %>
               </li>
-              <li>
-                <%= link_to survey_path do %>
-                  <i class="fas fa-file-alt"></i>
-                  <span class="user-menu-button-text">アンケート結果</span>
-                <% end %>
-              </li>
+            <% end %>
+            <li>
+              <%= link_to geinins_path do %>
+                <i class="fas fa-address-book"></i>
+                <span class="user-menu-button-text">芸人Wiki</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to survey_path do %>
+                <i class="fas fa-file-alt"></i>
+                <span class="user-menu-button-text">アンケート結果</span>
+              <% end %>
+            </li>
           </ul>
         </nav>
-        <div class="login-button">
-          <% if user_signed_in? %>
-          <% else %>
+        <% if user_signed_in? %>
+          <div class="user-menu-right">
+            <div class="pulldown">
+              <div class="user-icon">
+                <span style="background-image:url(<%= current_user.image_url %>)"></span>
+              </div>
+              <div class="pulldown-content">
+                <p><%= current_user.nickname %></p>
+                <ul>
+                  <li>
+                    <%= link_to user_path(current_user) do %>
+                      <i class="fa fa-user-o"></i> Myページ
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to logout_path, :method => :delete do %>
+                      <i class="fa fa-sign-out-alt"></i> ログアウト
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="login-button">
             <%= link_to user_twitter_omniauth_authorize_path,class: "twitter-button" do %>
             <i class="fa fa-twitter"></i>
             <span>Twitterでログイン</span>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </header> 
- 
-  <!--<header class="header">
-    <div class="inner">
-      <div class="header-menubar header-navs-left hide-on-screen-small">
-        <ul>
-          <li>
-            <%= link_to new_event_path,:class =>"user-menu-button-link" do %>
-              <i class="fa fa-plus-circle"></i>
-              <span>ライブ登録</span>
-              <% end %>
-          </li>
-          <% if user_signed_in? %>
-            <li>
-              <%= link_to events_schedule_path,:class =>"user-menu-button-link"  do %>
-                <i class="fas fa-heart"></i>
-                <span>参加予定</span>
-                <% end %>
-            </li>
-            <% end %>
-              <li>
-                <%= link_to geinins_path,:class =>"user-menu-button-link"  do %>
-                  <i class="fas fa-address-book"></i>
-                  <span>芸人Wiki</span>
-                  <% end %>
-              </li>
-              <li>
-                <%= link_to survey_path,:class =>"user-menu-button-link"  do %>
-                  <i class="fas fa-book-open"></i>
-                  <span>アンケート結果</span>
-                <% end %>
-              </li>
-        </ul>
-      </div>
-
-      <div class="logo">
-          <img src="/assets/logo_icon.png" style="height:60px">
-          <a href="/">
-            <h1><span class="site-name">wArally!</span></h1>
-            <span class="logo-subtitle">- お笑いライブ検索</span>
-          </a>
-      </div>
-
-      <% if user_signed_in? %>
-        <div class="header-navs-right">
-          <div class="pulldown">
-            <div class="user-icon">
-              <span style="background-image:url(<% current_user.image_url %>)"></span>
-            </div>
-            <div class="pulldown-content">
-              <p>ユーザー名</p>
-              <ul>
-                <li>
-                  <%= link_to user_path(current_user) do %>
-                    <i class="fa fa-user-o"></i> Myページ
-                    <% end %>
-                </li>
-                <li>
-                  <%= link_to logout_path, :method => :delete do %>
-                    <i class="fa fa-sign-out-alt"></i> ログアウト
-                    <% end %>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <% end %>
-
-          <div class="header-nav-left">
-            <% if user_signed_in? %>
-              <% else %>
-                <ul>
-                  <li>
-                    <%= link_to user_twitter_omniauth_authorize_path,class: "twitter-button" do %>
-                      <i class="fa fa-twitter"></i> Twitterでログイン
-                      <% end %>
-                  </li>
-                </ul>
-            <% end %>
-          </div>
-    </div>
-  </header>-->
     <%= yield %>
+    <nav class="user-menu-sm">
+      <ul class="user-menu-button-sm">
+        <li>
+          <%= link_to search_path do %>
+            <span class="fas fa-search user-menu-icon"></span>
+            <span class="user-menu-button-text">探す</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to my_schedule_path do %>
+            <span class="fas fa-heart user-menu-icon"></span>
+            <span class="user-menu-button-text">スケジュール</span>
+            <% end %>
+        </li>
+        <li>
+          <%= link_to new_event_path do %>
+            <span class="fa fa-plus-circle user-menu-icon"></span>
+            <span class="user-menu-button-text">ライブ登録</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to geinins_path do %>
+            <span class="fas fa-address-book user-menu-icon"></span>
+            <span class="user-menu-button-text">芸人Wiki</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to survey_path do %>
+            <span class="fa fa-user-o user-menu-icon"></span>
+            <span class="user-menu-button-text">Myページ</span>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
     <footer>
       <div class="copyright">
         <div class="full-row footer">
-              <span class="footer-menu">
-                <a href="/about" class="footer-menu">ABOUT</a> | <a href="/terms" class="footer-menu">利用規約</a> | <a href="/privacy" class="footer-menu">プライバシーポリシー</a> | <a href="https://twitter.com/warally_info" class="footer-menu">Twitter</a><span><br><br>
-                &copy; wArally! 2017-2018</span>
+          <span class="footer-menu">
+            <a href="/about" class="footer-menu">ABOUT</a> | 
+            <a href="/terms" class="footer-menu">利用規約</a> | 
+            <a href="/privacy" class="footer-menu">プライバシーポリシー</a> | 
+            <a href="https://twitter.com/warally_info" class="footer-menu">Twitter</a>
+          </span>
+          <span>&copy; wArally! 2017-2018</span>
         </div>
       </div>
     </footer>
-   <!--<footer class="footer style-2">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="col">
-              <br>
-              <p class="no-margin" style="font-size: 11px;">
-              <br>
-              おもしろい！を見つけよう
-              <%= image_tag('logo.png') %>
-              <p style="text-align:center">2017-2018</p>
-              </p>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="col">
-              <h4>Link</h4>
-              <ul>
-                <li>
-                  <a href="/about" title="About">About</a>
-                </li>
-                <li>
-                  <a href="/privacy" title="License informations">プライバシーポリシー</a>
-                </li>
-                <li>
-                  <a href="/terms" title="Terms">利用規約</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>-->
   </body>
 </html>

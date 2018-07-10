@@ -66,7 +66,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    binding.pry
   end
 
   def edit
@@ -75,8 +74,6 @@ class EventsController < ApplicationController
 
   def update
     @event_performers = event_params[:event_performers_attributes]
-    
-    binding.pry
 
     # エラーチェック＆DB保存→詳細画面へリダイレクト
     if @event.update(event_params)
@@ -96,7 +93,7 @@ class EventsController < ApplicationController
 
   def destroy
       @event.destroy
-      redirect_to events_path
+      redirect_to :back
   end
 
   # スケジュールの表示
