@@ -3,14 +3,14 @@
 <% @keyword = results[2] %>
 
 <section class="main">
-	<div class="page-info">
+	<div class="page-info hard-shadows">
 		<% if @datetime.present? %>
-			<div class="hard-shadows page-info-wrap"><span class="accent"><%= @datetime.strftime("%Y年%m月%d日(%a)") %></span>のお笑いライブ一覧</div>
+			<span class="accent"><%= @datetime.strftime("%Y年%m月%d日(%a)") %></span>のお笑いライブ一覧
 		<% else %>
-			<div class="hard-shadow page-info-wrap"><span class="accent"><%= @keyword %></span>の検索結果</div>
+			<span class="accent"><%= @keyword %></span>の検索結果
 		<% end %>
 	</div>
-  
+    <%= render :partial => "events/search_form",locales: { events: @events } %>
     <%= render :partial => "events/event_list", locals: { events: @events, user: @user  } %>
  
   <% if @datetime.present? %>

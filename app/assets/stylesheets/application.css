@@ -13,6 +13,9 @@ li {
 *{
     font-family: 'Quicksand', sans-serif;
 }
+body{
+    background-image:url('background.png');
+}
 /* ここからCSSを記述してください */
 header{
   background-color:#272727;
@@ -25,6 +28,7 @@ header{
   z-index:10;
   width:100%;
   line-height:60px;
+  display:block;
 }
 .inner{
   margin:0;
@@ -211,16 +215,13 @@ header{
   color:#f22e58;
 }
 .page-info{
-    width:100%;
-    text-align: center;
-    line-height: 1.4;
-    padding: 5px 0px;
-    box-sizing: border-box;
-    margin:0 auto;
-    float:left;
-}
-.page-info-wrap{
+    margin: 0 auto;
     padding:20px;
+    text-align:center;
+    margin-top:2px;
+    margin-bottom:20px;
+    line-height: 1.4;
+    background-color:#ffffff;
 }
 .hard-shadows {
     box-shadow: 0 0 1px 1px rgba(0,0,0,.05);
@@ -236,6 +237,7 @@ header{
   float:left;
   widows: 300px;
   margin:10px;
+  background-color:#fff;
 }
 .post-header{
   background-color:#f22e58;
@@ -352,6 +354,8 @@ header{
 .container{
     margin: 0 auto;
     display:block;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 /* 検索フォーム　*/
 .search-form-container{
@@ -368,13 +372,16 @@ header{
     vertical-align: baseline;
 }
 .search-form-inner{
-    padding: 10px;
+    padding: 12px 2px 10px 5px;
     border: 0;
     font: inherit;
     vertical-align: baseline;
+    overflow: hidden;
 }
 .search-categories{
-    padding:2px 2px 0px 2px;
+    padding:2px 2px 10px 2px;
+    margin-bottom:5px;
+    clear:both; 
 }
 .search-label{
     font-family: 'Gibson', sans-serif;
@@ -384,6 +391,7 @@ header{
     font-size: 16px;
     border-bottom: 1px solid #CCC;
     padding-left: 8px;
+    margin: 0 0 5px;
 }
 .label-border{
     border-bottom: 1px solid #CCC;
@@ -392,7 +400,7 @@ header{
 .search-form{
     border:0;
     height:32px;
-    width:320px;
+    width:350px;
     display:inline-flex;
     border-style: none;
     background-color: #f2f2f2;
@@ -403,8 +411,8 @@ header{
     border-radius: 3px;
     -moz-box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
     -webkit-box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);width: 260px;
-    padding-top:5px;
-    padding-left:10px;
+    padding:2px 0px;
+    margin:5px 0px;
 }
 .search-label-name{
     display:inline-block;
@@ -415,12 +423,16 @@ header{
     padding-left:10px;
     margin-bottom:10px;
 }
+.search-performer-box{
+    position:left;
+    padding-top:5px;
+}
 .search-form-area{
-    height:30px;
     position:left;
     float:left;
-    padding-left:20px;
-    display:block;
+    padding-left:10px;
+    margin-bottom:10px;
+    display:inline-block;
 }
 .categories{
     display: block;
@@ -432,78 +444,6 @@ header{
     float: left;
     vertical-align: center;
     margin-top:5px;
-}
-/* カテゴリーのボタン */
-.category-tag{
-    text-decoration:none;
-    color:white;
-    background-color:#f22e58;
-    font-size: 14px;
-}
-.category-button{ 
-    background-color:#ffffff;
-    height:40px;
-    vertical-align:middle;
-    margin-bottom:10px;
-    position:left;
-    text-decoration: none;
-    color: #f22e58;
-}
-.category-button ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  position:left;
-  float:left;
-}
-.category-button ul li {
-  display: inline-block;
-  margin: 0 .3em .3em 0;
-  padding: 0;
-}
-.category-button ul li a {
-  position: relative;
-  display: inline-block;
-  max-width: 100px;
-  height: 28px;
-  line-height: 28px;
-  padding: 0 2.5em 0 1em;
-  /* background-color: #f22e58;*/
-  border: 1px solid #aaa;
-  border-radius: 3px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  color:white;
-  font-size: 12px;
-  text-decoration: none;
-  -webkit-transition: .2s;
-  transition: .2s;
-}
-.category-tag li span {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-  z-index: 2;
-  width: 22px;
-  height: 22px;
-  line-height: 22px;
-  background-color: #ffffff;
-  border-radius: 100%;
-  color: #272727;
-  font-size: 12px;
-  text-align: center;
-  -webkit-transition: .2s;
-  transition: .2s;
-}
-.category-button ul li a:hover {
-  background-color: #272727;
-  border: 1px solid #272727;
-  color: #fff;
-}
-.cateogory-button ul li a:hover span {
-  background-color: #fff;
-  color: #f22e58;
 }
 .search-label{
     width:320px;
@@ -559,6 +499,13 @@ footer{
     background-color: #fbfbfb;
     color: #f22e58;
 }
+.new{
+    padding:10px 40px;
+    margin:0 auto;
+    margin-top:20px;    
+    width:200px;
+    display:block;
+}
 .navigation-link{
     display: inline-block;
     vertical-align: top;
@@ -580,23 +527,7 @@ footer{
     padding:60px 40px;
     text-align:center;
 }
-.new-button{
-    background-color:#f22e58;
-    font-size: 13px;
-    text-align: center;
-    color: #fbfbfb;
-    padding: 4px 0;
-    border: 3px solid #f22e58;
-    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
-    cursor: pointer;
-    transition: all .2s ease 0s;
-    text-decoration:none;
-    padding:10px 40px;
-    display:inline-block;
-    margin:0 auto;
-    margin-top:20px;    
-    width:200px;
-}
+
 @media(min-width:800px){
     .user-menu-sm{
         display:none;
@@ -673,15 +604,65 @@ footer{
         padding-top:10px;
     }
     .main{
-        width:100%;
         margin:0 auto;
+        margin-top:45px;
         padding:0 10px;
     }
     .page-info{
         margin: 0 auto;
-        padding:0 10px;
+        padding:20px;
+        text-align:center;
+        margin-top:20px;
+        margin-bottom:20px;
     }
     .post{
         padding:10 10px;
     }
+    .search-form-container{
+        margin:0 auto;
+    }
+}
+.event-edit-form{
+    border:0;
+    padding:10px;
+    font-size:14px;
+    font-family:'Quicksand', sans-serif;
+    color:#434343;
+    border:solid 1px #ccc;
+    width:300px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    box-shadow: inner 0 0 4px rgba(0, 0, 0, 0.2);
+    background-color:#ffffff;
+}
+.event-edit-form:focus {
+    border:solid 1px #f22e58;
+}
+.block{
+    display:block;
+}
+textarea{
+    height:100px;
+    margin-bottom:0;
+    display:block;
+}
+.event-box{
+    width:375px;
+    margin:0 auto;
+    text-align:center;
+}
+.form-item{
+    clear:both;
+    overflow:hidden;
+}
+.form-icon{
+    width:20px;
+    padding:10px 5px 5px 0;
+    float:left;
+}
+.form{
+    float:left;
 }
