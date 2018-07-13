@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180711143625) do
+ActiveRecord::Schema.define(version: 20180713113156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,23 @@ ActiveRecord::Schema.define(version: 20180711143625) do
     t.index ["user_id"], name: "index_pendings_on_user_id"
   end
 
+  create_table "survey_answers", force: :cascade do |t|
+    t.integer "rank"
+    t.string "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "survey_id"
+    t.index ["survey_id"], name: "index_survey_answers_on_survey_id"
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "start"
+    t.date "end"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "encrypted_password", default: "", null: false
@@ -185,4 +202,5 @@ ActiveRecord::Schema.define(version: 20180711143625) do
   add_foreign_key "geinin_members", "geinins"
   add_foreign_key "geinin_tags", "geinins"
   add_foreign_key "identities", "users"
+  add_foreign_key "survey_answers", "surveys"
 end

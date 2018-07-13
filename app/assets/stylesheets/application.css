@@ -252,9 +252,10 @@ header{
 .delete-box a, .share-box a{
   color:#f7f7f7;
   text-decoration:none;
+  font-size:16px;
 }
 .post-wrapper{
-  padding:5px 10px;
+  padding:5px 20px;
 }
 .post-title{
   text-align:center;
@@ -274,7 +275,11 @@ header{
 .post-content{
   line-height: 1.5;
   font-size: 14px;
-  margin-bottom: 15px;
+}
+.post-place{
+  line-height: 1.5;
+  font-size: 14px;
+  margin:10px 0;
 }
 .post-performer{
   line-height: 1.5;
@@ -308,7 +313,7 @@ header{
   padding-right:2px;
 }
 .post-tag{
-  margin: 5 10px;
+  margin: 2px 0 5px 0;
   font-size: 14px;
 }
 .post-icon{
@@ -317,7 +322,9 @@ header{
 .post-tag a{
   color:#848484;
   text-decoration:none;
-
+}
+.post-tag a:hover{
+  color:#f22e58;
 }
 .post-options>div {
     display: inline-block;
@@ -594,8 +601,9 @@ footer{
     .user-menu-icon{
         display:block;
         margin:0 auto;
+        font-size:15px;
         padding-top:15px;
-        padding-bottom:10px;
+        padding-bottom:8px;
     }
     .user-menu-text{
         display:inline-block;
@@ -693,4 +701,7 @@ textarea{
 }
 .icon{
     padding-right:5px;
+}
+.icon-tag{
+    padding-right:4px;
 }
