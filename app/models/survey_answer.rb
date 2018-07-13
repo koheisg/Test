@@ -1,3 +1,3 @@
 class SurveyAnswer < ApplicationRecord
-    belong_to :survey
+    belongs_to :survey
 end

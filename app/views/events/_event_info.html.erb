@@ -29,7 +29,7 @@
       <div class="post-performer">
         <ul>
             <% event.event_performers.each do |performer| %>
-					    <li><%= link_to performer.performer, search_path(performer: performer.performer),:class =>"post-performer" %></li>
+					    <li><%= link_to performer.performer, search_path(performer: performer.performer),:class =>"post-performer float-left" %></li>
 					  <% end %>
         </ul>
       </div>
