@@ -24,7 +24,7 @@
         </h3>
       </div>
       <div class="post-content">
-        <%= simple_format(event.description) %>
+        <span class="fas fa-map-marker-alt icon"></span><%= event.place %>
       </div>
       <div class="post-performer">
         <ul>
@@ -32,6 +32,9 @@
 					    <li><%= link_to performer.performer, search_path(performer: performer.performer),:class =>"post-performer" %></li>
 					  <% end %>
         </ul>
+      </div>
+      <div class="post-content">
+        <%= simple_format(event.description) %>
       </div>
       <div class="post-tag">
         <% event.event_categories.each do |category| %>

@@ -691,3 +691,6 @@ textarea{
     border: none;
     border-bottom: solid 15px transparent;
 }
+.icon{
+    padding-right:5px;
+}
