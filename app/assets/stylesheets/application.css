@@ -357,10 +357,11 @@ header{
     margin:0 auto;
     font-size:11px;
 }
-@media (min-width: 648px)
-.page-info {
-    position: absolute!important;
-    padding: 12px 12px 15px;
+@media (min-width: 648px){
+    .page-info {
+        position: absolute!important;
+        padding: 12px 12px 15px;
+    }
 }
 .container{
     margin: 0 auto;
