@@ -236,7 +236,7 @@ header{
 
 .post{
   float:left;
-  widows: 300px;
+  width: 300px;
   margin:10px;
   background-color:#fff;
 }
@@ -245,7 +245,6 @@ header{
   color:#f7f7f7;
   padding:5px 10px;
   font-size:20px;
-  
 }
 .delete-box, .share-box{
     float:right;
@@ -733,7 +732,7 @@ textarea{
 .pink-blank{
     background-color: #fbfbfb;
     color: #f22e58;
-    border: 111px solid #f22e58;
+    border: 1px solid #f22e58;
 }
 .pink-blank:hover{
     background-color:#f22e58;
@@ -741,7 +740,10 @@ textarea{
 }
 .following{
     border-radius:20px;
-    padding:5px 20px;
+    padding:5px 15px;
+    float:left;
+    display:inline-block;
+    margin:0 5px;
 }
 .btn{
     font-size: 13px;
@@ -751,4 +753,44 @@ textarea{
     transition: all .2s ease 0s;
     display: inline-block;
     text-decoration: none;
+}
+/* 芸人wiki */
+.geinin-list{
+    margin:10px 0;
+}
+.geinin{
+  width: 95%;
+  background-color:#fff;
+  margin:0 auto;
+  overflow: hidden;
+  padding-bottom:15px;
+}
+.geinin-wrapper{
+  padding:10px 10px;
+}
+.geinin-box{
+  padding:5px;
+  line-height:20px;
+}
+.geinin-name{
+    text-decoration:none;
+    color:#000;
+    font-size:16px;
+}
+.geinin-name:hover{
+    color:#f22e58;
+}
+.geinin-image-box{
+    float:left;
+}
+.geinin-name-box{
+    padding:5px;
+    float:left;
+}
+.following-box{
+    float:left;
+}
+.geinin-image-box img{
+    width:40px;
+    border-radius:50%;
 }
