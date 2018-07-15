@@ -29,6 +29,7 @@ header{
   width:100%;
   line-height:60px;
   display:block;
+  overflow:hidden; 
 }
 .inner{
   margin:0;
@@ -244,6 +245,7 @@ header{
   color:#f7f7f7;
   padding:5px 10px;
   font-size:20px;
+  
 }
 .delete-box, .share-box{
     float:right;
@@ -356,12 +358,6 @@ header{
     display:inline-block;
     margin:0 auto;
     font-size:11px;
-}
-@media (min-width: 648px){
-    .page-info {
-        position: absolute!important;
-        padding: 12px 12px 15px;
-    }
 }
 .container{
     margin: 0 auto;
@@ -495,7 +491,7 @@ footer{
     margin:0 auto;
     display:inline-block;
 }
-.btn{
+/* .btn{
     background-color:#f22e58;
     font-size: 13px;
     text-align: center;
@@ -510,7 +506,7 @@ footer{
 .btn:hover{
     background-color: #fbfbfb;
     color: #f22e58;
-}
+} */
 .new{
     padding:10px 40px;
     margin:0 auto;    
@@ -624,7 +620,7 @@ footer{
         margin: 0 auto;
         padding:20px;
         text-align:center;
-        margin-top:10px;
+        margin-top:100px;
         margin-bottom:10px;
     }
     .post{
@@ -724,4 +720,35 @@ textarea{
 }
 .survey-result{
     padding: .25em 0 .5em .80em;
+}
+.pink{
+    background-color:#f22e58;
+    color: #fbfbfb;
+    border: 3px solid #f22e58;
+}
+.pink:hover{
+    background-color: #fbfbfb;
+    color: #f22e58;
+}
+.pink-blank{
+    background-color: #fbfbfb;
+    color: #f22e58;
+    border: 111px solid #f22e58;
+}
+.pink-blank:hover{
+    background-color:#f22e58;
+    color: #fbfbfb;
+}
+.following{
+    border-radius:20px;
+    padding:5px 20px;
+}
+.btn{
+    font-size: 13px;
+    text-align: center;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1);
+    cursor: pointer;
+    transition: all .2s ease 0s;
+    display: inline-block;
+    text-decoration: none;
 }

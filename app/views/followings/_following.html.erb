@@ -1,16 +1,16 @@
 <% if user_signed_in? %>
 	<% if geinin.followed_by?(current_user) %>
 	  <li>
-	    <%= link_to geinin_followings_path(geinin), method: :delete, class: "following-button",id: "following-button-#{geinin.id}", remote: true, :protocol => 'https' do %>
-	      <i class="fas fa-minus-circle"></i>
-				<%= geinin.followings.where(geinin_id: geinin.id).count %> フォロー解除
+	    <%= link_to geinin_followings_path(geinin), method: :delete, class: "btn following pink",id: "following-button-#{geinin.id}", remote: true, :protocol => 'https' do %>
+	      <span class="fas fa-minus-circle icon"></span>
+				<span>フォロー解除</span>
 	    <% end %>
 	  </li>
 	<% else %>
 	  <li>
-	    <%= link_to geinin_followings_path(geinin), method: :post, class: "following-button-blank", id: "following-button-#{geinin.id}", remote: true, :protocol => 'https' do %>
-	      <i class="fa fa-plus-circle"></i>
-				<%= geinin.followings.where(geinin_id: geinin.id).count %> フォローする
+	    <%= link_to geinin_followings_path(geinin), method: :post, class: "btn following pink-blank", id: "following-button-#{geinin.id}", remote: true, :protocol => 'https' do %>
+	      <span class="fa fa-plus-circle icon"></span>
+				<span>フォローする</span>
 	    <% end %>
 	  </li>
 	<% end %>

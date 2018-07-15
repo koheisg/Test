@@ -6,10 +6,10 @@
         <p class="label-border"></p>
       </div>
       <div class="search-button-box">
-        <span><%= link_to '今日', search_path(:date => 'today'), :class => "btn categories" %></span>
-        <span><%= link_to '明日', search_path(:date => 'tomorrow'), :class => "btn categories"  %></span>
-        <span><%= link_to '次の土曜', search_path(:date => 'next_sat'), :class => "btn categories"  %></span>
-        <span><%= link_to '次の日曜', search_path(:date => 'next_sun'), :class => "btn categories"  %></span>
+        <span><%= link_to '今日', search_path(:date => 'today'), :class => "btn categories pink" %></span>
+        <span><%= link_to '明日', search_path(:date => 'tomorrow'), :class => "btn categories pink"  %></span>
+        <span><%= link_to '次の土曜', search_path(:date => 'next_sat'), :class => "btn categories pink"  %></span>
+        <span><%= link_to '次の日曜', search_path(:date => 'next_sun'), :class => "btn categories pink"  %></span>
       </div>
       <div class="search-form-area">
         <%= form_tag(search_path, method: "get") do %>
@@ -50,19 +50,19 @@
       </div>  
       <div class="search-button-box">
         <span>
-            <%= link_to search_path(:category => '単独ライブ'), :class => "btn categories" do %>
+            <%= link_to search_path(:category => '単独ライブ'), :class => "btn categories pink" do %>
               <span>単独ライブ</span>
               <%= Event.default.where(event_categories: { category: '単独ライブ'} ).count %>
             <% end %>
         </span>
         <span>
-            <%= link_to search_path(:category => '無料'), :class => "btn categories" do %>
+            <%= link_to search_path(:category => '無料'), :class => "btn categories pink" do %>
               <span>無料</span>
               <%= Event.default.where(event_categories: { category: '無料'} ).count %>
             <% end %>
         </span>
         <span>
-          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories" do %>
+          <%= link_to search_path(:category => 'エントリー制'), :class => "btn categories pink" do %>
               <span>エントリー制</span>
               <%= Event.default.where(event_categories: { category: 'エントリー制'} ).count %>
             <% end %>

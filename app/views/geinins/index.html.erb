@@ -2,12 +2,16 @@
   <div class="page-info hard-shadows">
     <p>芸人一覧</p>
   </div>
+  <%= render :partial => "geinins/search_form",locales: { geinins: @geinins, geinin_tags: @geinin_tags } %>
+
+  </div>
   <div class="post">
     <div class="post-wrapper">
 			<% if @geinins.present? %>
 				<% @geinins.each do |geinin| %>
 					<%= render :partial => "followings/following", locals: { geinin: geinin } %>
 					<%= link_to geinin.name, "geinins/#{geinin.id}" %>
+					<%= geinin.followings.where(geinin_id: geinin.id).count %> 
 				<% end %>
 			<% else %>
 			<p>芸人の登録はまだありません。</p>
