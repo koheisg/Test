@@ -279,10 +279,10 @@ Devise.setup do |config|
 
   # API key
   if Rails.env.production?
-    config.omniauth :twitter, "7LaaLbsEOUKxZ7I6dvM3wN9sN", "iKSGRjcuIyCoaOQgGqOWHQ5enMjqReKaCAwYuIN3CvgKXJeQ43"
+    config.omniauth :twitter, "7LaaLbsEOUKxZ7I6dvM3wN9sN", "iKSGRjcuIyCoaOQgGqOWHQ5enMjqReKaCAwYuIN3CvgKXJeQ43",callback_url: "https://warally.info/users/auth/twitter/callback"
     #config.omniauth :twitter, ENV["API_KEY"], ENV["API_SECRET"]
   else
-    config.omniauth :twitter, "7LaaLbsEOUKxZ7I6dvM3wN9sN", "iKSGRjcuIyCoaOQgGqOWHQ5enMjqReKaCAwYuIN3CvgKXJeQ43"
+    config.omniauth :twitter, "7LaaLbsEOUKxZ7I6dvM3wN9sN", "iKSGRjcuIyCoaOQgGqOWHQ5enMjqReKaCAwYuIN3CvgKXJeQ43",callback_url: "https://127.0.0.1:3000/users/auth/twitter/callback"
     #config.omniauth :twitter, ENV["API_KEY"], ENV["API_SECRET"]
   end
 end
