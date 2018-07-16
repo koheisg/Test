@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.5.1"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -84,7 +85,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
   # WEBスクレイピング用
   gem 'mechanize'
-  gem 'nokogiri', '< 1.8.3'
+  gem 'nokogiri', '< 1.8.5'
   gem 'open_uri_redirections'
   gem 'structured-data'
 
@@ -95,8 +96,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
     end
   # デバッグ用
   gem 'pry'
-  # Herokuデバッグ用
-  gem 'rails_12factor'
   # データ投入用
   gem 'factory_bot'
   # エラーメッセージを見やすく
@@ -114,3 +113,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'jquery-turbolinks'
   # modal windowをいい感じにする
   gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
+
+group :production do
+ gem 'rails_12factor'
+ ruby '2.5.1'
+end
