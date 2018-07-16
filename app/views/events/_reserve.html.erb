@@ -1,0 +1,31 @@
+<% if event.email.present? %>
+	<i class="fas fa-envelope"></i>
+	<% if user.present? %>
+		<%= mail_to(event.email, '予約する',
+		:subject => 'ライブチケット予約【'+ "#{event.title}" +'】',
+		:body => '掲題のライブのチケット予約をお願いいたします。' + "\n\n" +
+				 '名前：' + "#{user.name}" + "\n" +
+				 'ライブ名：' + "#{event.title}" + "\n" +
+				 '枚数： 1枚' + "\n\n" +
+				 'よろしくお願いいたします。' + "\n\n" +
+				 "#{user.name}") %>
+	<% else %>
+		<%= mail_to(event.email, '予約する',
+		:subject => 'ライブチケット予約【'+ "#{event.title}" +'】',
+		:body => '掲題のライブのチケット予約をお願いいたします。' + "\n\n" +
+				 '名前：' + "\n" +
+				 'ライブ名：' + "#{event.title}" + "\n" +
+				 '枚数： 1枚' + "\n\n" +
+				 'よろしくお願いいたします。') %>
+	<% end %>
+<% end %>
+<% if event.tel.present? %>
+	<i class="fas fa-phone"></i>
+	<%= link_to '予約する','tel:'+event.tel %>
+<% end %>
+<% if event.event_links.present? %>
+ 	<% event.event_links.each do |link| %>
+ 	  <i class="fas fa-ticket-alt"></i>
+	  <%= link_to '予約する', link.url %>
+	<% end %>
+<% end %>
