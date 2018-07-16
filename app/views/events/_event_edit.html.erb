@@ -1,21 +1,6 @@
-<input type="text" data-type="date" id="date-input" />
-<div id="material-header-holder" style="display:none">
-  <div class="ui-datepicker-material-header">
-    <div class="ui-datepicker-material-day">
-    </div>
-    <div class="ui-datepicker-material-date">
-      <div class="ui-datepicker-material-month">
-      </div>
-      <div class="ui-datepicker-material-day-num">
-      </div>
-      <div class="ui-datepicker-material-year">
-      </div>
-    </div>
-  </div>
-</div>
 <%= form_for(@event) do |f| %>
     <h4>開催日時</h4>
-    <%= f.datetime_select :datetime %></span>
+    <%= f.text_field :datetime, :class=>"flatpickr flatpickr-input", :type=>"text", :placeholder =>"日付を指定する", :id=>"EventCalendar" %></span>
     <h4>タイトル</h4>
     <%= f.text_field :title,:placeholder => "タイトル" %><br>
     <h4>本文</h4>

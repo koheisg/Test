@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'search', to: 'events#search'
 
   #Twitterログイン認証
-   get 'auth/:provider/callback', to: 'sessions#create'
+   get 'users/auth/:provider/callback', to: 'sessions#create'
   #Twitterからログアウト
    get '/logout', to: 'sessions#destroy'
 
