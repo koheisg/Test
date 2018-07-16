@@ -1,4 +1,39 @@
-<section class="single-blog">
-	<h2 class="blog-headline">芸人詳細</h2>
+<section class="main">
+  <div class="page-info hard-shadows">
+    <div class="geinin-name-title">
+      <p><%= @geinin.name %></p>
+    </div>
+    <div class="geinin-yomi">
+      <p><%= @geinin.yomi %></p>
+    </div>
+    <div class="geinin-icon">
+      <%= link_to "https://twitter.com/#{@geinin.twitter_id}" do %>
+        <span class="fab fa-twitter-square geinin-icon twitter"></span>
+      <% end %>
+    </div>
+    <div class="geinin-icon">
+      <%= link_to "https://twitter.com/#{@geinin.instagram_id}" do %>
+        <span class="fab fa-instagram geinin-icon instagram"></span>
+      <% end %>
+    </div>
+    <div class="geinin-icon">
+      <%= link_to @geinin.youtube_url do %>
+        <span class="fab fa-youtube geinin-icon youtube"></span>
+      <% end %>
+    </div>
+    <div class="geinin-icon">
+      <%= link_to "https://www.facebook.com/#{@geinin.facebook_url}" do %>
+        <span class="fab fa-facebook-square geinin-icon facebook"></span>
+      <% end %>
+    </div>
+    <div class="geinin-icon">
+      <%= link_to "https://twitter.com/#{@geinin.twitter_id}" do %>
+        <span class="fab fa-blogger"></span>
+      <% end %>
+    </div>
+    <div class="following-box">
+			<%= render :partial => "followings/following", locals: { geinin: @geinin } %>	
+		</div>
+  </div>
   <%= render 'geinins/geinin_info', geinin: @geinin, user: @user %>
 </section>

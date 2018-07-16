@@ -39,7 +39,7 @@ header{
   margin:0 auto;
   display:inline-block;
 }
-.user-menu-button:after {//フロート解除用クリアフィックス
+.user-menu-button:after {
   content: "";
   clear: both;
   display: block;
@@ -125,6 +125,7 @@ header{
     color: white;
     background-color: #1B95E0;
     border: 1px solid #1B95E0;
+    border-radius: 10px;
     -webkit-border-radius: 10px;
     text-decoration: none;
 }
@@ -236,9 +237,9 @@ header{
 
 .post{
   float:left;
-  width: 300px;
-  margin:10px;
   background-color:#fff;
+  margin:10px 0;
+  width:100%;
 }
 .post-header{
   background-color:#f22e58;
@@ -332,7 +333,6 @@ header{
   color:#f22e58;
 }
 .post-options>div {
-    display: inline-block;
     line-height: 20px;
     cursor: pointer;
     float:left;
@@ -376,7 +376,7 @@ header{
     padding: 0;
     border: 0;
     font: inherit;
-    vertical-align: baseline;
+    /* vertical-align: baseline; */
 }
 .search-form-inner{
     padding: 12px 2px 10px 5px;
@@ -413,13 +413,12 @@ header{
     background-color: #f2f2f2;
     vertical-align:middle;
     border:solid 1px #ccc;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
-    -moz-box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
-    -webkit-box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);width: 260px;
     padding:2px 0px;
     margin:5px 0px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;    -moz-box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);box-shadow: inset 1px 4px 9px -6px rgba(0,0,0,0.5);width: 260px;
 }
 .search-label-name{
     display:inline-block;
@@ -439,7 +438,6 @@ header{
     float:left;
     padding-left:10px;
     margin-bottom:10px;
-    display:inline-block;
 }
 .categories{
     display: block;
@@ -449,7 +447,6 @@ header{
     margin: 0 6px 6px 0;
     transition: all 300ms ease;
     float: left;
-    vertical-align: center;
     margin-top:5px;
 }
 .search-label{
@@ -577,7 +574,6 @@ footer{
         width:100%;
     }
     .user-menu-button-sm li{
-        display:inline-block;
         float:left;
         width:20%;
     }
@@ -619,7 +615,7 @@ footer{
         margin: 0 auto;
         padding:20px;
         text-align:center;
-        margin-top:100px;
+        margin-top:10px;
         margin-bottom:10px;
     }
     .post{
@@ -653,7 +649,6 @@ footer{
 .form-short{
     width:130px;
     float:left;
-    display:inline-block;
 }
 .block{
     display:block;
@@ -742,7 +737,6 @@ textarea{
     border-radius:20px;
     padding:5px 15px;
     float:left;
-    display:inline-block;
     margin:0 5px;
 }
 .btn{
@@ -788,9 +782,32 @@ textarea{
     float:left;
 }
 .following-box{
-    float:left;
+    display:inline-block;
 }
 .geinin-image-box img{
     width:40px;
     border-radius:50%;
+}
+.geinin-name-title{
+    font-size:20px;
+}
+.geinin-yomi{
+    font-size:12px;
+}
+.geinin-icon{
+    font-size:35px;
+    display: inline-block;
+    margin-top:5px;
+}
+.twitter{
+    color:#1da1f2;
+}
+.instagram{
+    color: #8a3ab9;
+}
+.youtube{
+    color:#cd201f;
+}
+.facebook{
+    color:#3B5998;
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180713143301) do
+ActiveRecord::Schema.define(version: 20180716151032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20180713143301) do
     t.string "name"
     t.string "yomi"
     t.string "twitter_id"
-    t.string "instagra_id"
+    t.string "instagram_id"
     t.string "blog_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
