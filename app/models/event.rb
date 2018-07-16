@@ -33,6 +33,16 @@ class Event < ApplicationRecord
     validates :datetime, presence: true
     validates :title, presence: true
 
+    # マイクロポストをいいねする
+    #def choose_participates(user)
+    #  participates.create(user_id: user.id)
+    #end
+
+    # マイクロポストのいいねを解除する（ネーミングセンスに対するクレームは受け付けません）
+    #def cancel_participates(user)
+    #  participates.find_by(user_id: user.id).destroy
+    #end
+
     #　参加するになってるかチェック
     def participated_by?(user)
       participates.where(user_id: user.id).exists?

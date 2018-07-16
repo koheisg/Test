@@ -22,6 +22,9 @@ class EventsController < ApplicationController
         # イベント情報を取得
          @event = Event.new(event_params)
 
+        # Event_performersを1行ごとのレコードに分ける
+         EventPerformersSplitService.new(event_params).execute
+
         # DB保存→詳細画面へリダイレクト
         if @event.save
             # イベントが登録されたら、変更履歴テーブルを更新
@@ -52,8 +55,6 @@ class EventsController < ApplicationController
       return @events = SearchKeywordService.new(params[:q]).execute if params[:q].present?
       return @events = SearchDatetimeService.new(params[:datetime]).execute if params[:datetime].present?
 
-      binding.pry
-
       respond_to do |format|
         format.html # index.html.erb
       end
@@ -64,6 +65,9 @@ class EventsController < ApplicationController
 
   def edit
 
+  end
+
+  def beachv
   end
 
   def update
