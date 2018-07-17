@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.5.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -74,7 +74,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # ページング
   gem 'kaminari'
   # bootstrap
-  gem 'bootstrap', '~> 4.1.1'
   gem 'bootstrap-sass'
   gem 'bootstrap-social-rails'
   gem 'font-awesome-rails'
