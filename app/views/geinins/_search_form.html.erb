@@ -1,0 +1,29 @@
+<div class="search-form-container">
+  <div class="search-form-inner">
+    <div class="search-categories">
+      <div class="search-label">
+        <span><h2>芸人を探す</h2></span>
+        <p class="label-border"></p>
+    <div class="search-categories">
+      <div class="search-label">
+        <h2 class="search-label-name">キーワードで探す</h2>
+        <p class="label-border"></p>
+      </div>
+      <div class="search-form-area">
+        <%= form_tag(search_path, method: "get") do %>
+          <%= text_field_tag :keyword,"",class: "search-form" %>
+        <% end %>
+        <div class="search-performer-box post-performer">
+          <i class="fas fa-chart-line" style="padding-bottom:10px;"> 芸人タグ</i>
+          <% @geinin_tags.each do |tag| %>
+          <ul>
+            <li><%= link_to tag.tag, search_path(:geinin_tag => tag.tag), :class => "post-performer float-left" %></li>
+          </ul>
+          <% end %>      
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</div>

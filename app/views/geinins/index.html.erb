@@ -1,14 +1,31 @@
-<main class="content">
-    <div class="snackbar"><span><h2>芸人一覧</h2></span></div>
-  <div class="lp-timeline">
-    <div class="lp-timeline-wrap">
-    <% if @geinins.present? %>
-	   <% @geinins.each do |geinin| %>
-	      <%= render :partial => "followings/following", locals: { geinin: geinin } %>
-				<%= link_to geinin.name, "geinins/#{geinin.id}" %>
-	   <% end %>
-	<% else %>
-		<p>芸人の登録はまだありません。</p>
-		<p>wArally!の芸人wikiは誰でも登録することができます！
-    <%= link_to '芸人を登録する', new_geinin_path %></p>
+<section class="main">
+  <div class="page-info hard-shadows">
+    <p>芸人一覧</p>
+  </div>
+  <%= render :partial => "geinins/search_form",locales: { geinins: @geinins, geinin_tags: @geinin_tags } %>
+<div class="geinin-list">
+	<% if @geinins.present? %>
+		<% @geinins.each do |geinin| %>
+		<div class="geinin hard-shadows">
+			<div class="geinin-wrapper">
+				<div class="geinin-box">
+					<div class="geinin-image-box">
+						<img src="https://pbs.twimg.com/profile_images/981910291565834240/We9YESpz_400x400.jpg">
+					</div>
+					<div class="geinin-name-box">
+						<%= link_to geinin.name, "geinins/#{geinin.id}", :class => "geinin-name" %>
+					</div>
+					<div class="following-box">
+						<%= render :partial => "followings/following", locals: { geinin: geinin } %>	
+					</div>
+				</div>
+			</div>
+		</div>
 	<% end %>
+</div>
+	<% else %>
+			<p>芸人の登録はまだありません。</p>
+			<p>wArally!の芸人wikiは誰でも登録することができます！
+			<%= link_to '芸人を登録する', new_geinin_path %></p>
+	<% end %>
+</section>

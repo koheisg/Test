@@ -36,6 +36,7 @@ class GeininsController < ApplicationController
   def index
 
     @geinins = Geinin.default.all
+    @geinin_tags = GeininTag.order("RANDOM()").limit(10)
 
   end
 
