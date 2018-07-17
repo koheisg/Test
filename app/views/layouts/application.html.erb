@@ -65,7 +65,7 @@
           </li>
           <% if user_signed_in? %>
             <li class="user-menu-button">
-              <%= link_to schedule_path do %>
+              <%= link_to events_schedule_path do %>
                 <i class="fas fa-heart"></i>
                 <span>参加予定</span>
                 <% end %>
@@ -96,19 +96,14 @@
         <div class="header-navs-right">
           <div class="pulldown">
             <div class="user-icon">
-              <span style="background-image:url(https://pbs.twimg.com/profile_images/958803950391541760/ABdXMZLE.jpg)"></span>
+              <span style="background-image:url(<% current_user.image_url %>)"></span>
             </div>
             <div class="pulldown-content">
               <p>ユーザー名</p>
               <ul>
                 <li>
                   <%= link_to user_path(current_user) do %>
-                    <i class="fa fa-user-o"></i> プロフィール
-                    <% end %>
-                </li>
-                <li>
-                  <%= link_to setting_path(current_user) do %>
-                    <i class="fa fa-cog"></i> 設定</a>
+                    <i class="fa fa-user-o"></i> Myページ
                     <% end %>
                 </li>
                 <li>

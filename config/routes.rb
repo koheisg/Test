@@ -44,22 +44,22 @@ Rails.application.routes.draw do
     end
 
     # 参加予定
-    get 'schedule', to: 'events#schedule'
+    get 'events/schedule', to: 'events#schedule'
 
     # ライブ情報検索
-    get 'search', to: 'events#search'
+    get 'events/search', to: 'events#search'
 
     # フォローしてる芸人のライブ一覧を表示する
-    get 'following', to: 'events#following'
+    get 'events/following', to: 'events#following'
 
   # 芸人管理
     resources :geinins, only: [:new, :create, :edit, :update, :index, :show, :destroy]
 
     #フォローしてる芸人のスケジュールを表示する
-    get 'schedule', to: 'geinin#schedule'
+    get 'geinins/schedule', to: 'geinins#schedule'
 
     #フォローしてる芸人の一覧を表示する
-    get 'following', to: 'geinin#following'
+    get 'geinins_following', to: 'geinins#following'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

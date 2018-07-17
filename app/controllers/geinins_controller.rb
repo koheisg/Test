@@ -1,6 +1,6 @@
 class GeininsController < ApplicationController
- before_action :set_geinin, only: [:show, :update, :edit, :destroy]
-  before_action :set_current_user, only: [:index, :show, :update, :edit, :destroy, :schedule]
+  before_action :set_geinin, only: [:show, :update, :edit, :destroy]
+  before_action :set_current_user, only: [:index, :show, :update, :edit, :destroy, :schedule,:following]
   before_action :set_remote_ip, only: [:create, :update]
 
   def new
@@ -14,7 +14,9 @@ class GeininsController < ApplicationController
         @geinin.geinin_tags.build
 
       # メンバータグを登録
-        #@geinin.geinin_members.geinin_member_tags.build
+       # Geinin_members.geinin_members_tags.build
+       # geinin_members_tags = GeininMembers.GeininMembersTags.new
+       # geinin_members_tags.save
 
   end
 
@@ -24,16 +26,16 @@ class GeininsController < ApplicationController
 
         # DB保存→詳細画面へリダイレクト
         if @geinin.save
-            redirect_to geinin_path(@geinin.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
+            redirect_to geinin_path(@geinin.id), notice: 'ありがとうございます！芸人wiki登録が完了しました！'
         else
-            flash.now[:error] = '芸人登録に失敗しました...。お手数ですが最初からやり直してください。'
+            flash.now[:error] = '芸人wiki登録に失敗しました...。お手数ですが最初からやり直してください。'
             render :new
         end
   end
 
   def index
 
-    @results = Geinin.all
+    @geinins = Geinin.default.all
 
   end
 
@@ -77,16 +79,8 @@ class GeininsController < ApplicationController
 
   # フォロー一覧の表示
   def following
-    geinin = geinin.includes(:geinin_members, :geinin_member_tags, :geinin_tags, :followings)
-                .references(:geinin_members, :geinin_member_tags, :geinin_tags, :followings)
-
     #　ユーザーがフォローしている芸人一覧を取得
-    @followings = Followings.select("geinin_id").where(user_id: current_user.id)
-
-    # ユーザーがフォローしている芸人の名前を取得
-    @geinins = Geinin.select("name").where(id: @followings.geinin_id)
-
-    @results = @geinins
+    @geinins = Geinin.default.where(geinin_followings: { user_id: @user_id } )
   end
 
 private
@@ -97,20 +91,23 @@ private
           :id,
           :name,
           :yomi,
+          :agency,
           :office,
           :start_year,
           :twitter_id,
           :instagram_id,
+          :youtube_url,
+          :blog_url,
           geinin_members_attributes: [
               :id,
               :geinin_id,
-              :url,
-	          geinin_members_tags_attributes: [
-	              :id,
-	              :geinin_id,
-	              :geinin_member_id,
-	              :tag],
-              ],
+              :url],
+	        #   geinin_members_tags_attributes: [
+	        #       :id,
+	        #       :geinin_id,
+	        #       :geinin_member_id,
+	        #       :tag],
+            #   ],
           geinin_tags_attributes: [
               :id,
               :geinin_id,
@@ -123,7 +120,15 @@ private
       params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
   end
 
+  def set_current_user
+      if current_user.present?
+          @user = current_user
+          # ログインユーザーを取得
+          @user_id = current_user.id
+      end
+  end
+
   def set_geinin
-      @geinin = Geinin.find(id: params[:id])
+      @geinin = Geinin.find(params[:id])
   end
 end

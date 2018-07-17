@@ -5,8 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.3.3'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record in development
@@ -69,12 +67,15 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # Twitter連携
   gem 'omniauth'
   gem 'omniauth-twitter'
+  gem 'twitter'
 
 #デザイン関連
   # ページング
   gem 'kaminari'
   # bootstrap
   gem 'bootstrap-sass'
+  gem 'bootstrap-social-rails'
+  gem 'font-awesome-rails'
   # タイル状のレイアウト
   gem 'masonry-rails'
   # datepicker

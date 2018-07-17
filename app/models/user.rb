@@ -16,6 +16,9 @@ class User < ApplicationRecord
   # プロフィール画像の利用
    attachment :profile_image
 
+  # 何人でもフォローできる
+   has_many :geinin_followings, dependent: :destroy
+
   # Twitterログイン認証
   def self.find_for_oauth(auth, signed_in_resource=nil)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -25,13 +28,15 @@ class User < ApplicationRecord
        uid:      auth.uid,
        provider: auth.provider,
        nickname: auth[:info][:nickname],
-       #name: auth[:info][:name],
+       name: auth[:info][:name],
        image_url: auth[:info][:image],
-       #description: auth[:info][:description]
+       description: auth[:info][:description],
+       url: auth[:info][:urls][:Website],
        email:    User.dummy_email(auth),
        password: Devise.friendly_token[0, 20]
       )
     end
+
     user.skip_confirmation!
     # email仮をデータベースに保存するため、validationを一時的に無効化。
     user.save(validate: false)

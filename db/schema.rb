@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180701160719) do
+ActiveRecord::Schema.define(version: 20180704113542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,19 @@ ActiveRecord::Schema.define(version: 20180701160719) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "identities", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.string "name"
+    t.string "description"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_identities_on_provider_and_uid", unique: true
+    t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
   create_table "participates", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -158,6 +171,7 @@ ActiveRecord::Schema.define(version: 20180701160719) do
     t.string "unconfirmed_email"
     t.string "name"
     t.string "url"
+    t.string "description"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -167,4 +181,5 @@ ActiveRecord::Schema.define(version: 20180701160719) do
   add_foreign_key "geinin_member_tags", "geinins"
   add_foreign_key "geinin_members", "geinins"
   add_foreign_key "geinin_tags", "geinins"
+  add_foreign_key "identities", "users"
 end
