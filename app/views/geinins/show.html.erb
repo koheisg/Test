@@ -36,5 +36,5 @@
 		</div>
   </div>
   <%= render 'geinins/geinin_info', geinin: @geinin, user: @user %>
-	<%= render 'geinins/geinin_info', geinin: geinin, user: @user %>
+	<%= render :partial => "events/event_list", locals: { events: @events, user: @user  } %>
 </section>

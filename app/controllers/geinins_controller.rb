@@ -17,7 +17,6 @@ class GeininsController < ApplicationController
        # Geinin_members.geinin_members_tags.build
        # geinin_members_tags = GeininMembers.GeininMembersTags.new
        # geinin_members_tags.save
-
   end
 
   def create
@@ -41,9 +40,9 @@ class GeininsController < ApplicationController
   end
 
   def show
-    # 出演者とキーワードが一致する
-    @events = Event.default.where(event_performers: { performer: "#{Event.escape_like(@geinin.name)}"} )
-　end
+		# 出演者とキーワードが一致する
+		@events = Event.default.where(event_performers: { performer: "#{Event.escape_like(@geinin.name)}"} )
+  end
 
   def edit
 
@@ -76,52 +75,87 @@ class GeininsController < ApplicationController
 
   end
 
-private
+  private
+    #ライブ情報
+    def geinin_params
+        params.require(:geinin)
+        .permit(
+            :id,
+            :name,
+            :yomi,
+            :agency,
+            :office,
+            :start_year,
+            :twitter_id,
+            :instagram_id,
+            :youtube_url,
+            :blog_url,
+            geinin_members_attributes: [
+                :id,
+                :geinin_id,
+                :url],
+                #   geinin_members_tags_attributes: [
+                #       :id,
+                #       :geinin_id,
+                #       :geinin_member_id,
+                #       :tag],
+                #   ],
+            geinin_tags_attributes: [
+                :id,
+                :geinin_id,
+                :tag],
+        )
+    end
+
+    #ユーザー情報
+    def user_params
+        params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
+    end
+
   #ライブ情報
-  def geinin_params
-      params.require(:geinin)
+  def event_params
+      params.require(:event)
       .permit(
           :id,
-          :name,
-          :yomi,
-          :agency,
-          :office,
-          :start_year,
-          :twitter_id,
-          :instagram_id,
-          :youtube_url,
-          :blog_url,
-          geinin_members_attributes: [
+          :datetime,
+          :title,
+          :description,
+          :tel,
+          :email,
+          :image,
+          :place,
+          :general_sale,
+          :presale_start,
+          :presale_end,
+          event_links_attributes: [
               :id,
-              :geinin_id,
+              :event_id,
               :url],
-	        #   geinin_members_tags_attributes: [
-	        #       :id,
-	        #       :geinin_id,
-	        #       :geinin_member_id,
-	        #       :tag],
-            #   ],
-          geinin_tags_attributes: [
+          event_change_histories_attributes: [
               :id,
-              :geinin_id,
-              :tag],
+              :event_id,
+              :user_id,
+              :user_ip],
+          event_performers_attributes: [
+              :id,
+              :event_id,
+              :performer],
+          event_categories_attributes: [
+              :id,
+              :event_id,
+              :category]
       )
-  end
+		end
+			
+    def set_current_user
+        if current_user.present?
+            @user = current_user
+            # ログインユーザーを取得
+            @user_id = current_user.id
+        end
+    end
 
-  #ユーザー情報
-  def user_params
-      params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
-  end
-
-  def set_current_user
-      if current_user.present?
-          @user = current_user
-          # ログインユーザーを取得
-          @user_id = current_user.id
-      end
-  end
-
-  def set_geinin
-      @geinin = Geinin.find(params[:id])
-  end
+    def set_geinin
+        @geinin = Geinin.find(params[:id])
+    end
 end

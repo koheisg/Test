@@ -6,7 +6,7 @@
         <i class="fas fa-calendar-alt"></i>
       </div>
       <div class="form">
-        <%= f.text_field :datetime, :placeholder =>"開演日時 *", :class=>"SearchCalendar event-edit-form form-long", data: {min_date: 'today'},:required=>"true" %>
+        <%= f.datetime_select :datetime, :placeholder =>"開演日時 *", :class=>"SearchCalendar event-edit-form form-long", data: {min_date: 'today'},:required=>"true" %>
       </div>
     </div>
     <div class="form-item">
