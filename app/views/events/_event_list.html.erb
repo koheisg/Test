@@ -1,11 +1,19 @@
-<main class="content">
-    <div class="snackbar"><span><h2>ライブ一覧</h2></span></div>
-  <div class="lp-timeline">
-    <div class="lp-timeline-wrap">
+<div class="event-list-box">
+  <div class="event-list-wrap">
     <% if events.present? %>
 	   <% events.each do |event| %>
-	      <%= render 'events/event_info', event: event, user: @user %>
+	      <%= render 'events/event_info', event: event, user: user %>
 	   <% end %>
+	</div>
+</div>
 	<% else %>
+	<div class="event-no-result hard-shadow">
 		<p>イベントの登録はまだありません。</p>
+		<p>情報がまだありませんか？</p>
+		<p>wArally!のライブ情報は誰でも登録することができます！</p>
+		<%= link_to new_event_path,:class=>"new-button" do %>
+			<i class="fa fa-plus-circle"></i>
+			<span>今すぐライブを登録する</span>
+    <% end %>
+	</div>
 	<% end %>

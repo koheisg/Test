@@ -1,31 +1,44 @@
 <% if event.email.present? %>
-	<i class="fas fa-envelope"></i>
 	<% if user.present? %>
-		<%= mail_to(event.email, '予約する',
+		<%= mail_to(event.email,
 		:subject => 'ライブチケット予約【'+ "#{event.title}" +'】',
 		:body => '掲題のライブのチケット予約をお願いいたします。' + "\n\n" +
 				 '名前：' + "#{user.name}" + "\n" +
 				 'ライブ名：' + "#{event.title}" + "\n" +
 				 '枚数： 1枚' + "\n\n" +
 				 'よろしくお願いいたします。' + "\n\n" +
-				 "#{user.name}") %>
+				 "#{user.name}") do %>
+	  <i class="fas fa-envelope"></i>
+    <span class="post-option-text">予約する</span>
+    <% end %>
 	<% else %>
-		<%= mail_to(event.email, '予約する',
+		<%= mail_to(event.email,
 		:subject => 'ライブチケット予約【'+ "#{event.title}" +'】',
 		:body => '掲題のライブのチケット予約をお願いいたします。' + "\n\n" +
 				 '名前：' + "\n" +
 				 'ライブ名：' + "#{event.title}" + "\n" +
 				 '枚数： 1枚' + "\n\n" +
-				 'よろしくお願いいたします。') %>
+				 'よろしくお願いいたします。') do %>
+	  <i class="fas fa-envelope"></i>
+    <span class="post-option-text">予約する</span>
+    <% end %>
 	<% end %>
 <% end %>
 <% if event.tel.present? %>
-	<i class="fas fa-phone"></i>
-	<%= link_to '予約する','tel:'+event.tel %>
+	<%= link_to 'tel:'+event.tel do %>
+    <i class="fas fa-phone"></i>
+    <span class="post-option-text">予約する</span>
+  <% end %>
 <% end %>
 <% if event.event_links.present? %>
  	<% event.event_links.each do |link| %>
- 	  <i class="fas fa-ticket-alt"></i>
-	  <%= link_to '予約する', link.url %>
+    <%= link_to link.url do %>
+      <i class="fas fa-ticket-alt"></i>
+      <span class="post-option-text">予約する</span>   
+    <% end %>
 	<% end %>
+<% end %>
+<% else %>
+      <i class="fas fa-ban"></i>
+      <span class="post-option-text">予約なし</span>
 <% end %>

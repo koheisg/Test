@@ -73,6 +73,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # ページング
   gem 'kaminari'
   # bootstrap
+  gem 'bootstrap', '~> 4.1.1'
   gem 'bootstrap-sass'
   gem 'bootstrap-social-rails'
   gem 'font-awesome-rails'
@@ -111,3 +112,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   # Use jquery-UI as the JavaScript library
   gem 'jquery-ui-rails'
   gem 'jquery-turbolinks'
+  # modal windowをいい感じにする
+  gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'

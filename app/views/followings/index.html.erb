@@ -1,0 +1,16 @@
+<main class="content">
+  <div class="snackbar">
+    <span>
+      <h2</h2>
+    </span>
+  </div>
+  <div class="lp-timeline">
+    <div class="lp-timeline-wrap">
+      <% if @geinins.present? %>
+        <% @geinins.each do |geinin| %>
+          <%= link_to geinin.name, "geinins/#{geinin.id}" %>
+          <%= render :partial => "followings/following", locals: { geinin: geinin } %>
+        <% end %>
+      <% else %>
+        <p>まだ誰もフォローしていません。</p>
+      <% end %>

@@ -66,21 +66,11 @@ class GeininsController < ApplicationController
   # 芸人スケジュールの表示
   def schedule
     #　ユーザーがフォローしている芸人一覧を取得
-    @followings = Followings.select("geinin_id").where(user_id: current_user.id)
-
-    # ユーザーがフォローしている芸人の名前を取得
-    @geinins = Geinin.default.select("name").where(id: @followings.geinin_id)
+    @geinins = Geinin.default.where(followings: { user_id: @user_id } )
 
     # ユーザーがフォローしている芸人の名前でライブ情報を検索
     @events_followings = Event.default.where(event_performers: { performer: @geinins.name } )
 
-  end
-
-
-  # フォロー一覧の表示
-  def following
-    #　ユーザーがフォローしている芸人一覧を取得
-    @geinins = Geinin.default.where(geinin_followings: { user_id: @user_id } )
   end
 
 private

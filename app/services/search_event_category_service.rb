@@ -7,6 +7,6 @@ class SearchEventCategoryService
     def execute
         # カテゴリが一致する
         @events = Event.default.where(event_categories: { category: "#{Event.escape_like(@category)}"} ) 
-        @results = @events, nil
+        @results = @events, nil,@category
     end
 end

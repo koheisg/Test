@@ -7,6 +7,9 @@ class User < ApplicationRecord
   # 1Userにつき何個もライブ情報を登録できる
     has_many :events
 
+  # 1Userにつき何個も芸人情報を登録できる
+    has_many :geinins
+
   # 1Userにつき何個もイイねできる
     has_many :participates, dependent: :destroy
 
@@ -17,7 +20,7 @@ class User < ApplicationRecord
    attachment :profile_image
 
   # 何人でもフォローできる
-   has_many :geinin_followings, dependent: :destroy
+   has_many :followings, dependent: :destroy
 
   # Twitterログイン認証
   def self.find_for_oauth(auth, signed_in_resource=nil)

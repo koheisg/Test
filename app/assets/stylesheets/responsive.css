@@ -1,0 +1,94 @@
+/* タブレット用のCSS */
+@media (max-width:1000px){
+
+}
+/* スマートフォン用のCSS */
+@media (max-width:670px){
+    .user-menu-button{
+        
+    }
+}
+
+@media (min-width: 769px) {
+    .lp-panel-item-image {
+        width: 40%;
+        height: 240px;
+        background-size: contain
+    }
+}
+
+.lp-panel-item:last-of-type .lp-panel-item-image {
+    background-size: auto
+}
+
+.lp-panel-item-body {
+    width: 100%;
+    margin-top: 16px
+}
+
+@media (min-width: 769px) {
+    .lp-panel-item-body {
+        width: 60%;
+        padding: 40px;
+        margin-top: 0
+    }
+}
+
+.lp-panel-item-title {
+    color: #00838f;
+    font-weight: normal;
+    font-size: 1.125rem;
+    margin: 0
+}
+
+@media (min-width: 769px) {
+    .lp-panel-item-title {
+        font-size: 1.5rem
+    }
+}
+
+.lp-panel-item-text {
+    margin: 8px 0;
+    font-size: .875rem
+}
+
+@media (min-width: 769px) {
+    .lp-panel-item-text {
+        margin: 10px 0 0;
+        font-size: 1rem
+    }
+}
+
+.lp-footer {
+    padding: 20px 10px 48px
+}
+
+@media (min-width: 769px) {
+    .lp-footer {
+        text-align: center;
+        padding: 0 0 72px
+    }
+}
+
+.lp-footer .logo {
+    font-size: 2rem;
+    margin-bottom: 24px
+}
+
+@media (min-width: 769px) {
+    .lp-footer .logo {
+        font-size: 3rem;
+        margin-bottom: 32px
+    }
+}
+
+.lp-footer p {
+    margin: 0 0 24px;
+    font-size: .875rem
+}
+
+@media (min-width: 769px) {
+    .lp-footer p {
+        font-size: 1rem
+    }
+}

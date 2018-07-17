@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+	<% if geinin.followed_by?(current_user) %>
+	  <li>
+	    <%= link_to geinin_followings_path(geinin), method: :delete, class: "following-button",id: "following-button-#{geinin.id}", remote: true, :protocol => 'https' do %>
+	      <i class="fas fa-minus-circle"></i>
+				<%= geinin.followings.where(geinin_id: geinin.id).count %> フォロー解除
+	    <% end %>
+	  </li>
+	<% else %>
+	  <li>
+	    <%= link_to geinin_followings_path(geinin), method: :post, class: "following-button-blank", id: "following-button-#{geinin.id}", remote: true, :protocol => 'https' do %>
+	      <i class="fa fa-plus-circle"></i>
+				<%= geinin.followings.where(geinin_id: geinin.id).count %> フォローする
+	    <% end %>
+	  </li>
+	<% end %>
+<% else %>
+	<!--ログインしていない場合、「ログインするとフォロー機能が使えます」のメッセージを出す-->
+	<a id="modal-open" class="button-link">
+		<i class="fa fa-heart-o" aria-hidden="true"></i> フォローする
+	</a>
+<% end %>

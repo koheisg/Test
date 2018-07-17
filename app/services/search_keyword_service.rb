@@ -15,6 +15,6 @@ class SearchKeywordService
 		    @events = @events + Event.default.where('event_performers.performer like ?', "%#{Event.escape_like(@keyword)}%")
 		end
 
-        @results = @events, nil
+        @results = @events, nil,@keyword
     end
 end

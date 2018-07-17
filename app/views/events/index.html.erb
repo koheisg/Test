@@ -1,25 +1,12 @@
-<section class="sct-color-1 slice">
-  <div class="container-fluid masonry-container">
-    <div class="row">
-      <div class="col-md-8 col-sm-offset-2">
-        <div class="masonry-wrapper-cols">
-		<% if flash[:notice] %>
-		  <p><%= flash[:notice] %></p>
-		<% end %>
-			<div class="lp">
-			  <div class="lp-intro">
-			    <div class="inner">
-			      <div class="lp-intro-hero">
-			        <p class="lp-intro-hero-text">おもしろい！を見つけよう</p>
-              <%= render :partial => "events/search_form",locales: { events: @events } %>
-            </div>
-			    </div>
-			  </div>
-      </div>
-      <%if @results.present? %>
-      <% end %>
-      </div>
+<section class="main">
+  <% if flash[:notice] %>
+    <div class="element page-info hard-shadows">
+      <p><%= flash[:notice] %></p>
     </div>
+  <% end %>
+  <%= render :partial => "events/search_form",locales: { events: @events } %>
+  <%if @results.present? %>
+  <% end %>
   <div class="lp-panel">
     <div class="inner">
       <div class="lp-panel-item">
