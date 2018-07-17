@@ -1,0 +1,28 @@
+<section class="main">
+  <div class="page-info hard-shadows">
+    <p>アンケート結果</p>
+  </div>
+  <div class="post">
+    <div class="survey-wrapper">
+      <% @surveys.each do |survey| %>
+        <div class="survey-title">
+          <span><strong><%= survey.name %></strong></span>
+        </div>
+        <div class="post-performer survey-result">
+          <ul>
+            <% survey.survey_answers.each do |answer| %>
+              <li>
+                <span class="ranking"><%= answer.rank %>位<span>
+                <%= link_to answer.answer,search_path(performer: answer.answer),:class=>"post-performer" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="survey-period">
+          <p>集計期間 <%= survey.start %>~<%= survey.end %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+  

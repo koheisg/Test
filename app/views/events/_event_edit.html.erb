@@ -1,12 +1,12 @@
 <div class="container">
   <div class="event-box">
-    <%= form_for(@event, method: :post, :class => "event-edit-form") do |f| %>
+    <%= form_for(@event, method: :post) do |f| %>
     <div class="form-item">
       <div class="form-icon">
         <i class="fas fa-calendar-alt"></i>
       </div>
       <div class="form">
-        <%= f.text_field :datetime, :placeholder =>"開演日時 *", :class=>"SearchCalendar event-edit-form", data: {min_date: 'today'},:required=>"true" %>
+        <%= f.text_field :datetime, :placeholder =>"開演日時 *", :class=>"SearchCalendar event-edit-form form-long", data: {min_date: 'today'},:required=>"true" %>
       </div>
     </div>
     <div class="form-item">
@@ -14,7 +14,7 @@
         <i class="fas fa-bookmark"></i>
       </div>
       <div class="form">
-        <%= f.text_field :title,:placeholder => "ライブ名 *",:class => "event-edit-form",:required=>"true" %>
+        <%= f.text_field :title,:placeholder => "ライブ名 *",:class => "event-edit-form form-long",:required=>"true" %>
       </div>
     </div>
     <div class="form-item">
@@ -22,7 +22,7 @@
         <i class="fas fa-map-marker-alt"></i>
       </div>
       <div class="form">
-        <%= f.text_field :place,:placeholder => "ライブ会場 *",:class => "event-edit-form",:required=>"true" %>
+        <%= f.text_field :place,:placeholder => "ライブ会場 *",:class => "event-edit-form form-long",:required=>"true" %>
       </div>
     </div>
     <div class="form-item">
@@ -31,16 +31,18 @@
       </div>
       <div class="form">
         <%= f.fields_for :event_performers do |performers_form| %>
-          <%= performers_form.text_area :performer,:placeholder => "出演者",:class => "event-edit-form textarea"  %><br>
+          <%= performers_form.text_area :performer,:placeholder => "出演者（改行でタグになります）",:class => "event-edit-form textarea form-long"  %><br>
         <% end %>
       </div>
     </div>
+  <%= f.submit '投稿する！', :class => "btn new" %>
+  <div class="more-info">もっと詳しく</div>
     <div class="form-item">
       <div class="form-icon">
         <i class="fas fa-file-alt"></i>
       </div>
       <div class="form">
-        <%= f.text_area :description,:placeholder => "ライブの説明",:class => "event-edit-form textarea" %>
+        <%= f.text_area :description,:placeholder => "ライブの説明",:class => "event-edit-form textarea form-long" %>
       </div>
     </div>
     <div class="form-item">
@@ -49,7 +51,7 @@
       </div>
       <div class="form">
         <%= f.fields_for :event_links do |urls_form| %>
-          <%= urls_form.text_field :url,:placeholder => "予約URL",:class => "event-edit-form"  %>
+          <%= urls_form.text_field :url,:placeholder => "予約URL",:class => "event-edit-form form-long"  %>
         <% end %>
       </div>
     </div>
@@ -58,7 +60,7 @@
         <i class="fas fa-envelope"></i>
       </div>
       <div class="form">
-        <%= f.text_field :email,:placeholder => "メールアドレス",:class => "event-edit-form"  %>
+        <%= f.text_field :email,:placeholder => "メールアドレス",:class => "event-edit-form form-long"  %>
       </div>
     </div>
     <div class="form-item">
@@ -66,7 +68,7 @@
         <i class="fas fa-phone"></i>
       </div>
       <div class="form">
-        <%= f.text_field :tel,:placeholder => "電話番号",:class => "event-edit-form"  %>
+        <%= f.text_field :tel,:placeholder => "電話番号",:class => "event-edit-form form-long"  %>
       </div>
     </div>
     <div class="form-item">
@@ -74,9 +76,27 @@
         <i class="fas fa-image"></i>
       </div>
       <div class="form">
-        <%= f.attachment_field :image, :class=>"event-edit-form" %>
+        <%= f.attachment_field :image, :class=>"event-edit-form form-long" %>
       </div>
     </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-ticket-alt"></i>
+      </div>
+      <div class="form">
+        <%= f.text_field :general_sale,:placeholder => "一般発売日時",:class => "event-edit-form form-long" %>
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="form-icon">
+        <i class="fas fa-tickets-alt"></i>
+      </div>
+      <div class="form">
+        <%= f.text_field :presale_start,:placeholder => "先行販売開始日時",:class => "event-edit-form form-short" %>
+        <p>〜</p>
+        <%= f.text_field :presale_end,:placeholder => "終了日時",:class => "event-edit-form form-short" %>
+      </div>
+    </div>   
     <%= f.submit '投稿する！', :class => "btn new" %>
 <% end %>
     </div>

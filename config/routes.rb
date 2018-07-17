@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/about', to: 'root#about'
   get '/terms', to: 'root#terms'
   get '/privacy', to: 'root#privacy'
-  get '/survey', to: 'root#survey'
+  get '/survey', to: 'survey#index'
 
   # ユーザー管理
     resources :users, only: [:show, :edit, :update, :create, :destroy]

@@ -115,6 +115,10 @@ private
           :tel,
           :email,
           :image,
+          :place,
+          :general_sale,
+          :presale_start,
+          :presale_end,
           event_links_attributes: [
               :id,
               :event_id,

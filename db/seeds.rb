@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require "csv"
+
+CSV.foreach('db/Survey.csv') do |row|
+  SurveyAnswer.create(:survey_id => row[0].to_i, :rank => row[1].to_i, :answer => row[2],:votes => row[3].to_i)
+end
