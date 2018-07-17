@@ -6,17 +6,18 @@
       <span class="date-format date-format-1">
       <font size="3">
       <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
-      <span><%= event.datetime.strftime('%Y年%m月%d日 %H:%M') %></span>
+      <span><%= event.datetime.strftime('%Y年%m月%d日 %H:%M ') %></span>
       <div class="post-counts">
         <span class="share-button"></span>
-        <div class="share-option hidden" onClick="window.open('http://twitter.com/share?text=wArally%21&url=https://tmblr.co/ZB3_lc2Tyk2Mu', 'twitter_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
+        <% link_to 'Twitterにシェア', "https://twitter.com" %>
+        <div class="share-option hidden" onClick="window.open('http://twitter.com/share?text=#{event.title}%21&url=https://tmblr.co/ZB3_lc2Tyk2Mu', 'twitter_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
             Twitterにシェアする
         </div>
         <div class="share-option hidden" onClick="window.open('https://plus.google.com/share?url=https://tmblr.co/ZB3_lc2Tyk2Mu', 'google_plus_share', 'height=320, width=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
-            LINEにシェアする
+            Google+にシェア
         </div>
         <div class="share-option hidden" onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=https://tmblr.co/ZB3_lc2Tyk2Mu&t=wArally%21', 'facebook_share', 'height=320, width=640, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, directories=no, status=no');">
-            Facebookにシェアする
+            Facebookにシェア
         </div>
       </div>
 

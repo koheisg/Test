@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+  require 'date'
+  require 'time'
+
 	attachment :image
 
 	#一人のユーザーが複数のライブに参加できる
@@ -10,28 +13,41 @@ class Event < ApplicationRecord
   #複数のリンクを持てる
     has_many :event_links, dependent: :destroy
     accepts_nested_attributes_for :event_links, allow_destroy: true,reject_if: :all_blank
-  # 子モデルの要素にもアクセスできるようにする
-    #attr_accessible :event_links_attributes
 
   #複数の変更履歴を持てる
     has_many :event_change_histories, dependent: :destroy
     accepts_nested_attributes_for :event_change_histories, allow_destroy: true,reject_if: :all_blank
-  # 子モデルの要素にもアクセスできるようにする
-    #attr_accessible :event_change_histories_attributes
 
   #複数の出演者を持てる
     has_many :event_performers, dependent: :destroy
     accepts_nested_attributes_for :event_performers, allow_destroy: true,reject_if: :all_blank
-  # 子モデルの要素にもアクセスできるようにする
-    #attr_accessible :event_performers_attributes
 
   #複数のカテゴリを持てる
     has_many :event_categories, dependent: :destroy
     accepts_nested_attributes_for :event_categories, allow_destroy: true,reject_if: :all_blank
 
-    #存在チェック
+  #存在チェック
     validates :datetime, presence: true
     validates :title, presence: true
+
+  # 日付の昇順に並べ換える
+    default_scope -> { order(datetime: :asc) }
+  # 常に本日以降の日付を表示する
+    default_scope { where(arel_table[:datetime].gt Time.now) }
+
+    #scope :available, -> do
+    #  where(arel_table[:datetime].lt Datetime.now)
+    #end
+
+    # マイクロポストをいいねする
+    #def choose_participates(user)
+    #  participates.create(user_id: user.id)
+    #end
+
+    # マイクロポストのいいねを解除する（ネーミングセンスに対するクレームは受け付けません）
+    #def cancel_participates(user)
+    #  participates.find_by(user_id: user.id).destroy
+    #end
 
     #　参加するになってるかチェック
     def participated_by?(user)
@@ -53,6 +69,10 @@ class Event < ApplicationRecord
          !current_user.nil?
     end
 
+    def escape_like(string)
+      string.gsub(/[\\%_]/){|m| "\\#{m}"}
+    end
+
     def self.lumine_urls
         links = []
         month = 1
@@ -70,11 +90,6 @@ class Event < ApplicationRecord
         links.each do |lumine_url|
             get_lumine(lumine_url)
         end
-    end
-
-    #日付検索
-    ransacker :datetime, type: :date do
-      Arel.sql('date(created_at)')
     end
 
     #ルミネのページをスクレイピング

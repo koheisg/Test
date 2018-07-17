@@ -22,6 +22,9 @@ class EventsController < ApplicationController
         # イベント情報を取得
          @event = Event.new(event_params)
 
+        # Event_performersを1行ごとのレコードに分ける
+         # => EventPerformersSplitService.new(event_params).execute
+
         # DB保存→詳細画面へリダイレクト
         if @event.save
             # イベントが登録されたら、変更履歴テーブルを更新
@@ -29,34 +32,28 @@ class EventsController < ApplicationController
 
             redirect_to event_path(@event.id), notice: 'ありがとうございます！ライブ登録が完了しました！'
         else
+            if @event[:title].blank?
+              flash.now[:error] = 'タイトルを入力してください'
+            elsif @event[:datetime].blank?
+              flash.now[:error] = '開催日時を入力してください'
+            end
             flash.now[:error] = 'ライブ登録に失敗しました...。お手数ですが最初からやり直してください。'
             render :new
         end
   end
 
   def index
-    @events = Event.page(params[:page]).includes(:event_performers, :event_links, :event_categories).reverse_order
+
+    return @results = SearchDatetimeService.new('today',DateTime.now).execute
+
   end
 
   def search
-      @date = params[:date]
-      @q = params[:q]
 
-      #binding.pry
+    #入力された日付もしくはキーワードで検索
+      return @results = SearchDatetimeService.new(params[:date],params[:datetime]).execute if params[:date].present?
+      return @results = SearchKeywordService.new(params[:keyword]).execute if params[:keyword].present?
 
-      #ライブ情報を日付で検索
-      return @events = SearchDatetimeService.new(@date).execute if @date.present?
-
-      #日付もしくはキーワードで検索
-      return @events = SearchDatetimeKeywordService.new(params[:datetime],params[:q]).execute if params[:datetime].present? && params[:q].present?
-      return @events = SearchKeywordService.new(params[:q]).execute if params[:q].present?
-      return @events = SearchDatetimeService.new(params[:datetime]).execute if params[:datetime].present?
-
-      binding.pry
-
-      respond_to do |format|
-        format.html # index.html.erb
-      end
   end
 
   def show
@@ -64,6 +61,9 @@ class EventsController < ApplicationController
 
   def edit
 
+  end
+
+  def beachv
   end
 
   def update
@@ -120,14 +120,6 @@ private
   #ユーザー情報
   def user_params
       params.require(:user).permit(:id, :name, :profile_image, :uid, :email, :password)
-  end
-
-  #検索クエリ
-  def search_params
-      params.require(:q).permit(:title_or_description_or_event_performers)
-      params.require(:keyword).permit(:title_or_description)
-      params.require(:date).permit(:datetime_eq)
-      params.require(:date_and_keyword).permit
   end
 
   def set_event
