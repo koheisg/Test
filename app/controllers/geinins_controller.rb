@@ -41,7 +41,9 @@ class GeininsController < ApplicationController
   end
 
   def show
-  end
+    # 出演者とキーワードが一致する
+    @events = Event.default.where(event_performers: { performer: "#{Event.escape_like(@geinin.name)}"} )
+　end
 
   def edit
 
