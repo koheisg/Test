@@ -1,93 +1,87 @@
 class SearchDatetimeService
 
-    def initialize(date_param,datetime_param)
-        require "date"
+  def initialize(date_param,datetime_param)
+    require "date"
 
-        # 検索したい日付
-        @date = date_param
+    # 検索したい日付
+    @date = date_param
 
-        # 今見てるページの日付
-        @datetime = datetime_param
+    # 今見てるページの日付
+    @datetime = datetime_param
 
-        # 現在時刻
-        @now = DateTime.now
-        # 今日の始まり
-        @today = DateTime.now.beginning_of_day
+    # 今日の始まり
+    @today = DateTime.now.beginning_of_day
 
-        if @date == 'today'
-            #現在時刻を取る
-            #@now = Time.current
-            @now = DateTime.now
-            #翌日の5時を取る
-            @next_morning = @today + 1.day + 5.hour
-        elsif @date == 'tomorrow'
-            #明日の5時を取る
-            #@now = Time.current
-            @tomorrow = @today + 1.day + 5.hour
-            @next_morning = @tomorrow + 1.day + 5.hour
-        elsif @date == 'next_sat'
-          if Date.today.saturday?
-            # 1週間後を取る
-            @next_sat = @today + 7.day + 5.hour
-          else
-            @day = DateTime.now.wday
-            @next_sat = @today + (6-@day).day + 5.hour
-          end
-            @next_morning = @next_sat + 1.day + 5.hour
-        elsif @date == 'next_sun'
-          if Date.today.sunday?
-            # 1週間後を取る
-            @next_sun = @today + 7.day + 5.hour
-          else
-            @day = DateTime.now.wday
-            @next_sun = @today + (7-@day).day + 5.hour
-          end
-          @next_morning = @next_sun + 1.day + 5.hour
-        elsif @date == 'next_day'
-          @datetime = DateTime.parse(@datetime)
-          @next_day = @datetime.next_day.beginning_of_day
-          @next_morning = @next_day + 1.day + 5.hour
-        elsif @date == 'prev_day'
-          @datetime = DateTime.parse(@datetime)
-          @prev_day = @datetime.prev_day.beginning_of_day
-          @next_morning = @prev_day + 1.day + 5.hour
-        else
-          @next_morning = @date.beginning_of_day + 1.day + 5.hour
-        end
-
-    end
-
-    def execute
-      event = Event.includes(:event_performers, :event_categories, :event_links)
-                   .references(:event_performers, :event_categories, :event_links)
-
-      if @date == 'today'
-        # Extract Event data from now until tomorrow 5am / 現在時刻から明日の朝5時までのデータを取得
-        @events = event.where(datetime: @now...@next_morning),
-        @datetime = @today
-      elsif @date == 'tomorrow'
-        # Extract Event data on tomorrow (5am to 5am next day) / 明日のデータを取得(朝5時〜翌日朝5時)
-        @events = event.where(datetime: @tomorrow...@next_morning)
-        @datetime = @tomorrow
-      elsif @date == 'next_sat'
-        @events = event.where(datetime: (@next_sat)..(@next_morning))
-        @datetime = @next_sat
-      elsif @date == 'next_sun'
-        @events = event.where(datetime: (@next_sun)..(@next_morning))
-        @datetime = @next_sun
-      elsif @date == 'next_day'
-        @events = event.where(datetime: (@next_day)..(@next_morning))
-        @datetime = @next_day
-        binding.pry
-      elsif @date == 'prev_day'
-        @events = event.where(datetime: (@prev_day)..(@next_morning))
-        @datetime = @prev_day
+    case @date
+    when 'today' then
+      #翌日の5時を取る
+      @next_morning = @today + 1.day + 5.hour
+    when 'tomorrow' then
+      @tomorrow = @today + 1.day + 5.hour
+      @next_morning = @tomorrow + 1.day + 5.hour
+    when 'next_sat' then
+      if Date.today.saturday?
+        # 1週間後を取る
+        @next_sat = @today + 7.day + 5.hour
       else
-        @events = event.where(datetime: (@date)..(@next_morning))
-        @datetime = @date
+        @day = DateTime.now.wday
+        @next_sat = @today + (6-@day).day + 5.hour
       end
-
-      return @results = @events, @datetime
-
+        @next_morning =  0.days.ago.next_week(:saturday)
+    when 'next_sun' then
+      if Date.today.sunday?
+        # 1週間後を取る
+        @next_sun = @today + 7.day + 5.hour
+      else
+        @day = DateTime.now.wday
+        @next_sun = 0.days.ago.next_week(:sunday)
+      end
+      @next_morning = @next_sun + 1.day + 5.hour
+    when 'next_day' then
+      @datetime = DateTime.parse(@datetime)
+      @next_day = @datetime.next_day.beginning_of_day
+      @next_morning = @next_day + 1.day + 5.hour
+    when 'prev_day' then
+      @datetime = DateTime.parse(@datetime)
+      @prev_day = @datetime.prev_day.beginning_of_day
+      @next_morning = @prev_day + 1.day + 5.hour
+    else
+      @next_morning = @date.beginning_of_day + 1.day + 5.hour
     end
+
+  end
+
+  def execute
+    case @date
+    when 'today' then
+      # Extract Event data from now until tomorrow 5am / 現在時刻から明日の朝5時までのデータを取得
+      @from = DateTime.now
+      @datetime = @today
+    when 'tomorrow' then
+      # Extract Event data on tomorrow (5am to 5am next day) / 明日のデータを取得(朝5時〜翌日朝5時)
+      @from = @tomorrow
+      @datetime = @tomorrow
+    when 'next_sat' then
+      @from = @next_sat
+      @datetime = @next_sat
+    when 'next_sun' then
+      @from = @next_sun
+      @datetime = @next_sun
+    when 'next_day' then
+      @from = @next_day
+      @datetime = @next_day
+    when 'prev_day' then
+      @from = @prev_Day
+      @datetime = @prev_day
+    else
+      @from = @date
+      @datetime = @date
+    end
+
+    @to = @next_morning
+    @events = Event.datetime_search(@from,@to)
+    
+    return @results = @events, @datetime
+
+  end
 end

@@ -1,30 +1,26 @@
-<input id="EventCalendar" class="EventCalendar" type="text" placeholder="日付を指定する" data-mindate=today>
+<br><br><br><br><br><br><br>
+
+<input id="EventCalendar" type="text" placeholder="日付を指定する" data-mindate=today>
 </input>
 
-<%= form_for(@event) do |f| %>
+<%= form_for(@event,method: :post, :class => "event-edit-form") do |f| %>
     <h4>開催日時 *必須</h4>
-    <%= f.text_field :datetime, :type=>"text", :placeholder =>"日付を指定する", :class=>"EventCalendar", data: {min_date: 'today'} %></span>
-    <h4>タイトル *必須</h4>
-    <%= f.text_field :title,:placeholder => "タイトル" %><br>
-    <h4>本文</h4>
-    <%= f.text_area :description,:placeholder => "内容" %><br>
-    <%= f.text_field :email,:placeholder => "メールアドレス"  %><br>
-    <%= f.text_field :tel,:placeholder => "電話番号"  %><br>
-    <%= f.fields_for :event_links do |urls_form| %>
-        <%= urls_form.text_field :url,:placeholder => "予約URL"  %><br>
-    <% end %>
-
-    <h4>出演者</h4>
+    <%= f.datetime_select :datetime, :type=>"text", :placeholder =>"日付を指定する", :class=>"SearchCalendar", data: {min_date: 'today'} %><br>
+    <%= f.text_field :title,:placeholder => "タイトル *必須",:class => "event-edit-form" %><br>
+    <%= f.text_area :description,:placeholder => "説明",:class => "event-edit-form" %><br>
     <%= f.fields_for :event_performers do |performers_form| %>
-        <%= performers_form.text_area :performer,:placeholder => "出演者"  %><br>
+        <%= performers_form.text_area :performer,:placeholder => "出演者",:class => "event-edit-form"  %><br>
     <% end %>
-
-    <h4>カテゴリ</h4>
     <%= f.fields_for :event_categories do |categories_form| %>
-        <%= categories_form.text_field :category,:placeholder => "カテゴリ"  %><br>
-    <% end %>/
-
+        <%= categories_form.text_field :category,:placeholder => "カテゴリ",:class => "event-edit-form"  %><br>
+    <% end %>
+    <p>予約の仕方</p>
+    <%= f.text_field :email,:placeholder => "メールアドレス",:class => "event-edit-form"  %><br>
+    <%= f.text_field :tel,:placeholder => "電話番号",:class => "event-edit-form"  %><br>
+    <%= f.fields_for :event_links do |urls_form| %>
+        <%= urls_form.text_field :url,:placeholder => "予約URL",:class => "event-edit-form"  %><br>
+    <% end %>
     <h4>画像</h4>
     <%= f.attachment_field :image %>
-    <%= f.submit '保存' %>
+    <%= f.submit '保存', :class => "event-submit" %>
 <% end %>

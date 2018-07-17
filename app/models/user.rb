@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :omniauthable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, omniauth_providers: [:twitter]
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, omniauth_providers: %i(twitter)
 
   # 1Userにつき何個もライブ情報を登録できる
     has_many :events

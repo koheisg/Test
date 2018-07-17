@@ -1,0 +1,23 @@
+<section class="sct-color-1 slice">
+  <div class="container-fluid masonry-container">
+    <div class="row">
+      <div class="col-md-8 col-sm-offset-2">
+        <div class="masonry-wrapper-cols">
+        <!--「参加中」を押したライブだけ表示-->
+		 <h2>参加中のライブ一覧</h2>
+		 <% @participates.each do |participate| %>
+			<% @events.where(id: participate.event_id).each do |event| %>
+				<%= render :partial => "events/event_info", locals: { event: event } %>
+			<% end %>
+		<% end %>
+		<h2>検討中のライブ一覧</h2>
+		 <% @pendings.each do |pending| %>
+			<% @events.where(id: pending.event_id).each do |event| %>
+				<%= render :partial => "events/event_info", locals: { event: event } %>
+			<% end %>
+		<% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

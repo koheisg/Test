@@ -9,6 +9,6 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to events_path
+    redirect_to events_url, notice: 'ログアウトしました'
   end
 end

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  geinin_id: 
+  geinin_member_id: 
+  tag: MyString
+
+two:
+  geinin_id: 
+  geinin_member_id: 
+  tag: MyString

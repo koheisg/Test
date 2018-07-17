@@ -1,0 +1,19 @@
+<section class="sct-color-1 slice">
+  <div class="container-fluid masonry-container">
+    <div class="row">
+      <div class="col-md-8 col-sm-offset-2">
+        <div class="masonry-wrapper-cols">
+         <h2>フォロー中の芸人さんが出演するライブ一覧</h2>
+            <% if @events_following.present? %>
+                <%= render :partial => "events/event_list", locals: { events: @events_followings } %>
+            <% else %>
+                フォロー中の芸人さんが出演するライブの登録はありません。
+                <p>情報が登録されていませんか？<br>
+                wArally!のライブ情報は誰でも登録することができます！</p>
+                <% link_to '今すぐ芸人を登録する', new_geinin_path %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

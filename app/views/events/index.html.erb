@@ -11,7 +11,7 @@
 			    <div class="inner">
 			      <div class="lp-intro-hero">
 			        <p class="lp-intro-hero-text">おもしろい！を見つけよう</p>
-              <%= render :partial => "events/search_form" %>
+              <%= render :partial => "events/search_form",locales: { events: @events } %>
 			      </div>
 			    </div>
 			  </div>
@@ -57,9 +57,9 @@
     <div class="inner">
       <div class="logo">wArally!</div>
       <p>ログインするとwArally!のすべての機能をご利用いただけます！</p>
-        <a class="button twitter-button-large" href="/auth/twitter">
-          <i class="fab fa-twitter"></i> さっそく使い始める
-        </a>
+        <%= link_to user_twitter_omniauth_authorize_path,class: "twitter-button-large" do %>
+          <i class="fa fa-twitter"></i> さっそく使い始める
+        <% end %>
   </div>
 </div>
 </main>

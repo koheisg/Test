@@ -24,36 +24,11 @@ class ApplicationController < ActionController::Base
   render '/setting'
   end
 
-  # スケジュールの表示
-  def participate
-  #@user = current_user
-  @participates = Participate.where(user_id: current_user.id)
-  @pendings = Pending.where(user_id: current_user.id)
-  @events = Event.all
-  #@events = Event.where(id: @participates.event_id)
-  #@events = Event.participate.reverse_order
-  render '/participate'
+  # aboutページの表示
+  def survey
+  render '/survey'
   end
 
-  # スケジュールの表示
-  def schedule
-  #@user = current_user
-  @participates = Participate.where(user_id: current_user.id)
-  @events = Event.all
-  #@events = Event.where(id: @participates.event_id)
-  #@events = Event.participate.reverse_order
-  render '/schedule'
-  end
-
-  protected
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
-  end
-  #def configure_permitted_parameters
-  #  devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-  #end
-
-  #private
   def set_current_user
     return unless session[:user_id]
     @current_user = User.find_by(id: session[:user_id])
@@ -69,7 +44,20 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: 'ログインしてください'
   end
 
-  def escape_like(string)
+  def escape_like(keyword)
     string.gsub(/[\\%_]/){|m| "\\#{m}"}
   end
+
+  def set_remote_ip
+     # ipアドレスを取得
+       @remote_ip = request.remote_ip
+  end
+
+  protected
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+  end
+  #def configure_permitted_parameters
+  #  devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+  #end
 end

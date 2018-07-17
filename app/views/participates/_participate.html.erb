@@ -1,22 +1,22 @@
 <% if user_signed_in? %>
 	<% if event.participated_by?(current_user) %>
 	  <li>
-	    <%= link_to event_participates_path(event), method: :delete, id: "participate-button", remote: true, :protocol => 'https' do %>
+	    <%= link_to event_participates_path(event), method: :delete, class: "participate-button",id: "participate-button-#{event.id}", remote: true, :protocol => 'https' do %>
 	      <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-	      <%= event.participates.count %> 参加する
+	      <%= event.participates.where(event_id: event.id).count %> 参加する
 	    <% end %>
 	  </li>
 	<% else %>
 	  <li>
-	    <%= link_to event_participates_path(event), method: :post, id: "participate-button", remote: true, :protocol => 'https' do %>
+	    <%= link_to event_participates_path(event), method: :post, class: "participate-button", id: "participate-button-#{event.id}", remote: true, :protocol => 'https' do %>
 	      <i class="fa fa-heart-o" aria-hidden="true"></i>
-	      <%= event.participates.count %> 参加する
+	      <%= event.participates.where(event_id: event.id).count %> 参加する
 	    <% end %>
 	  </li>
 	<% end %>
 <% else %>
 	<!--ログインしていない場合、「ログインするといいね機能が使えます」のメッセージを出す-->
-	<%= link_to user_twitter_omniauth_authorize_path, "data-confirm" => "ログインすると参加するボタンが使えます" do %>
+	<a id="modal-open" class="button-link">
 		<i class="fa fa-heart-o" aria-hidden="true"></i> 参加する
-	<% end %>
+	</a>
 <% end %>
