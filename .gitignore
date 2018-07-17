@@ -31,4 +31,4 @@ doc/
 .idea
 .secret
 /.env
-/vendor/bundle/*
+/vendor/bundle/**/*
