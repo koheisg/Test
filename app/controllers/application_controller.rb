@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  #before_action :authenticate_user!
   before_action :set_current_user
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :current_user, :logged_in?
@@ -68,5 +67,9 @@ class ApplicationController < ActionController::Base
   def authenticate
     return if logged_in?
     redirect_to root_path, alert: 'ログインしてください'
+  end
+
+  def escape_like(string)
+    string.gsub(/[\\%_]/){|m| "\\#{m}"}
   end
 end

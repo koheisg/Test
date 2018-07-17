@@ -1,23 +1,23 @@
-			<% if user_signed_in? %>
-				<% if event.pending_by?(current_user) %>
-				  <li>
-				    <%= link_to event_pendings_path(event), method: :delete do %>
-				      <i class="fas fa-question-circle" aria-hidden="true" style="color: red;"></i>
-				      <%= event.pendings.count %> 検討中
-				    <% end %>
-				  </li>
-				<% else %>
-				  <li>
-				    <%= link_to event_pendings_path(event), method: :post do %>
-				      <i class="far fa-question-circle" aria-hidden="true"></i>
-				      <%= event.pendings.count %> 検討中
-				    <% end %>
-				  </li>
-				<% end %>
-			<% else %>
-			<!--ログインしていない場合、「ログインするといいね機能が使えます」のメッセージを出す-->
-				<!--ログインしていない場合、「ログインするといいね機能が使えます」のメッセージを出す-->
-				<%= link_to user_twitter_omniauth_authorize_path, "data-confirm" => "ログインすると参加するボタンが使えます" do %>
-				      <i class="far fa-question-circle" aria-hidden="true"></i> 検討中
-				<% end %>
-			<% end %>
+<% if user_signed_in? %>
+	<% if event.pending_by?(current_user) %>
+	  <li>
+	    <%= link_to event_pendings_path(event), method: :delete, id: "pending-button", remote: true, :protocol => 'https' do %>
+	      <i class="fas fa-question-circle" aria-hidden="true" style="color: red;"></i>
+	      <%= event.pendings.count %> 検討中
+	    <% end %>
+	  </li>
+	<% else %>
+	  <li>
+	    <%= link_to event_pendings_path(event), method: :post, id: "pending-button", remote: true, :protocol => 'https' do %>
+	      <i class="far fa-question-circle" aria-hidden="true"></i>
+	      <%= event.pendings.count %> 検討中
+	    <% end %>
+	  </li>
+	<% end %>
+<% else %>
+<!--ログインしていない場合、「ログインするといいね機能が使えます」のメッセージを出す-->
+	<!--ログインしていない場合、「ログインするといいね機能が使えます」のメッセージを出す-->
+	<%= link_to user_twitter_omniauth_authorize_path, "data-confirm" => "ログインすると参加するボタンが使えます" do %>
+	      <i class="far fa-question-circle" aria-hidden="true"></i> 検討中
+	<% end %>
+<% end %>

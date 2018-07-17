@@ -1,17 +1,20 @@
-    日付から探す<br>
-    <span><%= link_to '今日', search_path(:datetime => 'today') %></span>
-    <span><%= link_to '明日', search_path(:datetime => 'tomorrow') %></span>
-    <span><%= link_to '次の土曜', search_path(:datetime => 'next_sat') %></span>
-    <span><%= link_to '次の日曜', search_path(:datetime => 'next_sun') %></span><br>
-    <span>
-	日付を指定する
-   	<%= form_tag(search_path, method: "get") do %>
-			  <%= datetime_select(:event, :datetime) %>
-			  <%= submit_tag("検索") %>
-	<% end %></span>
-    キーワードで探す<br>
+<div>
+日付から探す<br>
+  <span><%= link_to '今日', search_path(:date => 'today') %></span>
+  <span><%= link_to '明日', search_path(:date => 'tomorrow') %></span>
+  <span><%= link_to '次の土曜', search_path(:date => 'next_sat') %></span>
+  <span><%= link_to '次の日曜', search_path(:date => 'next_sun') %></span><br>
+</div>
+<div>
+  <%= form_tag(search_path, method: "get") do %>
+	  <%= text_field_tag ':date', '',:type=>"text", :placeholder =>"日付を指定する", :id=>"SearchCalendar", data: {min_date: 'today'},data:{ provide:'flatpickr' } %>
+	  <%= submit_tag("検索") %>
+	<% end %>
+</div>
+<div>
+キーワードで探す<br>
 	<%= form_tag(search_path, method: "get") do %>
 	  <%= text_field_tag(:keyword) %>
 	  <%= submit_tag("検索") %>
 	<% end %>
-</span>
+</div>

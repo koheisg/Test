@@ -6,7 +6,7 @@
       <span class="date-format date-format-1">
       <font size="3">
       <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
-      <span><%= event.datetime.strftime('%Y年%m月%d日 %H:%M') %></span>
+      <span><%= event.datetime.strftime('%Y年%m月%d日 %H:%M ') %></span>
       <div class="post-counts">
         <span class="share-button"></span>
         <% link_to 'Twitterにシェア', "https://twitter.com" %>
