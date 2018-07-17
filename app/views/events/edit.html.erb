@@ -35,8 +35,9 @@
       </div>
       <div class="form">
         <%= f.fields_for :event_performers do |performers_form| %>
-          <%= performers_form.text_area :performer,:placeholder => "出演者（改行でタグになります）",:class => "event-edit-form textarea form-long"  %><br>
+            <%= performers = performers + :performer %>
         <% end %>
+        <%= performers_form.text_area performers,:placeholder => "出演者（改行でタグになります）",:class => "event-edit-form textarea form-long"  %><br>
       </div>
     </div>
   <%= f.submit '投稿する！', :class => "btn new" %>
