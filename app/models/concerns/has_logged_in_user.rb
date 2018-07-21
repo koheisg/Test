@@ -1,4 +1,4 @@
-module HasLoggedInUser < Application
+module HasLoggedInUser
   extend ActiveSupport::Concern
 
   # ユーザーIDを保存
